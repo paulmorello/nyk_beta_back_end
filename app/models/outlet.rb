@@ -1,0 +1,2 @@
+class Outlet < ApplicationRecord
+end

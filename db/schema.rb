@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902214409) do
+ActiveRecord::Schema.define(version: 20160920180959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "outlets", force: :cascade do |t|
+    t.string   "name",                                null: false
+    t.string   "website"
+    t.string   "email"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "instagram"
+    t.string   "linkedin"
+    t.integer  "twitter_followers"
+    t.integer  "facebook_likes"
+    t.integer  "instagram_followers"
+    t.boolean  "hype_m",              default: false
+    t.boolean  "submithub",           default: false
+    t.boolean  "flagged",             default: false
+    t.boolean  "inactive",            default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -37,6 +59,28 @@ ActiveRecord::Schema.define(version: 20160902214409) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "writers", force: :cascade do |t|
+    t.string   "f_name",                         null: false
+    t.string   "l_name",                         null: false
+    t.string   "position"
+    t.string   "website"
+    t.string   "email_work",                     null: false
+    t.string   "email_personal"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "instagram"
+    t.string   "linkedin"
+    t.boolean  "key_contact",    default: false
+    t.boolean  "freelance",      default: false
+    t.boolean  "flagged",        default: false
+    t.boolean  "inactive",       default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
 end
