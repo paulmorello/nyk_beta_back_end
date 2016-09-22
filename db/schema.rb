@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922171133) do
+ActiveRecord::Schema.define(version: 20160922212239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "genres", force: :cascade do |t|
     t.string   "name"
@@ -33,7 +39,6 @@ ActiveRecord::Schema.define(version: 20160922171133) do
     t.string   "email"
     t.string   "city"
     t.string   "state"
-    t.string   "country"
     t.string   "twitter"
     t.string   "facebook"
     t.string   "instagram"
@@ -47,6 +52,8 @@ ActiveRecord::Schema.define(version: 20160922171133) do
     t.boolean  "inactive",            default: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "country_id"
+    t.index ["country_id"], name: "index_outlets_on_country_id", using: :btree
   end
 
   create_table "outlets_writers", id: false, force: :cascade do |t|
@@ -98,7 +105,6 @@ ActiveRecord::Schema.define(version: 20160922171133) do
     t.string   "email_personal"
     t.string   "city"
     t.string   "state"
-    t.string   "country"
     t.string   "twitter"
     t.string   "facebook"
     t.string   "instagram"
@@ -109,6 +115,10 @@ ActiveRecord::Schema.define(version: 20160922171133) do
     t.boolean  "inactive",       default: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "country_id"
+    t.index ["country_id"], name: "index_writers_on_country_id", using: :btree
   end
 
+  add_foreign_key "outlets", "countries"
+  add_foreign_key "writers", "countries"
 end
