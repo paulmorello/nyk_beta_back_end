@@ -10,6 +10,49 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-group">
+    <%= f.label(:first_name) %>
+    <%= f.text_field(:f_name) %>
+    <%= f.label(:last_name) %>
+    <%= f.text_field(:l_name) %>
+    <%= f.label(:position) %>
+    <%= f.text_field(:position) %>
+  </div>
+  <div class="form-group">
+    <!--  search box for connecting to outlet-->
+    <%= f.label(:outlet_profile) %>
+    <%= f.text_field(:outlet_profile) %>
+    <%= f.label(:work_email) %>
+    <%= f.text_field(:email_work) %>
+    <%= f.label(:personal_email) %>
+    <%= f.text_field(:email_personal) %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:city) %>
+    <%= f.text_field(:city) %>
+    <%= f.label(:state) %>
+    <%= f.text_field(:state) %>
+    <%= f.label(:country_id) %>
+    <%= f.collection_select(:country_id, Country.all, :id, :name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:twitter) %>
+    <%= f.text_field(:twitter) %>
+    <%= f.label(:facebook) %>
+    <%= f.text_field(:facebook) %>
+    <%= f.label(:instagram) %>
+    <%= f.text_field(:instagram) %>
+    <%= f.label(:linkedin) %>
+    <%= f.text_field(:linkedin) %>
+  </div>
+  <div class="form-group">
+    <!-- adding genres -->
+    <!-- adding presstypes -->
+    <%= f.label(:key_contact) %>
+    <%= f.check_box(:key_contact) %>
+    <%= f.label(:freelance) %>
+    <%= f.check_box(:freelance) %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

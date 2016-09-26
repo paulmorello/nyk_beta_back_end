@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922212239) do
+ActiveRecord::Schema.define(version: 20160923195507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160922212239) do
     t.datetime "updated_at",                          null: false
     t.integer  "country_id"
     t.index ["country_id"], name: "index_outlets_on_country_id", using: :btree
+    t.index ["name"], name: "index_outlets_on_name", unique: true, using: :btree
   end
 
   create_table "outlets_writers", id: false, force: :cascade do |t|
@@ -100,7 +101,7 @@ ActiveRecord::Schema.define(version: 20160922212239) do
     t.string   "f_name",                         null: false
     t.string   "l_name",                         null: false
     t.string   "position"
-    t.string   "website"
+    t.string   "outlet_profile"
     t.string   "email_work",                     null: false
     t.string   "email_personal"
     t.string   "city"
@@ -117,6 +118,7 @@ ActiveRecord::Schema.define(version: 20160922212239) do
     t.datetime "updated_at",                     null: false
     t.integer  "country_id"
     t.index ["country_id"], name: "index_writers_on_country_id", using: :btree
+    t.index ["email_work"], name: "index_writers_on_email_work", unique: true, using: :btree
   end
 
   add_foreign_key "outlets", "countries"

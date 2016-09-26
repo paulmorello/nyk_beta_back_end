@@ -7,10 +7,27 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <% if user_signed_in? %>
-    <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-  <% end %>
+
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-light bg-faded">
+      <% if user_signed_in? %>
+        <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+      <% end %>
+      <div class="nav navbar-nav pull-xs-right">
+        <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="/outlets/new">New Outlet</a>
+      </div>
+    </nav>
+    <div class="main">
+
+      <div class="sidebar">
+
+      </div>
+
+      <div class="cards">
+        <%= yield %>
+      </div>
+
+    </div>
   </body>
 </html>
