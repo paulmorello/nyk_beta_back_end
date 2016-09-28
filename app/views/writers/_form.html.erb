@@ -1,15 +1,19 @@
 <%= form_for(writer) do |f| %>
-  <% if writer.errors.any? %>
+  <% if writer.errors.any? || @custom_errors.any?%>
     <div id="error_explanation">
-      <h2><%= pluralize(writer.errors.count, "error") %> prohibited this writer from being saved:</h2>
+      <h2><%= pluralize(writer.errors.count + @custom_errors.count, "error") %> prohibited this writer from being saved:</h2>
 
       <ul>
       <% writer.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
+      <% @custom_errors.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
       </ul>
     </div>
   <% end %>
+
   <div class="form-group">
     <%= f.label(:first_name) %>
     <%= f.text_field(:f_name) %>
@@ -19,10 +23,8 @@
     <%= f.text_field(:position) %>
   </div>
   <div class="form-group">
-    <%= f.label(:outlet) %>
-    <%= f.fields_for :outlets do |s| %>
-      <%= s.text_field :name %>
-    <% end %>
+    <%= label_tag(:outlet) %>
+    <%= text_field_tag(:outlet) %>
     <%= f.label(:outlet_profile) %>
     <%= f.text_field(:outlet_profile) %>
     <%= f.label(:work_email) %>
