@@ -69,6 +69,6 @@ class WritersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def writer_params
-      params.fetch(:writer, {})
+      params.require(:writer).permit(:f_name,:l_name, :position, :outlet_profile, :email_work, :email_personal, :city, :state, :country_id,:twitter,:facebook,:instagram,:linkedin, :key_contact, :freelance, outlets_attributes: [:name])
     end
 end

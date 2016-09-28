@@ -15,28 +15,38 @@
  @import "bootstrap";
  @import "scaffolds";
 
- $navHeight: 70px;
+ // Colors
+ $light-grey: #D5DCE1;
+ $grey: #AAB8C1;
+ $dark-grey: #555D64;
+ $light-blue: #32C7DB;
+ $light-green:#9BDB36;
+
+ $navHeight: 60px;
+ $headerHeight: 125px;
+ $totalTopHeight: $navHeight + $headerHeight;
+ $sidebarWidth: 225px;
 
 body {
-
+  color: $dark-grey;
 }
 
 nav {
-  height: $navHeight
+  height: $navHeight;
+  border-bottom: solid 1px $light-grey;
 }
 
-.main {
-
+.results-header {
+  height: $headerHeight;
 }
 
 .sidebar {
   height: calc(100vh - #{$navHeight});
-  width: 225px;
+  width: $sidebarWidth;
   float: left;
-  background-color: grey;
 }
 
-.cards {
-  height: calc(100vh - #{$navHeight});
+.results {
+  height: calc(100vh - #{$totalTopHeight});
   overflow: auto;
 }
