@@ -11,16 +11,18 @@
   <body>
     <nav class="navbar">
       <% if user_signed_in? %>
-        <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+        <div class="nav navbar-nav pull-xs-right">
+          <% if current_user.admin %>
+            <a class="nav-item nav-link" href="/outlets/new">Create Outlet</a>
+            <a class="nav-item nav-link" href="/writers/new">Create Writer</a>
+            <a class="nav-item nav-link" href="/writers">Assigned</a>
+          <% end %>
+          <a class="nav-item nav-link" href="/outlets">Discover</a>
+          <a class="nav-item nav-link" href="#">Manage</a>
+          <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-item nav-link logout" %>
+        </div>
       <% end %>
-      <div class="nav navbar-nav pull-xs-right">
-        <% if current_user.admin %>
-          <a class="nav-item nav-link" href="/outlets/new">Create Outlet</a>
-          <a class="nav-item nav-link" href="/writers/new">Create Writer</a>
-        <% end %>
-        <a class="nav-item nav-link" href="/outlets">Discover</a>
-        <a class="nav-item nav-link" href="#">Manage</a>
-      </div>
+
     </nav>
 
     <%= yield %>

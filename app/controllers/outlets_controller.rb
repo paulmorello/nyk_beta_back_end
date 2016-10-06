@@ -3,7 +3,7 @@ class OutletsController < ApplicationController
 
   # GET /outlets
   # GET /outlets.json
-  def index
+  def index  # Essentially the main page of the application proper. This is the discover page.
     @outlets = Outlet.all
   end
 
@@ -69,6 +69,6 @@ class OutletsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def outlet_params
-      params.require(:outlet).permit(:name,:website,:email,:city,:state,:country_id,:twitter,:facebook,:instagram,:linkedin,:hype_m,:submithub)
+      params.require(:outlet).permit(:name,:website,:email,:staff_list, :description, :city,:state,:country_id,:twitter,:facebook,:instagram,:linkedin,:hype_m,:submithub, :notes)
     end
 end

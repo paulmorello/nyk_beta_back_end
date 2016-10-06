@@ -1,5 +1,6 @@
 class Genre < ApplicationRecord
-  has_and_belongs_to_many :writers
+  has_many :genre_tags
+  has_many :writers, :through => :genre_tags
 
   strip_attributes
 end

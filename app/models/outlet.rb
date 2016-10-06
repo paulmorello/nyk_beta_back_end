@@ -1,5 +1,6 @@
 class Outlet < ApplicationRecord
-  has_and_belongs_to_many :writers
+  has_many :jobs
+  has_many :writers, :through => :jobs
   belongs_to :country
 
   strip_attributes

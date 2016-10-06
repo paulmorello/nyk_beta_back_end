@@ -4,7 +4,7 @@ class WritersController < ApplicationController
 
   # GET /writers
   # GET /writers.json
-  def index
+  def index  # This is being used for admins to see writers assigned to them
     @writers = Writer.all
   end
 
@@ -45,11 +45,11 @@ class WritersController < ApplicationController
     respond_to do |format|
       @writer.assign_attributes(writer_params)
       valid_writer = @writer.valid?
-      if valid_writer && validate_outlet(params["outlet"])
+      if valid_writer # && validate_outlet(params["outlet"])
         @writer.update(writer_params)
-        if params["outlet"] != "" # accounting for blank entry but writer has at least on outlet. Valid, but we don't want to save blank entry
-          @writer.outlets.push(Outlet.find_by(name: params["outlet"]))
-        end
+        # if params["outlet"] != "" # accounting for blank entry but writer has at least on outlet. Valid, but we don't want to save blank entry
+        #   @writer.outlets.push(Outlet.find_by(name: params["outlet"]))
+        # end
         format.html { redirect_to @writer, notice: 'Writer was successfully updated.' }
         format.json { render :show, status: :ok, location: @writer }
       else
@@ -104,6 +104,6 @@ class WritersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def writer_params
-      params.require(:writer).permit(:f_name,:l_name, :position, :outlet, :outlet_profile, :email_work, :email_personal, :city, :state, :country_id,:twitter,:facebook,:instagram,:linkedin, :key_contact, :freelance)
+      params.require(:writer).permit(:f_name,:l_name, :city, :state, :country_id,:twitter, :linkedin, :key_contact, :freelance, :notes, :user_id, genre_tags_attributes: [:id, :genre_id, :_destroy])
     end
 end

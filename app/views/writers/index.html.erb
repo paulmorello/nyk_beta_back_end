@@ -1,25 +1,17 @@
-<p id="notice"><%= notice %></p>
+<%= render ("layouts/filterbar") %>
 
-<h1>Writers</h1>
+<div class="results-header">
+  <h1>assigned to you</h1>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="form">
 
-  <tbody>
-    <% @writers.each do |writer| %>
-      <tr>
-        <td><%= link_to 'Show', writer %></td>
-        <td><%= link_to 'Edit', edit_writer_path(writer) %></td>
-        <td><%= link_to 'Destroy', writer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <ul class="assigned-writers"
+    <% @writers.where(user_id: current_user.id).each do |writer| %>
+
+        <li class="assigned-writer"><%= link_to writer.f_name+' '+writer.l_name, edit_writer_path(writer) %> - Last Updated: <%=writer.updated_at%></li>
+
+        <!-- <%= link_to 'Destroy', writer, method: :delete, data: { confirm: 'Are you sure?' } %> -->
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Writer', new_writer_path %>
+  </ul>
+</div>

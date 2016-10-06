@@ -35,7 +35,8 @@ types = ["Track Premiere",
 
 types.each {|t| Presstype.create(name: t)}
 
-primaries = ["Indie",
+genres = [  "All",
+            "Indie",
             "Rock",
             "Electronic",
             "Experimental",
@@ -54,25 +55,23 @@ primaries = ["Indie",
             "Singer/Songwriter",
             "Blues"]
 
-primaries.each {|g| Genre.create(name: g, is_primary: true)}
+genres.each {|g| Genre.create(name: g)}
 
-secondaries = ["Indie Pop", "Indie Rock", "Indietronica", "Indie Folk", "Dreampop",
-              "Classic Rock", "Folk Rock", "Hard Rock", "Progressive Rock", "Psychadelic Rock",
-              "Punk Rock", "Pop Punk", "Post Rock",
-              "Power Pop", "Stoner Rock", "Surf Rock",
-              "Electropop", "Ambient", "Chill", "Chillout", "House", "Techno", "Drum & Bass",
-              "Dub", "Dubstep", "Deep House", "Downtempo",
-              "UK Garage", "Glitch", "IDM", "Lounge", "Minimal",
-              "Synth Music", "Trance", "Beats", "Dance", "EDM",
-              "Avant-Garde", "Drone", "Industrial",
-              "Alt Country", "Synthpop",
-              "J Pop", "Afro",
-              "Piano Music",
-              "Rap", "R&B", "Grime", "Trap",
-              "Swing", "Beebop",
-              "Neo Soul", "Disco",
-              "Garage", "Grunge", "Krautrock", "Lo-Fi", "Math Rock", "New Wave", "Noise", "Trip Hop", "Shoegaze",
-              "Black Metal", "Death Metal", "Doom Metal", "Heavy Metal", "Metalcore", "Thrash Metal", "Emo", "Screamo", "Sludge",
-              "Acoustic", "Americana"]
+Outlet.create(:name => "Pitchfork", :website => "pitchfork.com",
+:email => "press@pitchfork.com", :city => "New York", :state => "NY",
+:country_id => 228, :twitter => "Pitchfork", :facebook => "Pitchfork",
+:instagram => "pitchfork", :hype_m => true, :description => "Outlet primarily covers all Genres and Presstypes.")
 
-secondaries.each {|g| Genre.create(name: g)}
+Outlet.create(:name => "Rolling Stone", :website => "rollingstone.com",
+:email => "press@rollingstone.com", :city => "New York", :state => "NY",
+:country_id => 228, :twitter => "rollingstone", :facebook => "rollingstone",
+:instagram => "rollingstone", :linkedin => "rolling-stone", :hype_m => true,
+:description => "Outlet primarily covers all Genres and Presstypes.")
+
+Writer.create(:f_name => "Drew", :l_name => "Garver", :city => "Brooklyn",
+:state => "NY", :country_id => 228, :twitter => "dril", :key_contact => true,
+:freelance => true)
+
+Writer.create(:f_name => "Dan", :l_name => "Rutman", :city => "Brooklyn",
+:state => "NY", :country_id => 228, :twitter => "fred_delicious",
+:freelance => true)

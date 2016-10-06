@@ -46,7 +46,7 @@ nav {
   float: left;
 }
 
-.results {
+.results, .form {
   height: calc(100vh - #{$totalTopHeight});
   overflow: auto;
 }

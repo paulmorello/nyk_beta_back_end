@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   strip_attributes
+
+  has_many :writers
 end

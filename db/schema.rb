@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923195507) do
+ActiveRecord::Schema.define(version: 20161006063530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,16 +21,32 @@ ActiveRecord::Schema.define(version: 20160923195507) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "is_primary", default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+  create_table "genre_tags", force: :cascade do |t|
+    t.integer  "writer_id"
+    t.integer  "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_genre_tags_on_genre_id", using: :btree
+    t.index ["writer_id"], name: "index_genre_tags_on_writer_id", using: :btree
   end
 
-  create_table "genres_writers", id: false, force: :cascade do |t|
-    t.integer "genre_id",  null: false
-    t.integer "writer_id", null: false
+  create_table "genres", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.integer  "outlet_id"
+    t.integer  "writer_id"
+    t.string   "email_work"
+    t.string   "email_personal"
+    t.string   "position"
+    t.string   "outlet_profile"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["outlet_id"], name: "index_jobs_on_outlet_id", using: :btree
+    t.index ["writer_id"], name: "index_jobs_on_writer_id", using: :btree
   end
 
   create_table "outlets", force: :cascade do |t|
@@ -39,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160923195507) do
     t.string   "email"
     t.string   "city"
     t.string   "state"
+    t.integer  "country_id"
     t.string   "twitter"
     t.string   "facebook"
     t.string   "instagram"
@@ -50,27 +67,27 @@ ActiveRecord::Schema.define(version: 20160923195507) do
     t.boolean  "submithub",           default: false
     t.boolean  "flagged",             default: false
     t.boolean  "inactive",            default: false
+    t.string   "notes"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "country_id"
+    t.string   "description"
+    t.string   "staff_list"
     t.index ["country_id"], name: "index_outlets_on_country_id", using: :btree
-    t.index ["name"], name: "index_outlets_on_name", unique: true, using: :btree
   end
 
-  create_table "outlets_writers", id: false, force: :cascade do |t|
-    t.integer "outlet_id", null: false
-    t.integer "writer_id", null: false
+  create_table "presstype_tags", force: :cascade do |t|
+    t.integer  "writer_id"
+    t.integer  "presstype_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["presstype_id"], name: "index_presstype_tags_on_presstype_id", using: :btree
+    t.index ["writer_id"], name: "index_presstype_tags_on_writer_id", using: :btree
   end
 
   create_table "presstypes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "presstypes_writers", id: false, force: :cascade do |t|
-    t.integer "presstype_id", null: false
-    t.integer "writer_id",    null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -98,29 +115,30 @@ ActiveRecord::Schema.define(version: 20160923195507) do
   end
 
   create_table "writers", force: :cascade do |t|
-    t.string   "f_name",                         null: false
-    t.string   "l_name",                         null: false
-    t.string   "position"
-    t.string   "outlet_profile"
-    t.string   "email_work",                     null: false
-    t.string   "email_personal"
+    t.string   "f_name",                      null: false
+    t.string   "l_name",                      null: false
     t.string   "city"
     t.string   "state"
-    t.string   "twitter"
-    t.string   "facebook"
-    t.string   "instagram"
-    t.string   "linkedin"
-    t.boolean  "key_contact",    default: false
-    t.boolean  "freelance",      default: false
-    t.boolean  "flagged",        default: false
-    t.boolean  "inactive",       default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
     t.integer  "country_id"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.boolean  "key_contact", default: false
+    t.boolean  "freelance",   default: false
+    t.boolean  "flagged",     default: false
+    t.boolean  "inactive",    default: false
+    t.string   "notes"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "user_id"
     t.index ["country_id"], name: "index_writers_on_country_id", using: :btree
-    t.index ["email_work"], name: "index_writers_on_email_work", unique: true, using: :btree
+    t.index ["user_id"], name: "index_writers_on_user_id", using: :btree
   end
 
-  add_foreign_key "outlets", "countries"
-  add_foreign_key "writers", "countries"
+  add_foreign_key "genre_tags", "genres"
+  add_foreign_key "genre_tags", "writers"
+  add_foreign_key "jobs", "outlets"
+  add_foreign_key "jobs", "writers"
+  add_foreign_key "presstype_tags", "presstypes"
+  add_foreign_key "presstype_tags", "writers"
+  add_foreign_key "writers", "users"
 end

@@ -1,6 +1,7 @@
 class Presstype < ApplicationRecord
-  has_and_belongs_to_many :writers
+  has_many :presstype_tags
+  has_many :writers, :through => :presstype_tags
 
   strip_attributes
-  
+
 end

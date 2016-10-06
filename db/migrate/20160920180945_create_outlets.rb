@@ -7,7 +7,7 @@ class CreateOutlets < ActiveRecord::Migration[5.0]
       t.string :email
       t.string :city
       t.string :state
-      t.string :country
+      t.references :country
       ## Social Info
       t.string :twitter
       t.string :facebook
@@ -21,6 +21,7 @@ class CreateOutlets < ActiveRecord::Migration[5.0]
       ## Extra Buckets
       t.boolean :flagged, default: false
       t.boolean :inactive, default: false
+      t.string :notes
 
       t.timestamps
     end
