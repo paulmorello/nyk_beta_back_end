@@ -1,4 +1,4 @@
-<div class="form">
+
 
 <%= form_for(writer) do |f| %>
   <% if writer.errors.any? || @custom_errors.any?%>
@@ -18,66 +18,112 @@
 
   <div class="form-group">
     <%= f.label(:first_name) %>
-    <%= f.text_field(:f_name) %>
-    <br>
+    <%= f.text_field(:f_name, class: "form-control") %>
+  </div>
+  <div class="form-group">
     <%= f.label(:last_name) %>
-    <%= f.text_field(:l_name) %>
-    <br>
+    <%= f.text_field(:l_name, class: "form-control") %>
   </div>
   <div class="form-group">
     <%= f.label(:city) %>
-    <%= f.text_field(:city) %>
-    <br>
+    <%= f.text_field(:city, class: "form-control") %>
+  </div>
+  <div class="form-group">
     <%= f.label(:state) %>
-    <%= f.text_field(:state) %>
-    <br>
+    <%= f.text_field(:state, class: "form-control") %>
+  </div>
+  <div class="form-group">
     <%= f.label(:country_id) %>
-    <%= f.collection_select(:country_id, Country.all, :id, :name) %>
-    <br>
+    <%= f.collection_select(:country_id, Country.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
   </div>
   <div class="form-group">
     <%= f.label(:twitter) %>
-    <%= f.text_field(:twitter) %>
-    <br>
+    <%= f.text_field(:twitter, class: "form-control") %>
+  </div>
+  <div class="form-group">
     <%= f.label(:linkedin) %>
-    <%= f.text_field(:linkedin) %>
-    <br>
-  </div>
-  <div class="form-group">
-    <%= f.label(:key_contact) %>
-    <%= f.check_box(:key_contact) %>
-    <br>
-    <%= f.label(:freelance) %>
-    <%= f.check_box(:freelance) %>
-    <br>
+    <%= f.text_field(:linkedin, class: "form-control") %>
   </div>
 
-  <div class="form-group">
-    <%= f.fields_for :genre_tags do |gt| %>
-
-      <%= gt.label :genre_id, "Select a genre" %>
-      <%= gt.collection_select(:genre_id, Genre.all, :id, :name, :include_blank => true) %>
-      <% if gt.object.persisted? %>
-        <%= gt.check_box :_destroy %>
-        <%= gt.label :_destroy, "Delete Genre" %>
-      <% end %>
-      <br>
+  <h4>genres</h4>
+  <div class="tag-form">
+  <%= f.fields_for :genre_tags do |gt| %>
+    <div class="form-group">
+    <%= gt.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+    <% if gt.object.persisted? %>
+      <%= gt.check_box :_destroy %>
+      <%= gt.label :_destroy, "Delete Genre" %>
     <% end %>
+    </div>
+  <% end %>
+  </div>
 
+  <h4>works for</h4>
+  <div class="job-form">
+  <hr>
+  <%= f.fields_for :jobs do |j| %>
+    <div class="form-group">
+    <%= j.label :outlet_id, "Outlet" %>
+    <%= j.collection_select(:outlet_id, Outlet.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+    </div>
+    <div class="form-group">
+    <%= j.label(:email_work, "Work Email") %>
+    <%= j.text_field(:email_work, class: "form-control") %>
+    </div>
+    <div class="form-group">
+    <%= j.label(:email_personal, "Personal Email") %>
+    <%= j.text_field(:email_personal, class: "form-control") %>
+    </div>
+    <div class="form-group">
+    <%= j.label(:position) %>
+    <%= j.text_field(:position, class: "form-control") %>
+    </div>
+    <div class="form-group">
+    <%= j.label(:outlet_profile, "Outlet Profile") %>
+    <%= j.text_field(:outlet_profile, class: "form-control") %>
+    </div>
+    <div class="tag-form">
+    <%= j.fields_for :presstype_tags do |pt| %>
+      <div class="form-group">
+      <%= pt.label :presstype_id, "Presstype" %>
+      <%= pt.collection_select(:presstype_id, Presstype.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+      <% if pt.object.persisted? %>
+        <%= pt.check_box :_destroy %>
+        <%= pt.label :_destroy, "Delete Presstype" %>
+      <% end %>
+      </div>
+    <% end %>
+    </div>
+    <% if j.object.persisted? %>
+      <div class="form-group">
+      <%= j.check_box :_destroy %>
+      <%= j.label :_destroy, "Delete Job" %>
+      </div>
+    <% end %>
+    <hr>
+  <% end %>
   </div>
 
   <div class="form-group">
     <%= f.label(:notes) %>
-    <%= f.text_area(:notes) %>
-    <br>
+    <%= f.text_area(:notes, class: "form-control") %>
+  </div>
+
+  <div class="form-group">
     <%= f.label(:user_id, "Assigned To") %>
-    <%= f.collection_select(:user_id, User.where(admin: true), :id, :email, :include_blank => true) %>
-    <br>
+    <%= f.collection_select(:user_id, User.where(admin: true), :id, :email, {include_blank: true}, {class: "form-control"}) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:key_contact) %>
+    <%= f.check_box(:key_contact, class: "form-check-inline") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:freelance) %>
+    <%= f.check_box(:freelance, class: "form-check-inline") %>
   </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-
-</div>

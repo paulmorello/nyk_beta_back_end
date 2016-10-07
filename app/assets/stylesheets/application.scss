@@ -11,29 +11,45 @@
  * It is generally better to create a new file per style scope.
  *
  */
-
+ @import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800';
  @import "bootstrap";
  @import "scaffolds";
+ @import "cards";
 
  // Colors
- $light-grey: #D5DCE1;
+ $light-grey: #E4E9EC;
  $grey: #AAB8C1;
  $dark-grey: #555D64;
  $light-blue: #32C7DB;
  $light-green:#9BDB36;
 
  $navHeight: 60px;
- $headerHeight: 125px;
+ $headerHeight: 100px;
  $totalTopHeight: $navHeight + $headerHeight;
  $sidebarWidth: 225px;
+ $resultsWidth: 1000px;
+ $totalWitdh: $sidebarWidth + $resultsWidth;
 
 body {
+  font-family: 'Open Sans', sans-serif;
   color: $dark-grey;
+}
+
+a {
+  color: inherit;
+  &:hover {
+    color: $light-blue;
+    text-decoration: none;
+  }
 }
 
 nav {
   height: $navHeight;
   border-bottom: solid 1px $light-grey;
+}
+
+.main-container {
+  min-width: $totalWitdh;
 }
 
 .results-header {
@@ -46,7 +62,38 @@ nav {
   float: left;
 }
 
-.results, .form {
+.results {
   height: calc(100vh - #{$totalTopHeight});
   overflow: auto;
+  background-color: $light-grey;
+  width: $resultsWidth;
+  margin: auto;
+}
+
+.form {
+  padding-left: 15%;
+  padding-right: 15%;
+  overflow: auto;
+  .job-form {
+    padding-right: 15%;
+  }
+  .tag-form {
+    width: 300px;
+  }
+  h1 {
+    margin: 50px 0;
+    color: $light-blue;
+  }
+  h4 {
+   margin: 25px 0;
+   color: $light-blue;
+  }
+  hr {
+   color: $light-blue;
+   background-color: $light-blue;
+   height: 2px;
+  }
+  .warning {
+   color: red;
+  }
 }

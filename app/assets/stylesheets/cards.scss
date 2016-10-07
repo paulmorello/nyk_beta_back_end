@@ -1,0 +1,117 @@
+// Results width currently 1000px;
+
+.results {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 300;
+  .hidden {
+    display: none;
+  }
+  .card {
+    p {
+      display: inline-block;
+    }
+    .card-heading {
+      font-size: 0.8em;
+      font-weight: 700;
+    }
+    .name {
+      margin-top: 10px;
+      margin-right: 30px;
+      font-size: 1.8em;
+      color: black;
+    }
+    .description {
+      font-size: 0.9em;
+      font-weight: 400;
+    }
+    .tag {
+      font-size: 0.8em;
+      font-weight: 300;
+      color: inherit;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-right: 2px;
+      border: solid 1px #555D64;
+      border-radius: 2px;
+    }
+  }
+  .outlet-card {
+    background-color: white;
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 70px;
+    margin: auto;
+    margin-top: 10px;
+    .outlet-card-top {
+      height: 55px;
+      border: solid black 1px;
+    }
+    .outlet-card-bottom {
+      height: 145px;
+      border: solid black 1px;
+    }
+  }
+  .writer-card {
+    width: 96%;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: auto;
+    background-color: white;
+    .writer-card-top {
+      height: 55px;
+      border: solid black 1px;
+    }
+    .writer-card-bottom {
+      height: 145px;
+      border: solid black 1px;
+    }
+  }
+  .contact-info {
+    border: solid black 1px;
+    height: 100%;
+    width: 30%;
+    float: left;
+  }
+  .social-info {
+    border: solid black 1px;
+    height: 100%;
+    width: 22%;
+    float: left;
+  }
+  .genres {
+    border: solid black 1px;
+    height: 100%;
+    width: 24%;
+    float: left;
+  }
+  .presstypes {
+    border: solid black 1px;
+    height: 100%;
+    width: 24%;
+    float: left;
+  }
+  .row1{
+    height: 25%;
+    border: solid 1px red;
+  }
+  .row2{
+    height: 25%;
+    border: solid 1px red;
+  }
+  .row3{
+    height: 25%;
+    border: solid 1px red;
+  }
+  .row4{
+    height: 25%;
+    border: solid 1px red;
+  }
+  .heading-col {
+    border: solid black 1px;
+    height: 100%;
+    width: 25%;
+    float: left;
+  }
+
+}

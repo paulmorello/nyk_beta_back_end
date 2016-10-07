@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006063530) do
+ActiveRecord::Schema.define(version: 20161006184615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,12 +76,12 @@ ActiveRecord::Schema.define(version: 20161006063530) do
   end
 
   create_table "presstype_tags", force: :cascade do |t|
-    t.integer  "writer_id"
     t.integer  "presstype_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "job_id"
+    t.index ["job_id"], name: "index_presstype_tags_on_job_id", using: :btree
     t.index ["presstype_id"], name: "index_presstype_tags_on_presstype_id", using: :btree
-    t.index ["writer_id"], name: "index_presstype_tags_on_writer_id", using: :btree
   end
 
   create_table "presstypes", force: :cascade do |t|
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20161006063530) do
   add_foreign_key "genre_tags", "writers"
   add_foreign_key "jobs", "outlets"
   add_foreign_key "jobs", "writers"
+  add_foreign_key "presstype_tags", "jobs"
   add_foreign_key "presstype_tags", "presstypes"
-  add_foreign_key "presstype_tags", "writers"
   add_foreign_key "writers", "users"
 end
