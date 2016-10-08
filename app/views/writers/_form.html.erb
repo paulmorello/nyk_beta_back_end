@@ -1,15 +1,12 @@
 
 
 <%= form_for(writer) do |f| %>
-  <% if writer.errors.any? || @custom_errors.any?%>
+  <% if writer.errors.any?%>
     <div id="error_explanation">
-      <h2><%= pluralize(writer.errors.count + @custom_errors.count, "error") %> prohibited this writer from being saved:</h2>
+      <h2><%= pluralize(writer.errors.count, "error") %> prohibited this writer from being saved:</h2>
 
       <ul>
       <% writer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      <% @custom_errors.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -47,7 +44,8 @@
 
   <h4>genres</h4>
   <div class="tag-form">
-  <%= f.fields_for :genre_tags do |gt| %>
+  <%= f.nested_fields_for :genre_tags do |gt| %>
+    <%= gt.remove_nested_fields_link%>
     <div class="form-group">
     <%= gt.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
     <% if gt.object.persisted? %>
@@ -56,12 +54,15 @@
     <% end %>
     </div>
   <% end %>
+  <%= f.add_nested_fields_link :genre_tags, "Add a Genre"%>
   </div>
 
   <h4>works for</h4>
   <div class="job-form">
   <hr>
-  <%= f.fields_for :jobs do |j| %>
+  <%= f.nested_fields_for :jobs do |j| %>
+    <%= j.remove_nested_fields_link%>
+    <%= j.hidden_field :id, :value => j.object.id %>
     <div class="form-group">
     <%= j.label :outlet_id, "Outlet" %>
     <%= j.collection_select(:outlet_id, Outlet.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
@@ -83,7 +84,8 @@
     <%= j.text_field(:outlet_profile, class: "form-control") %>
     </div>
     <div class="tag-form">
-    <%= j.fields_for :presstype_tags do |pt| %>
+    <%= j.nested_fields_for :presstype_tags do |pt| %>
+      <%= pt.remove_nested_fields_link%>
       <div class="form-group">
       <%= pt.label :presstype_id, "Presstype" %>
       <%= pt.collection_select(:presstype_id, Presstype.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
@@ -92,6 +94,9 @@
         <%= pt.label :_destroy, "Delete Presstype" %>
       <% end %>
       </div>
+    <% end %>
+    <% if j.object.persisted? %>
+      <%= j.add_nested_fields_link :presstype_tags, "Add a Presstype"%>
     <% end %>
     </div>
     <% if j.object.persisted? %>
@@ -102,7 +107,9 @@
     <% end %>
     <hr>
   <% end %>
+  <%= f.add_nested_fields_link :jobs, "Add a Job"%>
   </div>
+  <br>
 
   <div class="form-group">
     <%= f.label(:notes) %>
@@ -126,4 +133,7 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  <% if f.object.persisted? %>
+    <%= link_to 'Delete Writer',  writer,  method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 <% end %>

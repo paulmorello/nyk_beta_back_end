@@ -9,4 +9,6 @@ class GenreTag < ApplicationRecord
   validates :genre_id, presence: true
   validates :writer_id, presence: true
 
+  # validates_associated :writer
+
 end

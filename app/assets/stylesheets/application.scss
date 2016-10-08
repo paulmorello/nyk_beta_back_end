@@ -33,6 +33,9 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: $dark-grey;
+  h1 {
+    font-weight: 700;
+  }
 }
 
 a {
@@ -46,6 +49,16 @@ a {
 nav {
   height: $navHeight;
   border-bottom: solid 1px $light-grey;
+  a {
+    margin-right: 15px;
+    font-weight: 700;
+    &.hover, &.active {
+      color: $light-green;
+    }
+    &.logout {
+      color: $light-blue;
+    }
+  }
 }
 
 .main-container {

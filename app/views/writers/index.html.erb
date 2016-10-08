@@ -9,7 +9,7 @@
   <ul class="assigned-writers"
     <% @writers.where(user_id: current_user.id).each do |writer| %>
 
-        <li class="assigned-writer"><%= link_to writer.f_name+' '+writer.l_name, edit_writer_path(writer) %> - Last Updated: <%=writer.updated_at%></li>
+        <li class="assigned-writer"><%= link_to writer.f_name+' '+writer.l_name, edit_writer_path(writer) %> - Last Updated: <%=writer.updated_at%> - Note: <%=writer.notes%></li>
 
         <!-- <%= link_to 'Destroy', writer, method: :delete, data: { confirm: 'Are you sure?' } %> -->
     <% end %>

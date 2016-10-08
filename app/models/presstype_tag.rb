@@ -9,4 +9,6 @@ class PresstypeTag < ApplicationRecord
   validates :presstype_id, presence: true
   validates :job_id, presence: true
 
+  # validates_associated :job
+
 end

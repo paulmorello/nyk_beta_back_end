@@ -73,6 +73,10 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  <% if f.object.persisted? %>
+    <%= link_to 'Delete Outlet',  outlet,  method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 <% end %>
+
 
 </div>

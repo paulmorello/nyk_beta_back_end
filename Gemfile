@@ -32,6 +32,8 @@ gem 'strip_attributes'
 
 gem 'bootstrap'
 
+gem 'nested_form_fields'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
