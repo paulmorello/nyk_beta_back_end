@@ -17,6 +17,44 @@ class OutletsController < ApplicationController
     @outlet = Outlet.new
   end
 
+
+  def search
+    # POST /outlets/search
+    if request.post?
+      if params[:q].present? != true || params[:q] == "Search"
+        redirect_to outlets_path
+        return
+      end
+      redirect_to '/outlets/search/'+params[:q]
+
+    # GET /outlets/search/:q
+    elsif request.get?
+
+      @outlets  = Outlet.where("name ILIKE ?", "%#{params[:q]}%")
+      writers = Writer.where("f_name ILIKE ? OR l_name ILIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+      @jobs = []
+
+      if @outlets == nil && @jobs == nil
+        redirect_to outlets_noresults
+        return
+      end
+
+      writers.each do |writer|
+        writer.jobs.each do |job|
+          if @outlets.any? {|o| o[:id] != job.outlet.id}
+            @jobs.push(job)
+          end
+        end
+      end
+
+    end
+  end
+
+  # GET /outlets/noresults
+  def noresults
+  end
+
+
   # GET /outlets/1/edit
   def edit
   end

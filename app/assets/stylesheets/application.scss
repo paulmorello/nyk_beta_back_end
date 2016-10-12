@@ -30,6 +30,10 @@
  $resultsWidth: 1000px;
  $totalWitdh: $sidebarWidth + $resultsWidth;
 
+ *, *:before, *:after {
+   box-sizing: border-box;
+ }
+
 body {
   font-family: 'Open Sans', sans-serif;
   color: $dark-grey;

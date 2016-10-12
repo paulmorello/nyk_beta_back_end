@@ -3,6 +3,8 @@
 <!--  OUTLET CARDS =====================================================-->
 
   <% @outlets.each do |outlet| %>
+  <div class="outlet-writer-wrapper"> <!-- needed parent wrapper for traversing DOM on click events -->
+
     <div class="outlet-card card">
       <div class="outlet-card-top">
         <p class="name"><%=outlet.name%></p>
@@ -79,17 +81,17 @@
       </div>
     </div>
 
-<!--  OUTLET CARDS =====================================================-->
+<!--  WRITER CARDS =====================================================-->
 
     <% outlet.jobs.each do |job| %>
       <div class="writer-card card">
-        <div class="writer-card-top">
+        <div class="writer-card-top hidden">
             <p class="name"><%=job.writer.f_name%> <%=job.writer.l_name%></p>
             <p class="position"><%=job.position%></p>
             <p><a href="mailto:<%=job.email_work%>"><%=job.email_work%></a></p>
             <p><a href="mailto:<%=job.email_personal%>"><%=job.email_personal%></a></p>
         </div>
-        <div class="writer-card-bottom ">
+        <div class="writer-card-bottom hidden">
           <div class="contact-info">
             <div class="row1">
               <div class="heading-col">
@@ -128,7 +130,7 @@
         </div>
       </div>
     <% end %>
-
+  </div>
   <% end %>
 
 </div>

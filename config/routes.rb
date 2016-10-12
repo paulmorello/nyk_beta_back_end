@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   resources :writers
-  resources :outlets
+  resources :outlets do
+    collection do
+      post 'search', action: :search, controller: 'outlets'
+      get 'search/:q', action: :search, controller: 'outlets'
+      get 'noresults', action: :noresults, controller: 'outlets'
+    end
+  end
   devise_for :users
   get 'welcome/index'
   root 'welcome#index'

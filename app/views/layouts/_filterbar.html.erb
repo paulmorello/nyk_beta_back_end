@@ -2,19 +2,14 @@
 
   <div class="sidebar-top">
     <div class-"search">
-      <%= form_tag("/search", method: "get") do %>
-        <%= text_field_tag(:q, "Search") %>
+      <%= form_tag(:search_outlets, :url => { :controller => 'outlets', :action => 'search' }) do %>
+        <%= text_field_tag(:q, nil, placeholder: "Search") %>
         <!-- <%= submit_tag("Search") %> -->
       <% end %>
     </div>
   </div>
   <div class="filter">
-    <%= form_tag("/filter", method: "get") do %>
-      <%= check_box_tag(:show_writers) %>
-      <%= label_tag(:show_writers, "Show Writers") %>
-      <hr>
-
-    <% end %>
+    <label><input type="checkbox" id="show-writers" value="show_writers"> Show Writers</label><br>
   </div>
 
 </div>
