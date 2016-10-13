@@ -113,4 +113,24 @@ nav {
   .warning {
    color: red;
   }
+  .add-link {
+    color: $light-blue;
+  }
+  .add-job-link {
+    color: $light-blue;
+    border: solid 2px $light-blue;
+    padding: 3px;
+  }
+  .delete-job-link {
+    color: red;
+    margin-top: 10px;
+  }
+  .delete-writer-link {
+    color: red;
+    border: solid 2px red;
+    padding: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
 }

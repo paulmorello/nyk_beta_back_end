@@ -54,7 +54,7 @@
     <% end %>
     </div>
   <% end %>
-  <%= f.add_nested_fields_link :genre_tags, "Add a Genre"%>
+  <%= f.add_nested_fields_link :genre_tags, "Add a Genre", class: "add-link"%>
   </div>
 
   <h4>works for</h4>
@@ -96,18 +96,18 @@
       </div>
     <% end %>
     <% if j.object.persisted? %>
-      <%= j.add_nested_fields_link :presstype_tags, "Add a Presstype"%>
+      <%= j.add_nested_fields_link :presstype_tags, "Add a Presstype", class: "add-link"%>
     <% end %>
     </div>
     <% if j.object.persisted? %>
-      <div class="form-group">
+      <div class="form-group delete-job-link">
       <%= j.check_box :_destroy %>
       <%= j.label :_destroy, "Delete Job" %>
       </div>
     <% end %>
     <hr>
   <% end %>
-  <%= f.add_nested_fields_link :jobs, "Add a Job"%>
+  <%= f.add_nested_fields_link :jobs, "Add a Job", class: "add-job-link"%>
   </div>
   <br>
 
@@ -134,6 +134,8 @@
     <%= f.submit %>
   </div>
   <% if f.object.persisted? %>
-    <%= link_to 'Delete Writer',  writer,  method: :delete, data: { confirm: 'Are you sure?' } %>
+    <div class="delete-writer-link">
+      <%= link_to 'Delete Writer',  writer,  method: :delete, data: { confirm: 'Are you sure?'} %>
+    </div>
   <% end %>
 <% end %>

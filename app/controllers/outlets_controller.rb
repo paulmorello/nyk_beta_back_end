@@ -26,28 +26,33 @@ class OutletsController < ApplicationController
         return
       end
       redirect_to '/outlets/search/'+params[:q]
-
     # GET /outlets/search/:q
     elsif request.get?
-
       @outlets  = Outlet.where("name ILIKE ?", "%#{params[:q]}%")
       writers = Writer.where("f_name ILIKE ? OR l_name ILIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+      # Everything below just for making sure not to double writers or outlets after search
       @jobs = []
-
-      if @outlets == nil && @jobs == nil
-        redirect_to outlets_noresults
-        return
-      end
-
-      writers.each do |writer|
-        writer.jobs.each do |job|
-          if @outlets.any? {|o| o[:id] != job.outlet.id}
+      outlet_ids = []
+      if @outlets.empty? == false
+        writers.each do |writer|
+          writer.jobs.each do |job|
+            if @outlets.any? {|o| o[:id] != job.outlet.id}
+              @jobs.push(job)
+              outlet_ids.push(job.outlet_id)
+            end
+          end
+        end
+      elsif @outlets.empty? == true
+        writers.each do |writer|
+          writer.jobs.each do |job|
             @jobs.push(job)
+            outlet_ids.push(job.outlet_id)
           end
         end
       end
-
+      @outlet_ids = outlet_ids.uniq
     end
+
   end
 
   # GET /outlets/noresults
