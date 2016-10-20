@@ -2,12 +2,16 @@
 // All this logic will automatically be available in application.js.
 
 var toggleShortCard = function(e) {
-  $(e.target).parents('.outlet-writer-wrapper').find('.writer-card-bottom').addClass("hidden");
-  $(e.target).parents('.outlet-writer-wrapper').find('.writer-card-top').toggleClass("hidden");
+  if (e.target.tagName.toLowerCase() !== 'a') {
+    $(e.target).parents('.outlet-writer-wrapper').find('.writer-card-bottom').addClass("hidden");
+    $(e.target).parents('.outlet-writer-wrapper').find('.writer-card-top').toggleClass("hidden");
+  };
 };
 
 var toggleLongCard = function(e) {
-  $(e.target).parents('.writer-card').find('.writer-card-bottom').toggleClass("hidden");
+  if (e.target.tagName.toLowerCase() !== 'a') {
+    $(e.target).parents('.writer-card').find('.writer-card-bottom').toggleClass("hidden");
+  };
 }
 
 $(document).on('turbolinks:load', function() {

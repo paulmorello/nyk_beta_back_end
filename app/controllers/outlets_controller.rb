@@ -55,10 +55,28 @@ class OutletsController < ApplicationController
 
   end
 
-  # GET /outlets/noresults
-  def noresults
+  def filter
+    filters = params[:filter_params]
+    filters["genre_id"].delete("")
+    filters["presstype_id"].delete("")
+    @filters = filters
+    @outlets = Outlet.all
+    if filters["hype_m"] === "1"
+      @outlets = @outlets.where(hype_m: true)
+    end
+    if filters["submithub"] === "1"
+      @outlets = @outlets.where(submithub: true)
+    end
+    if filters["country_id"] != ""
+      @outlets = @outlets.where(country_id: filters["country_id"])
+    end
+    if filters["presstype_id"].present?
+      @outlets = @outlets.joins(jobs: :presstype_tags).where(presstype_tags: {presstype_id: filters["presstype_id"]}).distinct
+    end
+    if filters["genre_id"].present? && filters["genre_id"] != 1
+      @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: filters["genre_id"]}).distinct
+    end
   end
-
 
   # GET /outlets/1/edit
   def edit
