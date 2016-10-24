@@ -22,6 +22,10 @@
     <%= f.text_field(:l_name, class: "form-control") %>
   </div>
   <div class="form-group">
+  <%= f.label(:email_personal, "Personal Email") %>
+  <%= f.text_field(:email_personal, class: "form-control") %>
+  </div>
+  <div class="form-group">
     <%= f.label(:city) %>
     <%= f.text_field(:city, class: "form-control") %>
   </div>
@@ -70,10 +74,6 @@
     <div class="form-group">
     <%= j.label(:email_work, "Work Email") %>
     <%= j.text_field(:email_work, class: "form-control") %>
-    </div>
-    <div class="form-group">
-    <%= j.label(:email_personal, "Personal Email") %>
-    <%= j.text_field(:email_personal, class: "form-control") %>
     </div>
     <div class="form-group">
     <%= j.label(:position) %>

@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006184615) do
+ActiveRecord::Schema.define(version: 20161023200625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_campaigns_on_user_id", using: :btree
+  end
 
   create_table "countries", force: :cascade do |t|
     t.string   "name"
@@ -40,7 +48,6 @@ ActiveRecord::Schema.define(version: 20161006184615) do
     t.integer  "outlet_id"
     t.integer  "writer_id"
     t.string   "email_work"
-    t.string   "email_personal"
     t.string   "position"
     t.string   "outlet_profile"
     t.datetime "created_at",     null: false
@@ -115,21 +122,22 @@ ActiveRecord::Schema.define(version: 20161006184615) do
   end
 
   create_table "writers", force: :cascade do |t|
-    t.string   "f_name",                      null: false
-    t.string   "l_name",                      null: false
+    t.string   "f_name",                         null: false
+    t.string   "l_name",                         null: false
     t.string   "city"
     t.string   "state"
     t.integer  "country_id"
     t.string   "twitter"
     t.string   "linkedin"
-    t.boolean  "key_contact", default: false
-    t.boolean  "freelance",   default: false
-    t.boolean  "flagged",     default: false
-    t.boolean  "inactive",    default: false
+    t.boolean  "key_contact",    default: false
+    t.boolean  "freelance",      default: false
+    t.boolean  "flagged",        default: false
+    t.boolean  "inactive",       default: false
     t.string   "notes"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "user_id"
+    t.string   "email_personal"
     t.index ["country_id"], name: "index_writers_on_country_id", using: :btree
     t.index ["user_id"], name: "index_writers_on_user_id", using: :btree
   end

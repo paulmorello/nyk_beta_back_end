@@ -12,19 +12,33 @@
     <label><input type="checkbox" id="show-writers" value="show_writers"> Show Writers</label><br>
     <%= form_tag({ :controller => 'outlets', :action => 'filter' }, {method: :get }) do %>
       <%= fields_for :filter_params do |ff| %>
+      <div class="form-group">
         <%= ff.label(:genre_id, "Genre") %>
         <%= ff.collection_select(:genre_id, Genre.all, :id, :name, {}, {class: "form-control", multiple: true}) %>
+      </div>
+      <div class="form-group">
         <%= ff.label(:presstype_id, "Presstype") %>
         <%= ff.collection_select(:presstype_id, Presstype.all, :id, :name, {}, {class: "form-control", multiple: true}) %>
+      </div>
+      <div class="form-group">
         <%= ff.label(:country_id, "Country") %>
         <%= ff.collection_select(:country_id, Country.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+      </div>
+      <div class="form-group">
         <%= ff.label(:hype_m, "HypeM") %>
         <%= ff.check_box(:hype_m) %>
+      </div>
+      <div class="form-group">
         <%= ff.label(:submithub, "SubmitHub") %>
         <%= ff.check_box(:submithub) %>
+      </div>
+      <div class="form-group">
         <%= ff.label(:freelance, "Freelance") %>
         <%= ff.check_box(:freelance) %>
+      </div>
+      <div class="form-group">
         <%= ff.submit("Apply Filters") %>
+      </div>
       <% end %>
     <% end %>
   </div>
