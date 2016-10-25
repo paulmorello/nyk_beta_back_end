@@ -14,30 +14,30 @@
       <%= fields_for :filter_params do |ff| %>
       <div class="form-group">
         <%= ff.label(:genre_id, "Genre") %>
-        <%= ff.collection_select(:genre_id, Genre.all, :id, :name, {}, {class: "form-control", multiple: true}) %>
+        <%= ff.collection_select(:genre_id, Genre.where.not(id: 1), :id, :name, {selected: (@filters["genre_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
       </div>
       <div class="form-group">
         <%= ff.label(:presstype_id, "Presstype") %>
-        <%= ff.collection_select(:presstype_id, Presstype.all, :id, :name, {}, {class: "form-control", multiple: true}) %>
+        <%= ff.collection_select(:presstype_id, Presstype.all, :id, :name, {selected: (@filters["presstype_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
       </div>
       <div class="form-group">
         <%= ff.label(:country_id, "Country") %>
-        <%= ff.collection_select(:country_id, Country.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+        <%= ff.collection_select(:country_id, Country.all, :id, :name, {include_blank: true, selected: (@filters["country_id"] if defined? @filters)}, {class: "form-control"}) %>
       </div>
       <div class="form-group">
         <%= ff.label(:hype_m, "HypeM") %>
-        <%= ff.check_box(:hype_m) %>
+        <%= ff.check_box(:hype_m, checked: (true if defined?(@filters) && @filters["hype_m"] === "1")) %>
       </div>
       <div class="form-group">
         <%= ff.label(:submithub, "SubmitHub") %>
-        <%= ff.check_box(:submithub) %>
+        <%= ff.check_box(:submithub, checked: (true if defined?(@filters) && @filters["submithub"] === "1")) %>
       </div>
       <div class="form-group">
         <%= ff.label(:freelance, "Freelance") %>
-        <%= ff.check_box(:freelance) %>
+        <%= ff.check_box(:freelance, checked: (true if defined?(@filters) && @filters["freelance"] === "1")) %>
       </div>
       <div class="form-group">
-        <%= ff.submit("Apply Filters") %>
+        <%= ff.submit("Apply Filters", :class => 'btn btn-primary') %>
       </div>
       <% end %>
     <% end %>

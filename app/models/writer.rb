@@ -1,8 +1,10 @@
 class Writer < ApplicationRecord
-  has_many :jobs, dependent: :destroy, inverse_of: :writer
-  has_many :outlets, :through => :jobs
+
   belongs_to :country
   belongs_to :user
+
+  has_many :jobs, dependent: :destroy, inverse_of: :writer
+  has_many :outlets, :through => :jobs
 
   has_many :genre_tags, dependent: :destroy
   has_many :genres, :through => :genre_tags

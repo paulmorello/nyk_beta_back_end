@@ -27,7 +27,7 @@
  $navHeight: 60px;
  $headerHeight: 100px;
  $totalTopHeight: $navHeight + $headerHeight;
- $sidebarWidth: 225px;
+ $sidebarWidth: 275px;
  $resultsWidth: 1000px;
  $totalWitdh: $sidebarWidth + $resultsWidth;
 
@@ -72,12 +72,21 @@ nav {
 
 .results-header {
   height: $headerHeight;
+  width: $resultsWidth;
+  margin: auto;
+  overflow: hidden;
+  padding-top: 20px;
 }
 
 .sidebar {
   height: calc(100vh - #{$navHeight});
   width: $sidebarWidth;
   float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  .sidebar-top {
+    height: $headerHeight;
+  }
 }
 
 .results {
@@ -86,6 +95,33 @@ nav {
   background-color: $light-grey;
   width: $resultsWidth;
   margin: auto;
+}
+
+.search {
+
+}
+
+.filter {
+  label {
+    font-weight: 700;
+  }
+}
+
+.campaigns {
+  padding-left: 15px;
+  padding-right: 15px;
+  .campaign-link {
+
+    }
+  a {
+    font-weight: 700;
+    font-size: 1.1em;
+  }
+  .campaign-count {
+    font-size: .8em;
+    font-weight: 300;
+    margin-top: 5px;
+  }
 }
 
 .form {
@@ -128,7 +164,7 @@ nav {
   }
   .delete-writer-link {
     color: red;
-    border: solid 2px red;
+    padding-left: 15px;
     padding: 3px;
     margin-top: 10px;
     margin-bottom: 10px;

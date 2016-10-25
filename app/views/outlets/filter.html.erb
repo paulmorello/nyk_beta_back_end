@@ -24,10 +24,15 @@
           <% end %>
           <% if @filters["genre_id"].present? %>
             <% gtypes = job.writer.genre_tags.map {|t| t.genre_id.to_s} %>
-            <% intersection =  @filters["genre_id"] & gtypes %>
+            <% g_ids_plus_all = @filters["genre_id"] %>
+            <% g_ids_plus_all.push("1") unless g_ids_plus_all.include?("1") %>
+            <% intersection =  g_ids_plus_all & gtypes %>
             <% unless intersection.present? %>
               <% print_job = false %>
             <% end %>
+          <% end %>
+          <% if @filters["freelance"] === "1" && job.writer.freelance != true %>
+            <% print_job = false %>
           <% end %>
           <% if print_job == true %>
             <%= render partial: 'layouts/writercard', locals: {job: job} %>

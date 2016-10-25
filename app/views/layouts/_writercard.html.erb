@@ -1,5 +1,6 @@
 <div class="writer-card card">
   <div class="writer-card-top hidden">
+    <input type="checkbox" class="campaign-selector" data-id="<%=job.id%>" value="<%=job.id%>"/>
       <p class="name"><%=job.writer.f_name%> <%=job.writer.l_name%></p>
       <p class="position"><%=job.position%></p>
       <p><a href="mailto:<%=job.email_work%>"><%=job.email_work%></a></p>

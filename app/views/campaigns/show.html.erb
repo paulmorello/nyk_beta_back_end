@@ -1,4 +1,28 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %>
+
+<div class="main-container">
+  <%= render ("layouts/managebar") %>
+
+  <div class="results-header">
+    <h2><%=@campaign.name%></h2>
+  </div>
+
+  <div class="results">
+
+    <% @outlets.each do |outlet| %>
+      <div class="outlet-writer-wrapper">
+        <%= render partial: 'layouts/outletcard', locals: {outlet: outlet} %>
+        <% @jobs.each do |job| %>
+          <% if job.outlet_id == outlet.id %>
+            <%= render partial: 'layouts/writercard', locals: {job: job} %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+
+  </div>
+
+  <div style="clear: both;"></div>
+
+</div>

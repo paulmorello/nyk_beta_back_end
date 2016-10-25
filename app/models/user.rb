@@ -7,4 +7,7 @@ class User < ApplicationRecord
   strip_attributes
 
   has_many :writers
+  has_many :campaigns, dependent: :destroy
+  has_many :saved_jobs, :through => :campaigns
+
 end

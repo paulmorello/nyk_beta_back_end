@@ -73,9 +73,12 @@ class OutletsController < ApplicationController
     if filters["presstype_id"].present?
       @outlets = @outlets.joins(jobs: :presstype_tags).where(presstype_tags: {presstype_id: filters["presstype_id"]}).distinct
     end
-    if filters["genre_id"].present? && filters["genre_id"] != 1
-      @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: filters["genre_id"]}).distinct
+    if filters["genre_id"].present?
+      g_ids_plus_all = filters["genre_id"]
+      g_ids_plus_all.push("1") unless g_ids_plus_all.include?("1")
+      @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
     end
+    # Add filter to not include outlets where there are no freelancers if selected
   end
 
   # GET /outlets/1/edit
