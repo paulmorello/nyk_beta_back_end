@@ -2,7 +2,7 @@ var toggleShowWriters = function() {
     if(this.checked) {
       $('.outlet-writer-wrapper').find('.writer-card-top').removeClass("hidden");
     } else if (!this.checked) {
-      $('.outlet-writer-wrapper').find('.writer-card-top, .writer-card-bottom').addClass("hidden");
+      $('.outlet-writer-wrapper').find('.outlet-card-bottom, .writer-card-top, .writer-card-bottom').addClass("hidden");
     };
 };
 

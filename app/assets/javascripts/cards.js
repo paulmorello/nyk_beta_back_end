@@ -3,8 +3,12 @@
 
 var toggleShortCard = function(e) {
   if (e.target.tagName.toLowerCase() !== 'a' && e.target.tagName.toLowerCase() !== 'input') {
+    var checked = $('#show-writers').is(':checked');
+    $(e.target).parents('.outlet-writer-wrapper').find('.outlet-card-bottom').toggleClass("hidden");
     $(e.target).parents('.outlet-writer-wrapper').find('.writer-card-bottom').addClass("hidden");
-    $(e.target).parents('.outlet-writer-wrapper').find('.writer-card-top').toggleClass("hidden");
+    if (!checked) {
+      $(e.target).parents('.outlet-writer-wrapper').find('.writer-card-top').toggleClass("hidden");
+    };
   };
 };
 
@@ -16,5 +20,5 @@ var toggleLongCard = function(e) {
 
 $(document).on('turbolinks:load', function() {
   $('.outlet-card').click(toggleShortCard);
-  $('.writer-card-top').click(toggleLongCard);
+  $('.writer-card').click(toggleLongCard);
 });
