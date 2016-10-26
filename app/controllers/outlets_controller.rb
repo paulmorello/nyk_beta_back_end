@@ -1,5 +1,6 @@
 class OutletsController < ApplicationController
   before_action :set_outlet, only: [:show, :edit, :update, :destroy]
+  before_action :set_countries
 
   # GET /outlets
   # GET /outlets.json
