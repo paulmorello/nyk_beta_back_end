@@ -101,8 +101,9 @@
     </div>
     <% if j.object.persisted? %>
       <div class="form-group delete-job-link">
-      <%= j.check_box :_destroy %>
-      <%= j.label :_destroy, "Delete Job" %>
+      <!-- <%= j.check_box :_destroy %>
+      <%= j.label :_destroy, "Delete Job" %> -->
+      <%= link_to("Delete Job", "/writers/delete_job/#{j.object.id}", method: :delete, data: {confirm: "Are you sure you want to delete this Job?"}) %>
       </div>
     <% end %>
     <hr>

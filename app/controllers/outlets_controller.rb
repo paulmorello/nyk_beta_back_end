@@ -1,11 +1,10 @@
 class OutletsController < ApplicationController
   before_action :set_outlet, only: [:show, :edit, :update, :destroy]
-  before_action :set_countries
 
   # GET /outlets
   # GET /outlets.json
   def index  # Essentially the main page of the application proper. This is the discover page.
-    @outlets = Outlet.all
+    @outlets = Outlet.all.order(:name)
   end
 
   # GET /outlets/1
@@ -29,8 +28,8 @@ class OutletsController < ApplicationController
       redirect_to '/outlets/search/'+params[:q]
     # GET /outlets/search/:q
     elsif request.get?
-      @outlets  = Outlet.where("name ILIKE ?", "%#{params[:q]}%")
-      writers = Writer.where("f_name ILIKE ? OR l_name ILIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+      @outlets = Outlet.where("name ILIKE ?", "%#{params[:q]}%").distinct.order(:name)
+      writers = Writer.where("lower(f_name || ' ' || l_name) ILIKE ?", "%#{params[:q]}%").distinct.order(:l_name)
       # Everything below just for making sure not to double writers or outlets after search
       @jobs = []
       outlet_ids = []
@@ -61,7 +60,7 @@ class OutletsController < ApplicationController
     filters["genre_id"].delete("")
     filters["presstype_id"].delete("")
     @filters = filters
-    @outlets = Outlet.all
+    @outlets = Outlet.all.order(:name)
     if filters["hype_m"] === "1"
       @outlets = @outlets.where(hype_m: true)
     end
@@ -69,7 +68,13 @@ class OutletsController < ApplicationController
       @outlets = @outlets.where(submithub: true)
     end
     if filters["country_id"] != ""
-      @outlets = @outlets.where(country_id: filters["country_id"])
+      o_arr = []
+      @outlets.each do |outlet|
+        if outlet.country_id == filters["country_id"] || outlet.writers.where(country_id: filters["country_id"]).present?
+          o_arr.push(outlet.id)
+        end
+      end
+      @outlets = @outlets.find(o_arr)
     end
     if filters["presstype_id"].present?
       @outlets = @outlets.joins(jobs: :presstype_tags).where(presstype_tags: {presstype_id: filters["presstype_id"]}).distinct
@@ -79,7 +84,6 @@ class OutletsController < ApplicationController
       g_ids_plus_all.push("1") unless g_ids_plus_all.include?("1")
       @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
     end
-    # Add filter to not include outlets where there are no freelancers if selected
   end
 
   # GET /outlets/1/edit

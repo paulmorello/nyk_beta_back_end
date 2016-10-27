@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :campaigns
-  resources :writers
+  resources :writers do
+    collection do
+      delete 'delete_job/:id', action: :delete_job, controller: 'writers'
+    end
+  end
   resources :outlets do
     collection do
       post 'search', action: :search, controller: 'outlets'

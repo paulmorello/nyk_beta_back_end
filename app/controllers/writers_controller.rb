@@ -1,5 +1,6 @@
 class WritersController < ApplicationController
   before_action :set_writer, only: [:show, :edit, :update, :destroy]
+  before_action :set_job, only: [:delete_job]
 
   # GET /writers
   # GET /writers.json
@@ -61,10 +62,24 @@ class WritersController < ApplicationController
     end
   end
 
+  # DELETE /writers/delete_job/1
+  def delete_job
+    writer_id = @job.writer_id
+    @job.destroy
+    respond_to do |format|
+      format.html { redirect_to "/writers/#{writer_id}/edit", notice: 'Job was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_writer
       @writer = Writer.find(params[:id])
+    end
+
+    def set_job
+      @job = Job.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
