@@ -45,7 +45,8 @@
         <%= ff.check_box(:freelance, checked: (true if defined?(@filters) && @filters["freelance"] === "1")) %>
       </div>
       <div class="form-group">
-        <%= ff.submit("Apply Filters", :class => 'btn btn-primary') %>
+        <%= ff.submit("Filter", :class => 'btn btn-primary') %>
+        <%= link_to("Clear", "/outlets", method: :get, class: "btn btn-secondary") %>
       </div>
       <% end %>
     <% end %>

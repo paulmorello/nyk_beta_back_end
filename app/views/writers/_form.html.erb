@@ -14,11 +14,11 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label(:first_name) %>
+    <%= f.label(:first_name, "First Name *") %>
     <%= f.text_field(:f_name, class: "form-control") %>
   </div>
   <div class="form-group">
-    <%= f.label(:last_name) %>
+    <%= f.label(:last_name, "Last Name *") %>
     <%= f.text_field(:l_name, class: "form-control") %>
   </div>
   <div class="form-group">
@@ -34,7 +34,7 @@
     <%= f.text_field(:state, class: "form-control") %>
   </div>
   <div class="form-group">
-    <%= f.label(:country_id) %>
+    <%= f.label(:country_id, "Country *") %>
     <%= f.collection_select(:country_id, Country.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
   </div>
   <div class="form-group">
@@ -68,15 +68,15 @@
     <%= j.remove_nested_fields_link%>
     <%= j.hidden_field :id, :value => j.object.id %>
     <div class="form-group">
-    <%= j.label :outlet_id, "Outlet" %>
+    <%= j.label :outlet_id, "Outlet *" %>
     <%= j.collection_select(:outlet_id, Outlet.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
     </div>
     <div class="form-group">
-    <%= j.label(:email_work, "Work Email") %>
+    <%= j.label(:email_work, "Work Email *") %>
     <%= j.text_field(:email_work, class: "form-control") %>
     </div>
     <div class="form-group">
-    <%= j.label(:position) %>
+    <%= j.label(:position, "Position *") %>
     <%= j.text_field(:position, class: "form-control") %>
     </div>
     <div class="form-group">
@@ -118,7 +118,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label(:user_id, "Assigned To") %>
+    <%= f.label(:user_id, "Assigned To *") %>
     <%= f.collection_select(:user_id, User.where(admin: true), :id, :email, {include_blank: true}, {class: "form-control"}) %>
   </div>
 

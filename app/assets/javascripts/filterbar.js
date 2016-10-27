@@ -6,19 +6,20 @@ var toggleShowWriters = function() {
     };
 };
 
-
 $(document).on('turbolinks:load', function() {
-  $('#filter_params_genre_id').multiselect({
-    maxHeight: 300,
-    buttonWidth: 245,
-    includeSelectAllOption: true,
-    buttonClass: "form-control"
-  });
-  $('#filter_params_presstype_id').multiselect({
-    maxHeight: 300,
-    buttonWidth: 245,
-    includeSelectAllOption: true,
-    buttonClass: "form-control"
-  });
+  if ($('.multiselect-native-select')[0] == undefined) {
+    $('#filter_params_genre_id').multiselect({
+      maxHeight: 300,
+      buttonWidth: 245,
+      includeSelectAllOption: true,
+      buttonClass: "form-control"
+    });
+    $('#filter_params_presstype_id').multiselect({
+      maxHeight: 300,
+      buttonWidth: 245,
+      includeSelectAllOption: true,
+      buttonClass: "form-control"
+    });
+  }
   $('#show-writers').change(toggleShowWriters);
 });

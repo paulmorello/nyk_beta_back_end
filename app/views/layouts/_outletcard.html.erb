@@ -1,10 +1,14 @@
 <div class="outlet-card card">
   <div class="outlet-card-top">
-    <input type="checkbox" class="campaign-select-all-toggle"/>
+    <div class="left-gutter">
+      <input type="checkbox" class="campaign-select-all-toggle"/>
+    </div>
     <p class="name"><%=outlet.name%></p>
     <p class="description"><%=outlet.description%></p>
   </div>
   <div class="outlet-card-bottom hidden">
+    <div class="left-gutter">
+    </div>
     <div class="contact-info">
       <div class="row1">
         <div class="heading-col">
@@ -48,25 +52,18 @@
       </div>
     </div>
     <div class="social-info">
-      <div class="row1">
-      </div>
-      <div class="row2">
-      </div>
-      <div class="row3">
-      </div>
-      <div class="row4">
-      </div>
+  
     </div>
     <div class="genres">
       <% outlet.jobs.each do |job| %>
-        <% job.writer.genres.each do |genre| %>
+        <% job.writer.genres.limit(10).distinct.each do |genre| %>
           <p class="tag"><%=genre.name%></p>
         <% end %>
       <% end %>
 
     </div>
     <div class="presstypes">
-      <% outlet.jobs.each do |job| %>
+      <% outlet.jobs.limit(10).distinct.each do |job| %>
         <% job.presstypes.each do |presstype| %>
           <p class="tag"><%=presstype.name%></p>
         <% end %>

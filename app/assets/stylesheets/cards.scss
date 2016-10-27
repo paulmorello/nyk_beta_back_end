@@ -38,28 +38,29 @@
   .outlet-card {
     background-color: white;
     width: 100%;
-    padding-left: 70px;
-    padding-right: 70px;
+    padding-left: 25px;
+    padding-right: 25px;
     margin: auto;
     margin-top: 10px;
     .outlet-card-top {
       height: 70px;
-      // border: solid black 1px;
+      border: solid black 1px;
     }
     .outlet-card-bottom {
       height: 145px;
-      // border: solid black 1px;
+      border: solid black 1px;
     }
   }
   .writer-card {
     width: 96%;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin: auto;
     background-color: white;
     .writer-card-top {
       height: 65px;
-      // border: solid black 1px;
+      border: solid black 1px;
+
       .position {
         font-size: 1.2em;
         margin-left: 70px;
@@ -68,41 +69,41 @@
     }
     .writer-card-bottom {
       height: 145px;
-      // border: solid black 1px;
+      border: solid black 1px;
     }
   }
   .contact-info {
-    // border: solid black 1px;
+    border: solid black 1px;
     height: 100%;
-    width: 30%;
+    width: 31%;
     float: left;
   }
   .social-info {
-    // border: solid black 1px;
+    border: solid black 1px;
     height: 100%;
-    width: 22%;
+    width: 25%;
     float: left;
   }
-  .genres {
-    // border: solid black 1px;
+  .genres, .presstypes {
+    border: solid black 1px;
     height: 100%;
-    width: 24%;
-    float: left;
-  }
-  .presstypes {
-    // border: solid black 1px;
-    height: 100%;
-    width: 24%;
+    width: 20%;
     float: left;
   }
   .row1, .row2, .row3, .row4{
     height: 25%;
-    // border: solid 1px red;
+    border: solid 1px red;
   }
   .heading-col {
-    // border: solid black 1px;
+    border: solid black 1px;
     height: 100%;
     width: 25%;
+    float: left;
+  }
+  .left-gutter {
+    border: solid black 1px;
+    height: 100%;
+    width: 4%;
     float: left;
   }
 

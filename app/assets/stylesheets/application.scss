@@ -16,12 +16,14 @@
  @import "bootstrap-multiselect";
  @import "scaffolds";
  @import "cards";
+ @import "campaigns";
 
  // Colors
  $light-grey: #E4E9EC;
  $grey: #AAB8C1;
  $dark-grey: #555D64;
  $light-blue: #32C7DB;
+ $blue: #2A97DA;
  $light-green:#9BDB36;
 
  $navHeight: 60px;
@@ -43,6 +45,10 @@ body {
   }
 }
 
+.center{
+  text-align: center;
+}
+
 a {
   color: inherit;
   &:hover {
@@ -51,9 +57,40 @@ a {
   }
 }
 
+.btn {
+  border-radius: 100px;
+  height: 32px;
+  font-size: 12px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.btn-primary {
+  background-color: $light-blue;
+  border: solid 1px white;
+  &:hover {
+    background-color: $blue;
+    border: solid 1px white;
+  }
+}
+
+.btn-secondary {
+  background-color: white;
+  border: solid 1px $light-blue;
+  color: $light-blue;
+  &:hover {
+    background-color: $blue;
+    border: solid 1px $blue;
+    color: white;
+  }
+}
+
+
 nav {
   height: $navHeight;
   border-bottom: solid 1px $light-grey;
+  white-space: nowrap;
+  overflow: hidden;
   a {
     margin-right: 15px;
     font-weight: 700;
@@ -84,6 +121,7 @@ nav {
   float: left;
   padding-left: 15px;
   padding-right: 15px;
+  overflow: auto;
   .sidebar-top {
     height: $headerHeight;
   }
@@ -107,21 +145,9 @@ nav {
   }
 }
 
-.campaigns {
-  padding-left: 15px;
-  padding-right: 15px;
-  .campaign-link {
-
-    }
-  a {
-    font-weight: 700;
-    font-size: 1.1em;
-  }
-  .campaign-count {
-    font-size: .8em;
-    font-weight: 300;
-    margin-top: 5px;
-  }
+.modal-title {
+  font-weight: 700;
+  font-size: 1.3em;
 }
 
 .form {

@@ -1,12 +1,16 @@
 <div class="writer-card card">
   <div class="writer-card-top hidden">
-    <input type="checkbox" class="campaign-selector" data-id="<%=job.id%>" value="<%=job.id%>"/>
+    <div class="left-gutter">
+      <input type="checkbox" class="campaign-selector" data-id="<%=job.id%>" value="<%=job.id%>"/>
+    </div>
       <p class="name"><%=job.writer.f_name%> <%=job.writer.l_name%></p>
       <p class="position"><%=job.position%></p>
       <p><a href="mailto:<%=job.email_work%>"><%=job.email_work%></a></p>
       <p><a href="mailto:<%=job.writer.email_personal%>"><%=job.writer.email_personal%></a></p>
   </div>
   <div class="writer-card-bottom hidden">
+    <div class="left-gutter">
+    </div>
     <div class="contact-info">
       <div class="row1">
         <div class="heading-col">
@@ -15,7 +19,7 @@
         <p><%=job.writer.city%>, <%=job.writer.state%>, <%=job.writer.country.name%><p>
       </div>
       <div class="row2">
-          <p class="card-heading" style="font-size: 1em;">writes for</p>
+          <p class="card-heading" style="font-size: 1em; margin-top: 5px;">writes for</p>
       </div>
       <%job.writer.jobs.each do |job|%>
         <%if job.outlet_profile%>
@@ -27,18 +31,15 @@
 
     </div>
     <div class="social-info">
-      <div class="row1">
-      </div>
-      <div class="row2">
-      </div>
+
     </div>
     <div class="genres">
-      <% job.writer.genres.each do |genre| %>
+      <% job.writer.genres.limit(10).distinct.each do |genre| %>
         <p class="tag"><%=genre.name%></p>
       <% end %>
     </div>
     <div class="presstypes">
-      <% job.presstypes.each do |presstype| %>
+      <% job.presstypes.limit(10).distinct.each do |presstype| %>
         <p class="tag"><%=presstype.name%></p>
       <% end %>
     </div>

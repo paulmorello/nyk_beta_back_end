@@ -7,11 +7,11 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="createCampaignModalLabel">New Campaign</h4>
+        <h4 class="modal-title" id="createCampaignModalLabel">Create a new campaign folder?</h4>
       </div>
 
         <%= render 'form', campaign: @new_campaign %>
-      
+
     </div>
   </div>
 </div>
@@ -25,7 +25,16 @@
 
   <div class="results">
 
-    <p>instructions for campaigns here?</p>
+    <div class="manage-instructions card">
+      <p class="instructions-title"> Here you can save contacts to a campaign. </p>
+      <p> First you need to create a campaign by clicking the button on the left or below. Then save cards from the Discover page, or Filter and Search results.</p>
+      <!-- Button trigger modal -->
+      <div class="center">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCampaignModal">
+          New Campaign
+        </button>
+      </div>
+    </div>
 
   </div>
 
