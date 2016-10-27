@@ -52,7 +52,6 @@ class OutletsController < ApplicationController
       end
       @outlet_ids = outlet_ids.uniq
     end
-
   end
 
   def filter
@@ -74,7 +73,25 @@ class OutletsController < ApplicationController
           o_arr.push(outlet.id)
         end
       end
-      @outlets = @outlets.find(o_arr)
+      @outlets = @outlets.where(id: o_arr)
+    end
+    if filters["state"] != ""
+      o_arr = []
+      @outlets.each do |outlet|
+        if outlet.state.to_s.downcase.include?(filters["state"].downcase) || outlet.writers.where("state ILIKE ?", "%#{filters["state"]}%").present?
+          o_arr.push(outlet.id)
+        end
+      end
+      @outlets = @outlets.where(id: o_arr)
+    end
+    if filters["city"] != ""
+      o_arr = []
+      @outlets.each do |outlet|
+        if outlet.city.to_s.downcase.include?(filters["city"].downcase) || outlet.writers.where("city ILIKE ?", "%#{filters["city"]}%").present?
+          o_arr.push(outlet.id)
+        end
+      end
+      @outlets = @outlets.where(id: o_arr)
     end
     if filters["presstype_id"].present?
       @outlets = @outlets.joins(jobs: :presstype_tags).where(presstype_tags: {presstype_id: filters["presstype_id"]}).distinct

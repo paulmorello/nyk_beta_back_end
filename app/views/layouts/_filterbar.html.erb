@@ -25,6 +25,14 @@
         <%= ff.collection_select(:country_id, Country.find(@current_countries), :id, :name, {include_blank: true, selected: (@filters["country_id"] if defined? @filters)}, {class: "form-control"}) %>
       </div>
       <div class="form-group">
+        <%= ff.label(:state, "State") %>
+        <%= ff.text_field(:state, value: (@filters["state"] if defined? @filters),class: "form-control") %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:city, "City") %>
+        <%= ff.text_field(:city , value: (@filters["city"] if defined? @filters), class: "form-control") %>
+      </div>
+      <div class="form-group">
         <%= ff.label(:hype_m, "HypeM") %>
         <%= ff.check_box(:hype_m, checked: (true if defined?(@filters) && @filters["hype_m"] === "1")) %>
       </div>
