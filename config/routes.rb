@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get 'filter', action: :filter, controller: 'outlets'
     end
   end
+  resources :saved_jobs, only: [:create, :update, :destroy]
   devise_for :users
   get 'welcome/index'
   root 'welcome#index'

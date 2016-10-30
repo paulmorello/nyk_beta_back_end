@@ -18,7 +18,21 @@ var toggleLongCard = function(e) {
   };
 }
 
+var selectAllWriters = function(e) {
+  if (this.checked) {
+    $(e.target).parents('.outlet-writer-wrapper').find('.campaign-selector').prop('checked',true);
+  } else if (!this.checked) {
+    $(e.target).parents('.outlet-writer-wrapper').find('.campaign-selector').prop('checked', false);
+  };
+};
+
+var toggleSaveButton = function(e) {
+  $('#saveButton').removeClass("hidden");
+}
+
 $(document).on('turbolinks:load', function() {
   $('.outlet-card').click(toggleShortCard);
   $('.writer-card').click(toggleLongCard);
+  $('.campaign-select-all-toggle').change(selectAllWriters);
+  $('.campaign-select-all-toggle, .campaign-selector').change(toggleSaveButton);
 });

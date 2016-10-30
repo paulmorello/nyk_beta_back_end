@@ -41,6 +41,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: $dark-grey;
   h1 {
+    font-size: 2em;
     font-weight: 700;
   }
 }
@@ -112,7 +113,47 @@ nav {
   width: $resultsWidth;
   margin: auto;
   overflow: hidden;
-  padding-top: 20px;
+  padding-top: 10px;
+}
+
+.main-labels {
+  width: 1000px;
+  height: 22px;
+  margin-top: 20px;
+}
+
+.label {
+  margin: 0 5px;
+  height: 100%;
+  float: left;
+  background-color: $grey;
+  color: white;
+  font-size: .9em;
+  font-weight: 500;
+  text-align: center;
+}
+.filter-label {
+  width: 250px;
+  height: 22px;
+  margin: auto;
+}
+.right-label {
+  width: 55px;
+}
+.contact-info-label {
+  width: 280px;
+}
+.social-info-label {
+  width: 225px;
+}
+.genres-label {
+  width: 175px;
+}
+.presstypes-label {
+  width: 175px;
+}
+.left-label {
+  width: 30px;
 }
 
 .sidebar {
@@ -124,6 +165,31 @@ nav {
   overflow: auto;
   .sidebar-top {
     height: $headerHeight;
+    .search {
+      margin: 1px 0;
+    }
+    .magnifying-glass{
+      float: left;
+      width: 36px;
+      margin-top: 10px;
+      display: inline-block;
+      &:hover {
+        cursor: pointer;
+        fill: $light-blue;
+      }
+    }
+    #q {
+      font-size: 1.2em;
+      font-weight: 700;
+      border: none;
+      margin-left: 5px;
+      width: 200px;
+      height: 50px;
+      display: inline-block;
+      &:focus {
+        outline: none;
+      }
+    }
   }
 }
 
@@ -135,12 +201,9 @@ nav {
   margin: auto;
 }
 
-.search {
-
-}
-
 .filter {
   label {
+    font-size: 1em;
     font-weight: 700;
   }
 }
@@ -196,4 +259,8 @@ nav {
     margin-bottom: 10px;
     display: inline-block;
   }
+}
+
+.hidden {
+  display: none;
 }

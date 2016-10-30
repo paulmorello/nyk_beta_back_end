@@ -7,7 +7,7 @@
 <div class="results">
 
   <ul class="assigned-writers"
-    <% @writers.where(user_id: current_user.id).each do |writer| %>
+    <% @writers.where(user_id: current_user.id).order(:updated_at).each do |writer| %>
 
         <li class="assigned-writer"><%= link_to writer.f_name+' '+writer.l_name, edit_writer_path(writer) %> - Last Updated: <%=writer.updated_at%> - Note: <%=writer.notes%></li>
 

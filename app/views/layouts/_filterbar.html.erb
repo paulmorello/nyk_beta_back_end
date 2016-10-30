@@ -1,25 +1,27 @@
 <div class="sidebar">
 
   <div class="sidebar-top">
-    <div class-"search">
+    <div class="search">
       <%= form_tag(:search_outlets, :url => { :controller => 'outlets', :action => 'search' }) do %>
-        <%= text_field_tag(:q, nil, placeholder: "Search") %>
+        <label>
+        <div class="magnifying-glass">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="30" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M59.67,74.223c-19.503,0-35.37-15.866-35.37-35.368c0-19.502,15.867-35.369,35.37-35.369  c19.5,0,35.367,15.866,35.367,35.369C95.037,58.356,79.17,74.223,59.67,74.223z M59.67,9.861c-15.988,0-28.995,13.006-28.995,28.993  c0,15.987,13.007,28.993,28.995,28.993c15.985,0,28.991-13.006,28.991-28.993C88.661,22.868,75.655,9.861,59.67,9.861z"/><rect x="15.779" y="61.361" transform="matrix(0.7072 0.707 -0.707 0.7072 62.3881 8.0674)" width="11.351" height="35.984"/></svg>
+        </div>
+        <%= submit_tag("Search", class:"hidden") %>
+        <%= text_field_tag(:q, nil, {placeholder: "Search", onfocus:"this.placeholder = ''", onblur: "this.placeholder = 'Search'"}) %>
         <!-- <%= submit_tag("Search") %> -->
+        </label>
       <% end %>
+    </div>
+    <div class="label filter-label">
+      <p>Filter</p>
     </div>
   </div>
   <div class="filter">
-    <label><input type="checkbox" id="show-writers" value="show_writers"> Show Writers</label><br>
+    <br>
+    <!-- <label><input type="checkbox" id="show-writers" value="show_writers"> Show Writers</label> -->
     <%= form_tag({ :controller => 'outlets', :action => 'filter' }, {method: :get }) do %>
       <%= fields_for :filter_params do |ff| %>
-      <div class="form-group">
-        <%= ff.label(:genre_id, "Genre") %>
-        <%= ff.collection_select(:genre_id, Genre.where.not(id: 1), :id, :name, {selected: (@filters["genre_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
-      </div>
-      <div class="form-group">
-        <%= ff.label(:presstype_id, "Presstype") %>
-        <%= ff.collection_select(:presstype_id, Presstype.all, :id, :name, {selected: (@filters["presstype_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
-      </div>
       <div class="form-group">
         <%= ff.label(:country_id, "Country") %>
         <%= ff.collection_select(:country_id, Country.find(@current_countries), :id, :name, {include_blank: true, selected: (@filters["country_id"] if defined? @filters)}, {class: "form-control"}) %>
@@ -31,6 +33,14 @@
       <div class="form-group">
         <%= ff.label(:city, "City") %>
         <%= ff.text_field(:city , value: (@filters["city"] if defined? @filters), class: "form-control") %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:genre_id, "Genre") %>
+        <%= ff.collection_select(:genre_id, Genre.where.not(id: 1), :id, :name, {selected: (@filters["genre_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:presstype_id, "Presstype") %>
+        <%= ff.collection_select(:presstype_id, Presstype.all, :id, :name, {selected: (@filters["presstype_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
       </div>
       <div class="form-group">
         <%= ff.label(:hype_m, "HypeM") %>
