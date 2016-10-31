@@ -1,3 +1,4 @@
+
 class OutletsController < ApplicationController
   before_action :set_outlet, only: [:show, :edit, :update, :destroy]
 
@@ -111,7 +112,6 @@ class OutletsController < ApplicationController
   # POST /outlets.json
   def create
     @outlet = Outlet.new(outlet_params)
-
     respond_to do |format|
       if @outlet.save
         format.html { redirect_to @outlet, notice: 'Outlet was successfully created.' }
@@ -126,7 +126,19 @@ class OutletsController < ApplicationController
   # PATCH/PUT /outlets/1
   # PATCH/PUT /outlets/1.json
   def update
+
     respond_to do |format|
+      if @outlet.facebook.present?
+        url = "https://graph.facebook.com/#{@outlet.facebook}?fields=fan_count&access_token=#{FACEBOOK_ID}|#{FACEBOOK_SECRET}"
+        facebook_response = HTTParty.get url
+        facebook_followers = facebook_response["fan_count"].to_s
+        if facebook_followers.present?
+          if facebook_followers.length > 3
+            facebook_followers = facebook_followers.chop.chop.chop+"k"
+          end
+          @outlet.update(facebook_likes: facebook_followers)
+        end
+      end
       if @outlet.update(outlet_params)
         format.html { redirect_to @outlet, notice: 'Outlet was successfully updated.' }
         format.json { render :show, status: :ok, location: @outlet }

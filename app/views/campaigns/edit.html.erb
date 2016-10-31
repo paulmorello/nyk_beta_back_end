@@ -1,6 +1,7 @@
-<h1>Editing Campaign</h1>
 
-<%= render 'form', campaign: @campaign %>
 
-<%= link_to 'Show', @campaign %> |
-<%= link_to 'Back', campaigns_path %>
+  <div class="edit-campaign-wrapper">
+  <h1>Edit <%=@campaign.name%></h1>
+
+  <%= render 'form', campaign: @campaign %>
+  </div>

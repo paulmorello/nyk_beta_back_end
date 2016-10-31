@@ -4,10 +4,14 @@
   padding: 10px;
   font-size: 12px;
   font-weight: 300;
+  box-shadow: inset 2px 2px 5px $grey;
   .hidden {
     display: none;
   }
   .card {
+    border: none;
+    margin-top: 5px !important;
+    box-shadow: 5px 5px 5px $grey;
     p {
       display: inline-block;
     }
@@ -34,6 +38,21 @@
       border: solid 1px #555D64;
       border-radius: 2px;
     }
+    .social-icon {
+      display: inline-block;
+      float: left;
+      margin-right: 15px;
+    }
+    .social-link {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 1.1em;
+      color: #555D64;
+    }
+    .social-wrapper {
+      margin-left: 30px;
+      margin-top: 1px;
+    }
   }
   .outlet-card {
     background-color: white;
@@ -41,14 +60,14 @@
     padding-left: 25px;
     padding-right: 25px;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 15px !important;
     .outlet-card-top {
       height: 70px;
-      border: solid black 1px;
+      // border: solid black 1px;
     }
     .outlet-card-bottom {
       height: 145px;
-      border: solid black 1px;
+      // border: solid black 1px;
     }
   }
   .writer-card {
@@ -59,53 +78,99 @@
     background-color: white;
     .writer-card-top {
       height: 65px;
-      border: solid black 1px;
-
+      // border: solid black 1px;
       .position {
         font-size: 1.2em;
-        margin-left: 70px;
-        margin-right: 140px;
+      }
+      .writer-name-col {
+        // border: solid 1px red;
+        height: 100%;
+        float: left;
+        width: 500px;
+      }
+      .writer-first-email-col {
+        // border: solid 1px red;
+        height: 100%;
+        float: left;
+        width: 195px;
+        p {
+          margin-top: 25px;
+        }
+      }
+      .writer-second-email-col {
+        // border: solid 1px red;
+        height: 100%;
+        float: left;
+        width: 190px;
+        p {
+          margin-top: 25px;
+        }
+        .key-contact-star {
+          margin-top: 15px;
+        }
       }
     }
     .writer-card-bottom {
       height: 145px;
-      border: solid black 1px;
+      // border: solid black 1px;
     }
   }
 
   .contact-info {
-    border: solid black 1px;
+    // border: solid black 1px;
     height: 100%;
-    width: 31%;
+    width: 35%;
     float: left;
   }
   .social-info {
-    border: solid black 1px;
+    // border: solid black 1px;
     height: 100%;
-    width: 25%;
+    width: 19%;
     float: left;
   }
   .genres, .presstypes {
-    border: solid black 1px;
+    // border: solid black 1px;
     height: 100%;
-    width: 20%;
+    width: 21%;
     float: left;
+    padding: 0 8px;
   }
   .row1, .row2, .row3, .row4{
     height: 25%;
-    border: solid 1px red;
+    // border: solid 1px red;
   }
   .heading-col {
-    border: solid black 1px;
+    // border: solid black 1px;
     height: 100%;
     width: 25%;
     float: left;
   }
   .left-gutter {
-    border: solid black 1px;
+    // border: solid black 1px;
     height: 100%;
     width: 4%;
     float: left;
+    .card-checkbox {
+      margin-top: 20px;
+      margin-left: 5px;
+    }
+    .thumbs-up, .thumbs-down {
+      fill: $grey;
+      &:hover {
+        fill: $light-blue;
+      }
+    }
+    .flag-contact{
+      margin-left: 2px;
+      margin-top: 25px;
+      fill: $grey;
+      &:hover {
+        fill: $light-blue;
+      }
+    }
+    .selected {
+      fill: $blue;
+    }
   }
 
 }

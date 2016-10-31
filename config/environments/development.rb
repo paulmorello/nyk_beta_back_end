@@ -1,6 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  FACEBOOK_ID = "321227951591559"
+  FACEBOOK_SECRET = "f99b8112aff17782ce5a7152b0b89c6e"
 
   # Default URL
   config.action_mailer.delivery_method = :letter_opener

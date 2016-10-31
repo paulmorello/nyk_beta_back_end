@@ -5,17 +5,25 @@
 .campaigns {
   padding-left: 15px;
   padding-right: 15px;
-  .campaign-link {
-
-    }
   a {
     font-weight: 700;
-    font-size: 1.1em;
+    font-size: 1em;
   }
-  .campaign-count {
-    font-size: .8em;
-    font-weight: 300;
-    margin-top: 5px;
+  .campaign-link {
+    .campaign-edit-link {
+      visibility: hidden;
+      font-size: .7em;
+      color: #AAB8C1;
+      margin-left: 180px;
+      a {
+        font-weight: 400;
+      }
+    }
+    &:hover {
+      .campaign-edit-link {
+        visibility: visible;
+      }
+    }
   }
 }
 
@@ -37,5 +45,40 @@
   }
   button{
     margin: 0 auto;
+  }
+}
+
+.flag-option-wrapper {
+  width: 40%;
+  margin: auto;
+  .flag-option {
+    font-weight: 300;
+    &:hover {
+      color: $light-blue;
+      cursor: pointer;
+    }
+  }
+}
+
+.edit-campaign-wrapper {
+  width: 50%;
+  margin: auto;
+  padding-top: 150px;
+}
+
+.selected-campaign-link {
+  color: $blue;
+}
+
+.addCampaignFolder {
+  margin: auto;
+  margin-top: 20px;
+  width: 70px;
+  &:hover {
+      svg {
+      path, polygon {
+        fill: $light-blue;
+      }
+    }
   }
 }

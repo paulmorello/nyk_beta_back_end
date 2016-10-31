@@ -13,7 +13,11 @@ Rails.application.routes.draw do
       get 'filter', action: :filter, controller: 'outlets'
     end
   end
-  resources :saved_jobs, only: [:create, :update, :destroy]
+  resources :saved_jobs, only: [:create, :update] do
+    collection do
+      delete '', action: :destroy, controller: 'saved_jobs'
+    end
+  end
   devise_for :users
   get 'welcome/index'
   root 'welcome#index'

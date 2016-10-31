@@ -2,7 +2,7 @@
 // All this logic will automatically be available in application.js.
 
 var toggleShortCard = function(e) {
-  if (e.target.tagName.toLowerCase() !== 'a' && e.target.tagName.toLowerCase() !== 'input') {
+  if (e.target.tagName.toLowerCase() !== 'a' && e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() !== 'svg') {
     var checked = $('#show-writers').is(':checked');
     $(e.target).parents('.outlet-writer-wrapper').find('.outlet-card-bottom').toggleClass("hidden");
     $(e.target).parents('.outlet-writer-wrapper').find('.writer-card-bottom').addClass("hidden");
@@ -13,7 +13,7 @@ var toggleShortCard = function(e) {
 };
 
 var toggleLongCard = function(e) {
-  if (e.target.tagName.toLowerCase() !== 'a' && e.target.tagName.toLowerCase() !== 'input') {
+  if (e.target.tagName.toLowerCase() !== 'a' && e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() !== 'svg') {
     $(e.target).parents('.writer-card').find('.writer-card-bottom').toggleClass("hidden");
   };
 }

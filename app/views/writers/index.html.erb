@@ -1,17 +1,21 @@
 <%= render ("layouts/filterbar") %>
 
-<div class="results-header">
-  <h1>assigned to you</h1>
-</div>
+<div class="main-container">
+  <div class="results-header">
+    <h1>assigned to you</h1>
+  </div>
 
-<div class="results">
+  <div class="results">
 
-  <ul class="assigned-writers"
-    <% @writers.where(user_id: current_user.id).order(:updated_at).each do |writer| %>
+    <ul class="assigned-writers"
+      <% @writers.where(user_id: current_user.id).order(:updated_at).each do |writer| %>
 
-        <li class="assigned-writer"><%= link_to writer.f_name+' '+writer.l_name, edit_writer_path(writer) %> - Last Updated: <%=writer.updated_at%> - Note: <%=writer.notes%></li>
+          <li class="assigned-writer"><%= link_to writer.f_name+' '+writer.l_name, edit_writer_path(writer) %> - Last Updated: <%=writer.updated_at%> - Note: <%=writer.notes%></li>
 
-        <!-- <%= link_to 'Destroy', writer, method: :delete, data: { confirm: 'Are you sure?' } %> -->
-    <% end %>
-  </ul>
+          <!-- <%= link_to 'Destroy', writer, method: :delete, data: { confirm: 'Are you sure?' } %> -->
+      <% end %>
+    </ul>
+  </div>
+
+  <div style="clear: both;"></div>
 </div>

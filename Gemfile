@@ -34,6 +34,8 @@ gem 'bootstrap'
 
 gem 'nested_form_fields'
 
+gem 'httparty'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

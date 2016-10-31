@@ -11,12 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
  */
- @import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800';
- @import "bootstrap";
- @import "bootstrap-multiselect";
- @import "scaffolds";
- @import "cards";
- @import "campaigns";
 
  // Colors
  $light-grey: #E4E9EC;
@@ -32,6 +26,14 @@
  $sidebarWidth: 275px;
  $resultsWidth: 1000px;
  $totalWitdh: $sidebarWidth + $resultsWidth;
+
+ @import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800';
+ @import "bootstrap";
+ @import "bootstrap-multiselect";
+ @import "scaffolds";
+ @import "cards";
+ @import "campaigns";
+
 
  *, *:before, *:after {
    box-sizing: border-box;
@@ -86,6 +88,18 @@ a {
   }
 }
 
+.btn-delete {
+  background-color: white;
+  border: solid 1px red;
+  color: red;
+  &:hover {
+    background-color: red;
+    border: solid 1px white;
+    color: white;
+  }
+}
+
+
 
 nav {
   height: $navHeight;
@@ -129,28 +143,33 @@ nav {
   background-color: $grey;
   color: white;
   font-size: .9em;
-  font-weight: 500;
+  font-weight: 700;
   text-align: center;
 }
 .filter-label {
   width: 250px;
   height: 22px;
   margin: auto;
+  margin-top: 1px;
+}
+
+.manage-label {
+  width: 250px;
+  height: 22px;
+  margin: auto;
+  margin-top: 66px;
 }
 .right-label {
-  width: 55px;
+  width: 60px;
 }
 .contact-info-label {
-  width: 280px;
+  width: 315px;
 }
 .social-info-label {
-  width: 225px;
+  width: 170px;
 }
-.genres-label {
-  width: 175px;
-}
-.presstypes-label {
-  width: 175px;
+.genres-label, .presstypes-label {
+  width: 182.5px;
 }
 .left-label {
   width: 30px;
@@ -203,8 +222,11 @@ nav {
 
 .filter {
   label {
-    font-size: 1em;
+    font-size: .9em;
     font-weight: 700;
+  }
+  .check {
+    margin-bottom: 6px;
   }
 }
 
@@ -261,6 +283,10 @@ nav {
   }
 }
 
-.hidden {
+.hidden, .deleted {
   display: none;
+}
+
+.invsible {
+  visibility: hidden;
 }

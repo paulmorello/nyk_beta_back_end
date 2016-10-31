@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024192622) do
+ActiveRecord::Schema.define(version: 20161031070016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,9 +67,9 @@ ActiveRecord::Schema.define(version: 20161024192622) do
     t.string   "facebook"
     t.string   "instagram"
     t.string   "linkedin"
-    t.integer  "twitter_followers"
-    t.integer  "facebook_likes"
-    t.integer  "instagram_followers"
+    t.string   "twitter_followers"
+    t.string   "facebook_likes"
+    t.string   "instagram_followers"
     t.boolean  "hype_m",              default: false
     t.boolean  "submithub",           default: false
     t.boolean  "flagged",             default: false
@@ -100,8 +100,10 @@ ActiveRecord::Schema.define(version: 20161024192622) do
   create_table "saved_jobs", force: :cascade do |t|
     t.integer  "campaign_id"
     t.integer  "job_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "response"
+    t.datetime "response_updated_at"
     t.index ["campaign_id"], name: "index_saved_jobs_on_campaign_id", using: :btree
     t.index ["job_id"], name: "index_saved_jobs_on_job_id", using: :btree
   end
@@ -131,22 +133,23 @@ ActiveRecord::Schema.define(version: 20161024192622) do
   end
 
   create_table "writers", force: :cascade do |t|
-    t.string   "f_name",                         null: false
-    t.string   "l_name",                         null: false
+    t.string   "f_name",                            null: false
+    t.string   "l_name",                            null: false
     t.string   "city"
     t.string   "state"
     t.integer  "country_id"
     t.string   "twitter"
     t.string   "linkedin"
-    t.boolean  "key_contact",    default: false
-    t.boolean  "freelance",      default: false
-    t.boolean  "flagged",        default: false
-    t.boolean  "inactive",       default: false
+    t.boolean  "key_contact",       default: false
+    t.boolean  "freelance",         default: false
+    t.boolean  "flagged",           default: false
+    t.boolean  "inactive",          default: false
     t.string   "notes"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "user_id"
     t.string   "email_personal"
+    t.string   "twitter_followers"
     t.index ["country_id"], name: "index_writers_on_country_id", using: :btree
     t.index ["user_id"], name: "index_writers_on_user_id", using: :btree
   end
