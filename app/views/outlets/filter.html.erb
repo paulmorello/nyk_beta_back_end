@@ -13,10 +13,10 @@
         <%= select_tag('Campaign', options_from_collection_for_select(Campaign.where(user_id: current_user), :id, :name),{ :class => 'form-control campaign-dropdown' }) %>
         </div>
       </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary save-campaign-selections" data-dismiss="modal" data-toggle="modal" data-target="#gotoCampaignModal">Save</button>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary save-campaign-selections" data-dismiss="modal" data-toggle="modal" data-target="#gotoCampaignModal">Save</button>
+      </div>
     </div>
   </div>
 </div>
@@ -49,28 +49,27 @@
     <button type="button" style="margin-top: 12px; margin-right: 5px;" id="saveButton" class="btn btn-primary pull-xs-right hidden" data-toggle="modal" data-target="#saveCampaignModal">
       Save
     </button>
-    <h1>filter</h1>
+    <h1>Discover</h1>
     <div class="main-labels">
-      <div class="main-labels">
-        <div class="right-label label">
+      <div class="right-label label">
 
-        </div>
-        <div class="contact-info-label label">
-          <p>CONTACT INFO</p>
-        </div>
-        <div class="social-info-label label">
-          <p>SOCIAL INFO</p>
-        </div>
-        <div class="genres-label label">
-          <p>GENRES</p>
-        </div>
-        <div class="presstypes-label label">
-          <p>PRESSTYPES</p>
-        </div>
-        <div class="left-label label">
-
-        </div>
       </div>
+      <div class="contact-info-label label">
+        <p>CONTACT INFO</p>
+      </div>
+      <div class="social-info-label label">
+        <p>SOCIAL INFO</p>
+      </div>
+      <div class="genres-label label">
+        <p>GENRES</p>
+      </div>
+      <div class="presstypes-label label">
+        <p>PRESSTYPES</p>
+      </div>
+      <div class="left-label label">
+
+      </div>
+    </div>
   </div>
 
   <div class="results">

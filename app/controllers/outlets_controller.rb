@@ -70,7 +70,7 @@ class OutletsController < ApplicationController
     if filters["country_id"] != ""
       o_arr = []
       @outlets.each do |outlet|
-        if outlet.country_id == filters["country_id"] || outlet.writers.where(country_id: filters["country_id"]).present?
+        if outlet.country_id.to_s == filters["country_id"] || outlet.writers.where(country_id: filters["country_id"]).present?
           o_arr.push(outlet.id)
         end
       end
@@ -128,6 +128,7 @@ class OutletsController < ApplicationController
   def update
 
     respond_to do |format|
+      # facebook follower test
       if @outlet.facebook.present?
         url = "https://graph.facebook.com/#{@outlet.facebook}?fields=fan_count&access_token=#{FACEBOOK_ID}|#{FACEBOOK_SECRET}"
         facebook_response = HTTParty.get url
@@ -139,6 +140,17 @@ class OutletsController < ApplicationController
           @outlet.update(facebook_likes: facebook_followers)
         end
       end
+
+      # insta follower test
+      if @outlet.instagram.present?
+        url = "https://www.instagram.com/web/search/topsearch/?query=#{@outlet.name}"
+        insta_response = HTTParty.get url
+        insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
+        if insta_followers.present?
+          @outlet.update(instagram_followers: insta_followers)
+        end
+      end
+
       if @outlet.update(outlet_params)
         format.html { redirect_to @outlet, notice: 'Outlet was successfully updated.' }
         format.json { render :show, status: :ok, location: @outlet }

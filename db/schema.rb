@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031070016) do
+ActiveRecord::Schema.define(version: 20161104193454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20161031070016) do
     t.string   "outlet_profile"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.boolean  "key_contact"
     t.index ["outlet_id"], name: "index_jobs_on_outlet_id", using: :btree
     t.index ["writer_id"], name: "index_jobs_on_writer_id", using: :btree
   end
@@ -140,7 +141,6 @@ ActiveRecord::Schema.define(version: 20161031070016) do
     t.integer  "country_id"
     t.string   "twitter"
     t.string   "linkedin"
-    t.boolean  "key_contact",       default: false
     t.boolean  "freelance",         default: false
     t.boolean  "flagged",           default: false
     t.boolean  "inactive",          default: false

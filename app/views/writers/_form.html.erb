@@ -83,6 +83,10 @@
     <%= j.label(:outlet_profile, "Outlet Profile") %>
     <%= j.text_field(:outlet_profile, class: "form-control") %>
     </div>
+    <div class="form-group">
+      <%= j.label(:key_contact) %>
+      <%= j.check_box(:key_contact, class: "form-check-inline") %>
+    </div>
     <div class="tag-form">
     <%= j.nested_fields_for :presstype_tags do |pt| %>
       <%= pt.remove_nested_fields_link%>
@@ -122,10 +126,7 @@
     <%= f.collection_select(:user_id, User.where(admin: true), :id, :email, {include_blank: true}, {class: "form-control"}) %>
   </div>
 
-  <div class="form-group">
-    <%= f.label(:key_contact) %>
-    <%= f.check_box(:key_contact, class: "form-check-inline") %>
-  </div>
+
   <div class="form-group">
     <%= f.label(:freelance) %>
     <%= f.check_box(:freelance, class: "form-check-inline") %>
