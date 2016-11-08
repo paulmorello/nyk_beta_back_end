@@ -6,6 +6,14 @@
   </div>
 
   <div class="results">
+    <ul class="assigned-outlets">
+      <% @outlets.where(user_id: current_user.id).order(:updated_at).each do |outlet| %>
+
+          <li class="assigned-outlet" style="font-size: 1.3em;"><%= link_to outlet.name, edit_outlet_path(outlet) %> - Last Updated: <%=outlet.updated_at%> - Note: <%=outlet.notes%></li>
+
+          <!-- <%= link_to 'Destroy', writer, method: :delete, data: { confirm: 'Are you sure?' } %> -->
+      <% end %>
+    </ul>
 
     <ul class="assigned-writers">
       <% @writers.where(user_id: current_user.id).order(:updated_at).each do |writer| %>

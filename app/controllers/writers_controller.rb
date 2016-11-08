@@ -7,6 +7,7 @@ class WritersController < ApplicationController
   # GET /writers.json
   def index  # This is being used for admins to see writers assigned to them
     @writers = Writer.all
+    @outlets = Outlet.all
   end
 
   # GET /writers/1

@@ -72,6 +72,10 @@
     <%= f.label(:notes) %>
     <%= f.text_area(:notes, class: "form-control") %>
   </div>
+  <div class="form-group">
+    <%= f.label(:user_id, "Assigned To *") %>
+    <%= f.collection_select(:user_id, User.where(admin: true), :id, :email, {include_blank: true}, {class: "form-control"}) %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Finish and Save",class:"btn btn-primary"%>

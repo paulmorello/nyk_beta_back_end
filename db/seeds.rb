@@ -35,7 +35,7 @@ types = ["Track Premiere",
 
 types.each {|t| Presstype.create(name: t)}
 
-genres = [  "All",
+genres = [  "All Genres",
             "Indie",
             "Rock",
             "Electronic",
@@ -56,25 +56,6 @@ genres = [  "All",
             "Blues"]
 
 genres.each {|g| Genre.create(name: g)}
-
-Outlet.create(:name => "Pitchfork", :website => "pitchfork.com",
-:email => "press@pitchfork.com", :city => "New York", :state => "NY",
-:country_id => 228, :twitter => "Pitchfork", :facebook => "Pitchfork",
-:instagram => "pitchfork", :hype_m => true, :description => "Outlet primarily covers all Genres and Presstypes.")
-
-Outlet.create(:name => "Rolling Stone", :website => "rollingstone.com",
-:email => "press@rollingstone.com", :city => "New York", :state => "NY",
-:country_id => 228, :twitter => "rollingstone", :facebook => "rollingstone",
-:instagram => "rollingstone", :linkedin => "rolling-stone", :hype_m => true,
-:description => "Outlet primarily covers all Genres and Presstypes.")
-
-Writer.create(:f_name => "Drew", :l_name => "Garver", :city => "Brooklyn",
-:state => "NY", :country_id => 228, :twitter => "dril",
-:freelance => true)
-
-Writer.create(:f_name => "Dan", :l_name => "Rutman", :city => "Brooklyn",
-:state => "NY", :country_id => 228, :twitter => "fred_delicious",
-:freelance => true)
 
 # require 'smarter_csv'
 #
