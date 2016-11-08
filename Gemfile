@@ -38,6 +38,7 @@ gem 'httparty'
 
 gem 'smarter_csv'
 
+gem 'jquery-turbolinks'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -12,11 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require nested_form_fields
 //= require bootstrap
 //= require bootstrap-multiselect
 //= require turbolinks
 //= require turbolinks-compatibility
 //= require_tree .
-
-console.log("loaded")
