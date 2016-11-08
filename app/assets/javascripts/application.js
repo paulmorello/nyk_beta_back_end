@@ -17,3 +17,5 @@
 //= require bootstrap-multiselect
 //= require turbolinks
 //= require_tree .
+
+console.log("loaded")
