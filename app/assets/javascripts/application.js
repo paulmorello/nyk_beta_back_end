@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery.turbolinks
+//= require jquery_ujs
 //= require nested_form_fields
 //= require bootstrap
 //= require bootstrap-multiselect
