@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require bootstrap-multiselect
 //= require turbolinks
+//= require turbolinks-compatibility
 //= require_tree .
 
 console.log("loaded")
