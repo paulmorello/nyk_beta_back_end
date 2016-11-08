@@ -69,9 +69,19 @@ Outlet.create(:name => "Rolling Stone", :website => "rollingstone.com",
 :description => "Outlet primarily covers all Genres and Presstypes.")
 
 Writer.create(:f_name => "Drew", :l_name => "Garver", :city => "Brooklyn",
-:state => "NY", :country_id => 228, :twitter => "dril", :key_contact => true,
+:state => "NY", :country_id => 228, :twitter => "dril",
 :freelance => true)
 
 Writer.create(:f_name => "Dan", :l_name => "Rutman", :city => "Brooklyn",
 :state => "NY", :country_id => 228, :twitter => "fred_delicious",
 :freelance => true)
+
+# require 'smarter_csv'
+#
+# options = {}
+#
+# SmarterCSV.process('.csv', options) do |chunk|
+#   chunk.each do |data_hash|
+#     Outlet.create!( data_hash )
+#   end
+# end

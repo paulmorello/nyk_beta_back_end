@@ -1,5 +1,6 @@
 class SavedJobsController < ApplicationController
   before_action :set_saved_job, only: [:update]
+  before_action :is_admin?, only: [:update, :destroy, :create]
   respond_to :html, :xml, :json
 
   # POST /saved_jobs

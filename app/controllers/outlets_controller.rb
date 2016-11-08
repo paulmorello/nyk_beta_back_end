@@ -1,6 +1,7 @@
 
 class OutletsController < ApplicationController
   before_action :set_outlet, only: [:show, :edit, :update, :destroy]
+  before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
 
   # GET /outlets
   # GET /outlets.json
@@ -128,11 +129,38 @@ class OutletsController < ApplicationController
   def update
 
     respond_to do |format|
+      # twitter follower test
+      if @outlet.twitter.present?
+        credentials = Base64.encode64("#{TWITTER_ID}:#{TWITTER_SECRET}").gsub("\n", '')
+        url = "https://api.twitter.com/oauth2/token"
+        body = "grant_type=client_credentials"
+        headers = {
+          "Authorization" => "Basic #{credentials}",
+          "Content-Type" => "application/x-www-form-urlencoded;charset=UTF-8"
+        }
+        r = HTTParty.post(url, body: body, headers: headers)
+        bearer_token = JSON.parse(r.body)['access_token']
+
+        api_auth_header = {"Authorization" => "Bearer #{bearer_token}"}
+        url = "https://api.twitter.com/1.1/users/show.json?screen_name=#{@outlet.twitter}"
+        response = HTTParty.get(url, headers: api_auth_header).body
+        parsed_response = JSON.parse(response)
+        twitter_followers = parsed_response["followers_count"].to_s
+
+        if twitter_followers.present?
+          if twitter_followers.length > 3
+            twitter_followers = twitter_followers.chop.chop.chop+"k"
+          end
+          @outlet.update(twitter_followers: twitter_followers)
+        end
+      end
+
       # facebook follower test
       if @outlet.facebook.present?
         url = "https://graph.facebook.com/#{@outlet.facebook}?fields=fan_count&access_token=#{FACEBOOK_ID}|#{FACEBOOK_SECRET}"
         facebook_response = HTTParty.get url
-        facebook_followers = facebook_response["fan_count"].to_s
+        parsed_facebook_response = JSON.parse(facebook_response)
+        facebook_followers = parsed_facebook_response["fan_count"].to_s
         if facebook_followers.present?
           if facebook_followers.length > 3
             facebook_followers = facebook_followers.chop.chop.chop+"k"

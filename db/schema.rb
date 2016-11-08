@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104193454) do
+ActiveRecord::Schema.define(version: 20161108172000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,9 @@ ActiveRecord::Schema.define(version: 20161104193454) do
     t.datetime "updated_at",                          null: false
     t.string   "description"
     t.string   "staff_list"
+    t.integer  "user_id"
     t.index ["country_id"], name: "index_outlets_on_country_id", using: :btree
+    t.index ["user_id"], name: "index_outlets_on_user_id", using: :btree
   end
 
   create_table "presstype_tags", force: :cascade do |t|
@@ -158,6 +160,7 @@ ActiveRecord::Schema.define(version: 20161104193454) do
   add_foreign_key "genre_tags", "writers"
   add_foreign_key "jobs", "outlets"
   add_foreign_key "jobs", "writers"
+  add_foreign_key "outlets", "users"
   add_foreign_key "presstype_tags", "jobs"
   add_foreign_key "presstype_tags", "presstypes"
   add_foreign_key "writers", "users"

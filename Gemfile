@@ -36,6 +36,8 @@ gem 'nested_form_fields'
 
 gem 'httparty'
 
+gem 'smarter_csv'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
   def set_thumb
     @thumb = ""
   end
+
+  def is_admin?
+    redirect_to '/outlets' unless current_user.admin == true
+  end
 end

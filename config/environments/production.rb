@@ -1,5 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  FACEBOOK_ID = "1755281334723897"
+  FACEBOOK_SECRET = "6a1688f4b301abd301570cc226d7bf85"
+
+  TWITTER_ID = "zS6aPKHC8rDiYINZa5akuj2eB"
+  TWITTER_SECRET = "GpQWGCR1rgQHVwXjvnflyZphnHw5XcBBmjfl4yNqOfoDbQ1WdU"
 
   # Code is not reloaded between requests.
   config.cache_classes = true

@@ -3,6 +3,9 @@ Rails.application.configure do
   FACEBOOK_ID = "321227951591559"
   FACEBOOK_SECRET = "f99b8112aff17782ce5a7152b0b89c6e"
 
+  TWITTER_ID = "1eUKruLVGKtfuyTXAHl1f2Zin"
+  TWITTER_SECRET = "62U49ZjVnCs75Ys8hok7EIWs2h64ZaM0nj9csnQLFlAomyJTPG"
+
   # Default URL
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
