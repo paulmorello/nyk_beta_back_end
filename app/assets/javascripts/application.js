@@ -16,6 +16,6 @@
 //= require nested_form_fields
 //= require bootstrap
 //= require bootstrap-multiselect
-//= require turbolinks
 //= require turbolinks-compatibility
+//= require turbolinks
 //= require_tree .
