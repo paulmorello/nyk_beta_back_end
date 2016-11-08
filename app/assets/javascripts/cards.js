@@ -30,7 +30,7 @@ var toggleSaveButton = function(e) {
   $('#saveButton').removeClass("hidden");
 }
 
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
   $('.outlet-card').click(toggleShortCard);
   $('.writer-card').click(toggleLongCard);
   $('.campaign-select-all-toggle').change(selectAllWriters);
