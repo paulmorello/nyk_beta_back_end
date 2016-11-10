@@ -39,7 +39,7 @@
         <%= ff.collection_select(:genre_id, Genre.where.not(id: 1), :id, :name, {selected: (@filters["genre_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
       </div>
       <div class="form-group">
-        <%= ff.label(:presstype_id, "Presstype") %>
+        <%= ff.label(:presstype_id, "Press Type") %>
         <%= ff.collection_select(:presstype_id, Presstype.all, :id, :name, {selected: (@filters["presstype_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
       </div>
       <div class="form-group">

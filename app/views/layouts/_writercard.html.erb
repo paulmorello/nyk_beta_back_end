@@ -60,7 +60,7 @@
       </div>
       <%job.writer.jobs.each do |job|%>
         <%if job.outlet_profile%>
-        <p><a target="_blank" href="http:<%=job.outlet_profile%>"><%=job.outlet.name%>, </a></p>
+        <p><a target="_blank" href="http://<%=job.outlet_profile%>"><%=job.outlet.name%>, </a></p>
         <%else%>
         <p><%=job.outlet.name%>, </p>
         <%end%>

@@ -91,16 +91,16 @@
     <%= j.nested_fields_for :presstype_tags do |pt| %>
       <%= pt.remove_nested_fields_link%>
       <div class="form-group">
-      <%= pt.label :presstype_id, "Presstype" %>
+      <%= pt.label :presstype_id, "Press Type" %>
       <%= pt.collection_select(:presstype_id, Presstype.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
       <% if pt.object.persisted? %>
         <%= pt.check_box :_destroy %>
-        <%= pt.label :_destroy, "Delete Presstype" %>
+        <%= pt.label :_destroy, "Delete Press Type" %>
       <% end %>
       </div>
     <% end %>
     <% if j.object.persisted? %>
-      <%= j.add_nested_fields_link :presstype_tags, "Add Presstype", class: "btn btn-secondary"%>
+      <%= j.add_nested_fields_link :presstype_tags, "Add Press Type", class: "btn btn-secondary"%>
     <% end %>
     </div>
     <% if j.object.persisted? %>

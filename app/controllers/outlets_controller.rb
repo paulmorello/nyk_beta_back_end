@@ -6,7 +6,7 @@ class OutletsController < ApplicationController
   # GET /outlets
   # GET /outlets.json
   def index  # Essentially the main page of the application proper. This is the discover page.
-    @outlets = Outlet.all.order(:name)
+    @outlets = Outlet.all.order(:name).limit(20)
   end
 
   # GET /outlets/1
