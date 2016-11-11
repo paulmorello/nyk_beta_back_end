@@ -94,7 +94,7 @@
     }
     .writer-card-top {
       height: 60px;
-      overflow: hidden;
+      overflow-x: hidden;
       // border: solid black 1px;
       .position {
         font-size: 1.2em;
@@ -130,7 +130,7 @@
     }
     .writer-card-bottom {
       height: 145px;
-      overflow: hidden;
+      overflow-x: hidden;
       // border: solid black 1px;
     }
   }
