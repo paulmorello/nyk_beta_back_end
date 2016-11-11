@@ -7560,7 +7560,7 @@ span.multiselect-native-select select {
 /* line 95, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-top {
   height: 60px;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 /* line 99, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-top .position {
@@ -7599,7 +7599,7 @@ span.multiselect-native-select select {
 /* line 131, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-bottom {
   height: 145px;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 /* line 138, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .contact-info {
