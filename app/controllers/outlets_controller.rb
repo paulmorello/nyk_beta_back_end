@@ -108,7 +108,7 @@ class OutletsController < ApplicationController
     end
     if filters["genre_id"].present?
       g_ids_plus_all = filters["genre_id"]
-      g_ids_plus_all.push("1") unless g_ids_plus_all.include?("1")
+      g_ids_plus_all.push("19") unless g_ids_plus_all.include?("19")
       @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
     end
     @outlets = @outlets.paginate(page: params[:page], per_page: 20)
