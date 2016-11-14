@@ -6,7 +6,11 @@ class OutletsController < ApplicationController
   # GET /outlets
   # GET /outlets.json
   def index  # Essentially the main page of the application proper. This is the discover page.
-    @outlets = Outlet.all.order(:name).limit(20)
+    @outlets = Outlet.all.order(:name).paginate(page: params[:page], per_page: 20)
+    respond_to do |format|
+      format.html
+      format.js { render "layouts/morecontacts" }
+    end
   end
 
   # GET /outlets/1
@@ -58,8 +62,12 @@ class OutletsController < ApplicationController
 
   def filter
     filters = params[:filter_params]
-    filters["genre_id"].delete("")
-    filters["presstype_id"].delete("")
+    if filters["genre_id"]
+      filters["genre_id"].delete("")
+    end
+    if filters["presstype_id"]
+      filters["presstype_id"].delete("")
+    end
     @filters = filters
     @outlets = Outlet.all.order(:name)
     if filters["hype_m"] === "1"
@@ -102,6 +110,11 @@ class OutletsController < ApplicationController
       g_ids_plus_all = filters["genre_id"]
       g_ids_plus_all.push("1") unless g_ids_plus_all.include?("1")
       @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
+    end
+    @outlets = @outlets.paginate(page: params[:page], per_page: 20)
+    respond_to do |format|
+      format.html
+      format.js { render "layouts/morefilteredcontacts" }
     end
   end
 

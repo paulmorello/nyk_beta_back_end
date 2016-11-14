@@ -7464,32 +7464,45 @@ span.multiselect-native-select select {
   display: none;
 }
 /* line 11, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+.results .invisible {
+  visibility: hidden;
+}
+/* line 14, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+.results #loading {
+  height: 100px;
+  text-align: center;
+}
+/* line 17, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+.results #loading img {
+  margin-top: 40px;
+}
+/* line 21, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .card {
   border: none;
   margin-top: 5px !important;
   box-shadow: 5px 5px 5px #AAB8C1;
 }
-/* line 15, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 25, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .card p {
   display: inline-block;
 }
-/* line 18, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 28, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .card .card-heading {
   font-size: 0.9em;
   font-weight: 700;
 }
-/* line 22, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 32, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .card .name {
   margin-top: 10px;
   margin-right: 30px;
   font-size: 2.2em;
   color: black;
 }
-/* line 28, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 38, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .card .description {
   font-weight: 400;
 }
-/* line 31, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 41, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .card .tag {
   font-size: 0.9em;
   font-weight: 300;
@@ -7500,25 +7513,25 @@ span.multiselect-native-select select {
   border: solid 1px #555D64;
   border-radius: 2px;
 }
-/* line 41, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 51, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .card .social-icon {
   display: inline-block;
   float: left;
   margin-right: 15px;
 }
-/* line 46, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 56, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .card .social-link {
   display: inline-block;
   font-weight: 700;
   font-size: 1.1em;
   color: #555D64;
 }
-/* line 52, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 62, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .card .social-wrapper {
   margin-left: 30px;
   margin-top: 1px;
 }
-/* line 57, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 67, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .outlet-card {
   background-color: white;
   width: 100%;
@@ -7529,20 +7542,20 @@ span.multiselect-native-select select {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 67, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 77, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .outlet-card:hover {
   -webkit-transform: scale(1.015);
   transform: scale(1.015);
 }
-/* line 72, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 82, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .outlet-card .outlet-card-top {
   height: 60px;
 }
-/* line 76, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 86, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .outlet-card .outlet-card-bottom {
   height: 145px;
 }
-/* line 81, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 91, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card {
   width: 96%;
   padding-left: 5px;
@@ -7552,114 +7565,114 @@ span.multiselect-native-select select {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 90, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 100, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card:hover {
   -webkit-transform: scale(1.02);
   transform: scale(1.02);
 }
-/* line 95, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 105, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-top {
   height: 60px;
   overflow: hidden;
 }
-/* line 99, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 109, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-top .position {
   font-size: 1.2em;
 }
-/* line 103, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 113, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-top .writer-name-col {
   height: 100%;
   float: left;
   width: 500px;
 }
-/* line 109, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 119, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-top .writer-first-email-col {
   height: 100%;
   float: left;
   width: 195px;
 }
-/* line 114, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 124, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-top .writer-first-email-col p {
   margin-top: 25px;
 }
-/* line 118, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 128, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-top .writer-second-email-col {
   height: 100%;
   float: left;
   width: 190px;
 }
-/* line 123, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 133, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-top .writer-second-email-col p {
   margin-top: 25px;
 }
-/* line 126, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 136, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-top .writer-second-email-col .key-contact-star {
   margin-top: 15px;
 }
-/* line 131, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 141, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .writer-card .writer-card-bottom {
   height: 145px;
   overflow: hidden;
 }
-/* line 138, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 148, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .contact-info {
   height: 100%;
   width: 35%;
   float: left;
 }
-/* line 144, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 154, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .social-info {
   height: 100%;
   width: 19%;
   float: left;
 }
-/* line 150, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 160, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .genres, .results .presstypes {
   height: 100%;
   width: 21%;
   float: left;
   padding: 0 8px;
 }
-/* line 157, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 167, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .row1, .results .row2, .results .row3, .results .row4 {
   height: 25%;
 }
-/* line 161, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 171, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .heading-col {
   height: 100%;
   width: 25%;
   float: left;
 }
-/* line 167, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 177, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .left-gutter {
   height: 100%;
   width: 4%;
   float: left;
 }
-/* line 172, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 182, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .left-gutter .card-checkbox {
   margin-top: 20px;
   margin-left: 5px;
 }
-/* line 176, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 186, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .left-gutter .thumbs-up, .results .left-gutter .thumbs-down {
   fill: #AAB8C1;
 }
-/* line 178, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 188, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .left-gutter .thumbs-up:hover, .results .left-gutter .thumbs-down:hover {
   fill: #32C7DB;
 }
-/* line 182, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 192, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .left-gutter .flag-contact {
   margin-left: 2px;
   margin-top: 25px;
   fill: #AAB8C1;
 }
-/* line 186, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 196, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .left-gutter .flag-contact:hover {
   fill: #32C7DB;
 }
-/* line 190, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
+/* line 200, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/cards.scss */
 .results .left-gutter .selected {
   fill: #2A97DA;
 }

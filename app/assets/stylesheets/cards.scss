@@ -8,6 +8,16 @@
   .hidden {
     display: none;
   }
+  .invisible {
+    visibility: hidden;
+  }
+  #loading {
+    height: 100px;
+    text-align: center;
+    img {
+      margin-top: 40px;
+    }
+  }
   .card {
     border: none;
     margin-top: 5px !important;

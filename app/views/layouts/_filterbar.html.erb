@@ -23,6 +23,14 @@
     <%= form_tag({ :controller => 'outlets', :action => 'filter' }, {method: :get }) do %>
       <%= fields_for :filter_params do |ff| %>
       <div class="form-group">
+        <%= ff.label(:genre_id, "Genre") %>
+        <%= ff.collection_select(:genre_id, Genre.where.not(id: 1), :id, :name, {selected: (@filters["genre_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:presstype_id, "Press Type") %>
+        <%= ff.collection_select(:presstype_id, Presstype.all, :id, :name, {selected: (@filters["presstype_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
+      </div>
+      <div class="form-group">
         <%= ff.label(:country_id, "Country") %>
         <%= ff.collection_select(:country_id, Country.find(@current_countries), :id, :name, {include_blank: true, selected: (@filters["country_id"] if defined? @filters)}, {class: "form-control"}) %>
       </div>
@@ -33,15 +41,7 @@
       <div class="form-group">
         <%= ff.label(:city, "City") %>
         <%= ff.text_field(:city , value: (@filters["city"] if defined? @filters), class: "form-control") %>
-      </div>
-      <div class="form-group">
-        <%= ff.label(:genre_id, "Genre") %>
-        <%= ff.collection_select(:genre_id, Genre.where.not(id: 1), :id, :name, {selected: (@filters["genre_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
-      </div>
-      <div class="form-group">
-        <%= ff.label(:presstype_id, "Press Type") %>
-        <%= ff.collection_select(:presstype_id, Presstype.all, :id, :name, {selected: (@filters["presstype_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
-      </div>
+      </div>  
       <div class="form-group">
         <%= ff.label(:hype_m, "HypeM") %>
         <%= ff.check_box(:hype_m, checked: (true if defined?(@filters) && @filters["hype_m"] === "1")) %>

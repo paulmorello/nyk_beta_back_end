@@ -75,14 +75,16 @@
 
   <div class="results">
 
-    <% @outlets.each do |outlet| %>
-      <div class="outlet-writer-wrapper">
-        <%= render partial: 'layouts/outletcard', locals: {outlet: outlet} %>
-        <% outlet.jobs.joins(:writer).order("writers.l_name").each do |job| %>
-          <%= render partial: 'layouts/writercard', locals: {job: job} %>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="contacts">
+      <%= render ("layouts/contacts") %>
+    </div>
+    <div id="infinite-scrolling" style="display: none">
+      <%= will_paginate :renderer => WillPaginate::ActionView::LinkRenderer %>
+    </div>
+    <div id="loading" class="invisible">
+      <%=image_tag("ajax-loader.gif", alt: "Loading More Contacts")%>
+    </div>
+
   </div>
 
   <div style="clear: both;"></div>

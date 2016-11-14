@@ -1,0 +1,8 @@
+<% @outlets.each do |outlet| %>
+  <div class="outlet-writer-wrapper">
+    <%= render partial: 'layouts/outletcard', locals: {outlet: outlet} %>
+    <% outlet.jobs.joins(:writer).order("writers.l_name").each do |job| %>
+      <%= render partial: 'layouts/writercard', locals: {job: job} %>
+    <% end %>
+  </div>
+<% end %>

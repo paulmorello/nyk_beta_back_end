@@ -30,7 +30,11 @@ gem 'devise'
 # for stripping whitespace out of params
 gem 'strip_attributes'
 
+gem 'will_paginate'
+
 gem 'bootstrap'
+
+gem 'bootstrap-will_paginate'
 
 gem 'nested_form_fields'
 
