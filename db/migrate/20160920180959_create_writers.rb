@@ -3,7 +3,7 @@ class CreateWriters < ActiveRecord::Migration[5.0]
     create_table :writers do |t|
       ## General Info
       t.string :f_name, null: false
-      t.string :l_name, null: false
+      t.string :l_name
       t.string :position
       t.string :outlet_profile
       t.string :email_work, null: false

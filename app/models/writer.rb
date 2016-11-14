@@ -12,7 +12,6 @@ class Writer < ApplicationRecord
   strip_attributes
 
   validates :f_name, presence: true
-  validates :l_name, presence: true
 
   validates :jobs, presence: true
 

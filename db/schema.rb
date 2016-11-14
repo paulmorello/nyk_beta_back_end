@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 20161108172000) do
 
   create_table "writers", force: :cascade do |t|
     t.string   "f_name",                            null: false
-    t.string   "l_name",                            null: false
+    t.string   "l_name"
     t.string   "city"
     t.string   "state"
     t.integer  "country_id"

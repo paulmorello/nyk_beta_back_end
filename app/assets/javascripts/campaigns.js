@@ -39,8 +39,9 @@ $(document).on('turbolinks:load', function() {
        $(this).addClass("selected-campaign-link");
   })
 
-  $('.campaign-select-all-toggle, .campaign-selector').change(toggleRemoveButton);
-  $('.flag-contact').click(openFlagModal);
+  $(document).on('change', '.campaign-select-all-toggle', toggleRemoveButton);
+  $(document).on('change', '.campaign-selector', toggleRemoveButton);
+  $(document).on('click', '.flag-contact', openFlagModal);
   $('.addCampaignFolder').click(openCreateCampaignModal);
 
   $('.save-campaign-selections').click(function(e) {
@@ -67,7 +68,7 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  $('.thumbs-up').click(function(e) {
+  $(document).on('click', '.thumbs-up', function(e) {
     $(e.target).parents('.response').find('.thumbs-down').removeClass('selected');
     $(e.target).addClass('selected');
     $.ajax({
@@ -77,7 +78,7 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  $('.thumbs-down').click(function(e) {
+  $(document).on('click', '.thumbs-down', function(e) {
     $(e.target).parents('.response').find('.thumbs-up').removeClass('selected');
     $(e.target).addClass('selected');
     $.ajax({

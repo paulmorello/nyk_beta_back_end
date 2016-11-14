@@ -30,9 +30,10 @@ var toggleSaveButton = function(e) {
   $('#saveButton').removeClass("hidden");
 }
 
-$(document).on('turbolinks:load', function() {
-  $('.outlet-card').click(toggleShortCard);
-  $('.writer-card').click(toggleLongCard);
-  $('.campaign-select-all-toggle').change(selectAllWriters);
-  $('.campaign-select-all-toggle, .campaign-selector').change(toggleSaveButton);
+$(document).ready(function() {
+  $(document).on('click', '.outlet-card', toggleShortCard);
+  $(document).on('click', '.writer-card', toggleLongCard);
+  $(document).on('change', '.campaign-select-all-toggle', selectAllWriters);
+  $(document).on('change', '.campaign-select-all-toggle', toggleSaveButton);
+  $(document).on('change', '.campaign-selector', toggleSaveButton);
 });

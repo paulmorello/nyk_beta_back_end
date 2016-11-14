@@ -1,5 +1,5 @@
 f_name,l_name,email_personal,city,state,country_id,twitter,linkedin,user_id
-Shake,N/A,,Las Vegas,NV,228,dopeboySHAKE,,1
+Shake,,,Las Vegas,NV,228,dopeboySHAKE,,1
 Bobby,Power,,Durham,NC,228,bobby_power_,bobbypowerwriter,1
 Emilie,Friedlander,,New York,NY,228,adhocemilie,emilie-friedlander-95023913,1
 Joe,Bucciero,jmb1492@gmail.com,New York,NY,228,_joebucciero,,1
@@ -14,7 +14,7 @@ Matt,Collar,,Detroit,MI,228,MattCollar,matt-collar-3025118,1
 Sean,Westergaard,,Detroit,MI,228,,sean-westergaard-a1a3534,1
 Stephen,Thomas Erlewine,,Austin,TX,228,sterlewine,stephen-thomas-erlewine-a59308,1
 Thom,Jurek,,Detroit,MI,228,ThomJurek,thom-jurek-771118a,1
-Tim,Sendra,,N/A,MI,228,thetimsendra,,1
+Tim,Sendra,,,MI,228,thetimsendra,,1
 Timothy,Monger,,Detroit,MI,228,timothymonger,timothymonger,1
 Caitlyn,Ralph,,Sarasota,FL,228,EarthTo_Caitlyn,caitlynralph,1
 Cassie,Whitt,,Cleveland,OH,228,poisonandfire,cassie-whitt-66832b11,1
@@ -54,7 +54,7 @@ Kimberley,Jones,,Austin,TX,228,chronkimjones,kimberley-jones-0302a7a0,1
 Raoul,Hernandez,,Austin,TX,228,ChroniclyRaoul,,1
 Nathan,Lankford,,Round Rock,TX,228,,nathan-lankford-237a5972,1
 Brian,Gray,photo.bgray@gmail.com,Austin,TX,228,photobriangray,,1
-Dylan,Stephens,,N/A,TX,228,,,1
+Dylan,Stephens,,,TX,228,,,1
 Nicole,Baumann,,Austin,TX,228,,nicole-baumann-19623566,1
 Ryan,Ray,,Austin,TX,228,,,1
 Allison,Baritz,,Boca Raton,FL,228,,arbaritz0214,1
@@ -116,7 +116,7 @@ Raj,Chaudhuri,,London,,227,RajiRags,rajirags,1
 Senay,Kenfe,,Long Beach,CA,228,EclecticNative,,1
 Sofie,Fatouretchi,,London,,227,,sofie-fatouretchi-52265b96,1
 Saoirse,O'Leary,,London,,227,saoirsepoleary,saoirse-o-leary-9a250892,1
-Steven,Smith,,N/A,N/A,240,,,1
+Steven,Smith,,,,240,,,1
 Sarah,Rodman,,Boston,MA,228,saraharodman,sarah-rodman-015a084,1
 Andrew,Sacher,,New York,NY,228,llllbfgllll,andrew-sacher-93003533,1
 Bill,Pearis,soundbitesnyc@gmail.com,New York,NY,228,soundbitesnyc,bill-pearis-143ab85,1
@@ -155,7 +155,7 @@ Alex,Thompson,,London,,227,alexthompsonldn,alex-thompson-01b90a48,1
 Felicity,Martin,,London,,227,facilitymartin,felicity-martin-a6b80978,1
 Robin,Murray,,London,,227,ClashRobin,,1
 Simon,Harper,,London,,227,simon__harper,simonharper2,1
-Lisa,N/A,,London,,227,,,1
+Lisa,,,London,,227,,,1
 Angel,Diaz,,Paterson,NJ,228,ADiaz456,angel-diaz-b3746ab3,1
 Dana,Droppo,,Los Angeles,CA,228,danadroppo,dana-droppo-1a4b5537,1
 Edwin,Ortiz,,New York,NY,228,itunesera,,1
@@ -271,8 +271,8 @@ Rob,McCallum,,London,,227,robdjmag,,1
 Sarah,Polonsky,,New York,NY,228,SarahPolonsky,sarah-polonsky-7b172812,1
 Charlie,Small,,London,,227,charliesmall_,,1
 Simon,Kelley,,London,,227,bleeps_,simon-kelly-5611212b,1
-Kim,N/A,,San Antonio,TX,228,,,1
-Libby,N/A,,San Antonio,TX,228,,,1
+Kim,,,San Antonio,TX,228,,,1
+Libby,,,San Antonio,TX,228,,,1
 Jimmy,Leitch,,Victoria,BC,39,,jimmy-leitch-80536a128,1
 Katie,Karpowicz,,Chicago,IL,228,katiekarp,katiekarp35,1
 Amy,Roever,,Indianapolis,IN,228,amyroever,amy-roever-b763a130,1
@@ -329,7 +329,7 @@ Andrew,Cordivari,adcordivari92@gmail.com,New York,NY,228,,,1
 Brooke,Allan,,Los Angeles,CA,228,brooklynpwns,brooklyn-allan-3379b738,1
 David,Selsey,,New York,NY,228,,davidselsey,1
 Devin,Lezama,devinlezamafilms@gmail.com,Los Angeles,CA,228,,devinlezama,1
-Eddy,N/A,,Los Angeles,CA,228,,,1
+Eddy,,,Los Angeles,CA,228,,,1
 Harry,Levin,,Los Angeles,CA,228,TimeLapseCons,,1
 Jared,Sanchud,,Los Angeles,CA,228,jsanchud,,1
 Vinnie,Rossiello,,Hollywood,CA,228,yacousinvinnie,vinnie-rossiello-77a4296a,1
@@ -376,7 +376,7 @@ Calum,Slingerland,,Toronto,ON,39,c_slingerland,calum-slingerland-77b43384,1
 Cosette,Schulz,,Toronto,ON,39,cosmicquirks,cosette-schulz-015a5797,1
 Daryl,Keating,,Toronto,ON,39,darylkeating,daryl-keating-534218100,1
 Erin,Lowers,,Toronto,ON,39,ellhah,erin-lowers-27024325,1
-Gregory,Adams,,N/A,N/A,39,gregoryadamsbc,,1
+Gregory,Adams,,,,39,gregoryadamsbc,,1
 Ian,Gormely,,Toronto,ON,39,iangormely,ian-gormely-93a94aa,1
 Joseph,Mathieu,,Oxford Mills,ON,39,jrmwords,josephrmathieu,1
 Josiah,Hughes,,Calgary,AB,39,josiahhughes,josiah-hughes-5959409b,1
@@ -392,7 +392,7 @@ April,Clare Welsh,aprilclarewelsh@gmail.com,London,,227,aprilclarewelsh,aprilcla
 Chal,Ravens,chal.ravens@gmail.com,London,,227,chalravens,,1
 Chris,Kelly,,Washington,DC,228,leninstomb,,1
 Claire,Lobenfeld,,Los Angeles,CA,228,clairevlo,,1
-Davey,Boy Smith,,N/A,CA,228,Davey_Boy_Smith,,1
+Davey,Boy Smith,,,CA,228,Davey_Boy_Smith,,1
 John,Twells,,London,,227,johnxela,,1
 Kamil,Dymek,,London,,227,kamildymek,kamil-dymek-97195a38,1
 Laurent,Fintoni,,New York,NY,228,laurent_fintoni,laurentfintoni,1
@@ -484,24 +484,24 @@ Dave,Sutton,,New York,NY,228,stadiumsshrines,davecsutton,2
 Dev,Sherlock,devsherlock@gmail.com,New York,NY,228,d_e_v,devsherlock,2
 Josh,Rowe,,New York,NY,228,jrowe913,jrowe913,2
 Scott,Skidder,scott@skidder.net,New York,NY,228,skidder,scottkidder,2
-Alex ,Lendrum,,N/A,N/A,99,,alexander-lendrum-560a7b6b,2
-Arthur,Bray,,N/A,N/A,99,,arthur-bray-a90b3245,2
+Alex ,Lendrum,,,,99,,alexander-lendrum-560a7b6b,2
+Arthur,Bray,,,,99,,arthur-bray-a90b3245,2
 Ashleigh,Kim,ashleighkim@gmail.com,Vancouver,BC,39,ashleigh_lk,ashleigh-kim-a5778965,2
 Davis,Huynh,,New York,NY,228,,davishuynh,2
 Eddie,Eng,mail.eddieeng@gmail.com,New York,NY,228,eddieengdotcom,eddie-eng-a8b68b45,2
 Hasse ,Lemola,,Tokyo,,110,,hasse-lemola-59359566,2
 Helena,Yeung,helena.hy.yeung@gmail.com,Hong Kong,,45,hhyyeung,helenayeung,2
 Keith ,Estiler,,New York,NY,228,,keithestiler,2
-Nicholas,Cheung,"nicholascheungmusic@gmail.com, nicholascheungedits@gmail.com",N/A,N/A,99,nicholascheung,nicholas-cheung-69651525,2
+Nicholas,Cheung,"nicholascheungmusic@gmail.com, nicholascheungedits@gmail.com",,,99,nicholascheung,nicholas-cheung-69651525,2
 Nirvana,Garreffa,nirvcreative@gmail.com,Hong Kong,,45,nirvanagarreffa,nirvanagarreffa,2
 Patrick,Montes,,Orange Cove,CA,228,,patrick-montes-47a574107,2
-Robert,Marshall,,N/A,N/A,99,,robertsmarshalljr,2
-Wilf,Cho,wilf@wilfcho.com,N/A,N/A,99,wilfcho,wilfcho,2
+Robert,Marshall,,,,99,,robertsmarshalljr,2
+Wilf,Cho,wilf@wilfcho.com,,,99,wilfcho,wilfcho,2
 Austin,Boykins,,New York,NY,228,,austin-boykins-a36017a0,2
 Ben,Roazen,,New York,NY,228,broazay,broazay,2
 Robert,Patos,,Quezon City,,168,BPatos,robert-patos-5b047348,2
 Mallory,Chin,,,,56,,,2
-Petar,Kujundzic,,N/A,N/A,99,petarkujundzic,pericakujundzic,2
+Petar,Kujundzic,,,,99,petarkujundzic,pericakujundzic,2
 Briony,Wright,,Melbourne,VIC,13,briony_wright_,briony-wright-b660a823,2
 Charlotte,Gush,,London,,227,CharlotteGush,charlotte-gush-05785b14,2
 Alice,Newell-Hanson,,New York,NY,228,anewellhanson,alice-newell-hanson-407b8183,2
@@ -557,10 +557,10 @@ Jason,Grishkoff,,Cape Town,,199,,jasongrishkoff,2
 Lauren ,Ziegler,lauren@howlandechoes.com,Sydney,NSW,13,zieglerlauren,lauren-ziegler-00660bb0,2
 Christiana,Bartolini,,New York,NY,228,comfortclouds,christianabartolini,2
 Donna,Arendse,,Berlin,,83,TheSeptembersAU,donnaarendse,2
-Justin,Lam,,N/A,N/A,13,,justin-lam-a82b587a,2
+Justin,Lam,,,,13,,justin-lam-a82b587a,2
 Matt,Gurr,,London,,227,mattgurr,matt-gurr-29355283,2
 Sam,McLoughlin,sjfinlay1@gmail.com,Vancouver,BC,39,,,2
-Searra ,Ruggeri,,N/A,NJ,228,searraruggeri,searra-ruggeri-60277159,2
+Searra ,Ruggeri,,,NJ,228,searraruggeri,searra-ruggeri-60277159,2
 Tobias,Handke,,Melbourne,VIC,13,tobiashandke,tobias-handke-9495b956,2
 Pasquale ,Rotella,,Las Vegas,NV,228,PasqualeRotella,pasqualerotella,2
 Angus,Thomas Paterson,,Berlin,,83,angustpaterson,angusthomaspaterson,2
@@ -610,7 +610,7 @@ Bryant,Williams,b.n.williams@gmail.com,San Francisco,CA,228,,,2
 Marcus,Dowling,,Washington,DC,228,marcuskdowling,marcuskdowling,2
 Chad,Childers,,Los Angeles,CA,228,,chad-childers-498434a,2
 Graham,Hartmann,,New York,NY,228,grahamwire,graham-hartmann-03404b43,2
-Joe,Divita,,N/A,CT,228,icenerveshatter,,2
+Joe,Divita,,,CT,228,icenerveshatter,,2
 Chad,Bowar,,Charlotte,NC,228,chadbowarmetal,,2
 Eduardo,Rivadavia,,Austin,TX,228,EdRivadavia,edrivadavia,2
 Liz,Ramanand,eramanand89@yahoo.com,New York,NY,228,lizochka,elizabeth-ramanand-a845732b,2
@@ -991,10 +991,10 @@ Daniel,Harris,"danielharrisphotography@gmail.com, daniel@danielalexanderharris.c
 Oliver,Primus,oliverprimus@googlemail.com,,,227,oliverprimus,,3
 Samantha,O'Connor,samomaryleona@gmail.com,Toronto,ON,39,samomaryleona,samantha-o-connor-24b26663,3
 Tarryn,Law,,Los Angeles,CA,228,tarynnjanine,tarynn-law-32273282,3
-Will,Cook,,N/A,N/A,227,cogmeat,william-caston-cook-46a9208b,3
+Will,Cook,,,,227,cogmeat,william-caston-cook-46a9208b,3
 Andrew,Darley,,Dublin,,105,tripmywire,,3
 Shireen ,Fenner,,Watford,,227,shireenxoxo,shireen-fenner-965aba17,3
-Christian ,K. Breedlove,,N/A,N/A,228,the405love,,3
+Christian ,K. Breedlove,,,,228,the405love,,3
 Grant ,Rindner,,New York,NY,228,grantrindner,grantrindner,3
 Jameson ,Kergozou,,Gdansk,,170,Kergozou,jameson-kergozou-93343527,3
 Ken ,Grand-Pierre,,New York,NY,228,kenami_nyc,kgrandpierre,3
@@ -1111,7 +1111,7 @@ Shana,Hartzel,,Philadelphia,PA,228,shanahartz,shana-hartzel-7733924a,3
 Chris,Bohn,,London,,227,,chris-bohn-6a785a33,3
 Daisy,Hyde,,London,,227,,daisy-hyde-75931bb9,3
 Derek,Walmsley,,London,,227,derekwalmsley,,3
-Emily,Bick,,N/A,N/A,227,saving_throw,,3
+Emily,Bick,,,,227,saving_throw,,3
 Joseph,Stannard,,London,,227,jjstannard,,3
 Rob,Young,,London,,227,polyalbion,,3
 Rory,Gibb,,London,,227,rory_ae,rory-gibb-0a7092116,3
@@ -1138,7 +1138,7 @@ Juan,Pablo Lopez,,Bogota,,48,soyjplopez,juan-pablo-lópez-molano-25688446/en,3
 Marcela,Villanueva,ela.tres.mil@gmail.com,Monterrey,,140,technoponi,,3
 Max,Mertens,,Toronto,ON,39,Max_Mertens,,3
 Michelle,Lhooq,,New York,NY,228,michellelhooq,,3
-Nathalia,Guerrero Duque,,N/A,N/A,48,laguccibitch,,3
+Nathalia,Guerrero Duque,,,,48,laguccibitch,,3
 Valeria,Anzaldo,,Mexico City,,140,pandroide,val-anzaldo-572a8266,3
 Andrew,Zimmer,,New York,NY,228,addzim,andrew-zimmer-74772b8,3
 Carla,Sosenko,,New York,NY,228,carlasosenko,carla-sosenko-60b9345,3
@@ -1148,8 +1148,8 @@ Andrew,Frisicano,,New York,NY,228,andrewfrisicano,andrew-frisicano-b78a574b,3
 Rohan,Samarth,,State College,PA,228,,rohan-samarth-924b8262,3
 Grant,Purdum,,Corpus Christi,TX,228,gumshoegrant,grant-purdum-a57a2378,3
 Justin,Spicer,,Carmel,IN,228,justinbspicer,jbspicer,3
-Mr. P,N/A,,,,228,,,3
-Trillian,N/A,,,,228,,,3
+Mr. P,,,,,228,,,3
+Trillian,,,,,228,,,3
 Dave ,Lifton,,Chicago,IL,228,dslifton,davidlifton,3
 Jeff ,Giles,,Keene,NH,228,jefito,jeffgiles,3
 Matthew,Wilkening,,Akron,OH,228,mw01,matthew-wilkening-4791841,3
