@@ -21,13 +21,17 @@
         <div class="heading-col">
           <p class="card-heading">website</p>
         </div>
-        <p><a target="_blank" href="http://<%=outlet.website%>"><%=outlet.website%></a></p>
+        <% if outlet.website %>
+          <p><a target="_blank" href="http://<%=outlet.website%>"><%=outlet.website%></a></p>
+        <% end %>
       </div>
       <div class="row2">
         <div class="heading-col">
           <p class="card-heading">email</p>
         </div>
-        <p><a href="mailto:<%=outlet.email%>"><%=outlet.email%></a></p>
+        <% if outlet.email %>
+        <p><a href="mailto:<%=outlet.email%>"><%=outlet.email.downcase%></a></p>
+        <% end %>
       </div>
       <div class="row3">
         <div class="heading-col">

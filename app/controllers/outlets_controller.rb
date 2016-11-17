@@ -35,7 +35,7 @@ class OutletsController < ApplicationController
     # GET /outlets/search/:q
     elsif request.get?
       @outlets = Outlet.where("name ILIKE ?", "%#{params[:q]}%").distinct.order(:name)
-      writers = Writer.where("lower(f_name || ' ' || l_name) ILIKE ?", "%#{params[:q]}%").distinct.order(:l_name)
+      writers = Writer.where("lower(f_name || ' ' || l_name) ILIKE ?", "%#{params[:q]}%").distinct.order(:f_name)
       # Everything below just for making sure not to double writers or outlets after search
       @jobs = []
       outlet_ids = []
@@ -128,8 +128,7 @@ class OutletsController < ApplicationController
     @outlet = Outlet.new(outlet_params)
     respond_to do |format|
       if @outlet.save
-        format.html { redirect_to @outlet, notice: 'Outlet was successfully created.' }
-        format.json { render :show, status: :created, location: @outlet }
+        format.html { redirect_to edit_outlet_path(@outlet), notice: 'Outlet was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @outlet.errors, status: :unprocessable_entity }
@@ -193,8 +192,7 @@ class OutletsController < ApplicationController
       end
 
       if @outlet.update(outlet_params)
-        format.html { redirect_to @outlet, notice: 'Outlet was successfully updated.' }
-        format.json { render :show, status: :ok, location: @outlet }
+        format.html { redirect_to edit_outlet_path(@outlet), notice: 'Outlet was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @outlet.errors, status: :unprocessable_entity }

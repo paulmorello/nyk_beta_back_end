@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <%= form_for(outlet) do |f| %>
 
   <% if outlet.errors.any? %>
@@ -45,19 +47,19 @@
     <%= f.collection_select(:country_id, Country.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
   </div>
   <div class="form-group">
-    <%= f.label(:twitter) %>
+    <%= f.label(:twitter, "Twitter - (Everything after the '@')") %>
     <%= f.text_field(:twitter, class: "form-control") %>
   </div>
   <div class="form-group">
-    <%= f.label(:facebook) %>
+    <%= f.label(:facebook, "Facebook - (Everything after the final '/' in the web address)") %>
     <%= f.text_field(:facebook, class: "form-control") %>
   </div>
   <div class="form-group">
-    <%= f.label(:instagram) %>
+    <%= f.label(:instagram, "Instagram - (Everything after the '@')") %>
     <%= f.text_field(:instagram, class: "form-control") %>
   </div>
   <div class="form-group">
-    <%= f.label(:linkedin) %>
+    <%= f.label(:linkedin, "Linkedin - (Everything after the final '/' in the web address)") %>
     <%= f.text_field(:linkedin, class: "form-control") %>
   </div>
   <div class="form-group">

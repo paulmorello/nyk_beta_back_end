@@ -31,8 +31,7 @@ class WritersController < ApplicationController
 
     respond_to do |format|
       if @writer.save
-        format.html { redirect_to @writer, notice: 'Writer was successfully created.' }
-        format.json { render :show, status: :created, location: @writer }
+        format.html { redirect_to edit_outlet_path(@writer), notice: 'Writer was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @writer.errors, status: :unprocessable_entity }
@@ -71,8 +70,7 @@ class WritersController < ApplicationController
       end
 
       if @writer.update(writer_params)
-        format.html { redirect_to @writer, notice: 'Writer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @writer }
+        format.html { redirect_to edit_outlet_path(@writer), notice: 'Writer was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @writer.errors, status: :unprocessable_entity }
@@ -85,7 +83,7 @@ class WritersController < ApplicationController
   def destroy
     @writer.destroy
     respond_to do |format|
-      format.html { redirect_to writers_url, notice: 'Writer was successfully destroyed.' }
+      format.html { redirect_to outlets_url, notice: 'Writer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -112,6 +110,6 @@ class WritersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def writer_params
-      params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id, jobs_attributes: [:id, :outlet_id, :email_work, :position, :outlet_profile, :key_contact, :_destroy, presstype_tags_attributes: [:id, :presstype_id, :_destroy]], genre_tags_attributes: [:id, :genre_id, :_destroy])
+      params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id, genre_tags_attributes: [:id, :genre_id, :_destroy], jobs_attributes: [:id, :outlet_id, :email_work, :position, :outlet_profile, :key_contact, :_destroy, presstype_tags_attributes: [:id, :presstype_id, :_destroy]])
     end
 end

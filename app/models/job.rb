@@ -15,7 +15,6 @@ class Job < ApplicationRecord
   validates :email_work, presence: true
   validates :position, presence: true
 
-  # validates_associated :writer
 
   strip_attributes
 
