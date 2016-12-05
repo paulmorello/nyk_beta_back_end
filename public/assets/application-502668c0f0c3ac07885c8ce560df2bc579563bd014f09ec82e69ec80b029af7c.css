@@ -7915,17 +7915,17 @@ nav a.logout {
 
 /* line 164, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .right-label {
-  width: 60px;
+  width: 55px;
 }
 
 /* line 167, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .contact-info-label {
-  width: 315px;
+  width: 340px;
 }
 
 /* line 170, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .social-info-label {
-  width: 170px;
+  width: 150px;
 }
 
 /* line 173, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
@@ -7974,7 +7974,7 @@ nav a.logout {
   color: #2A97DA;
   border: none;
   margin-left: 5px;
-  width: 200px;
+  width: 183px;
   height: 50px;
   display: inline-block;
 }
@@ -7982,8 +7982,14 @@ nav a.logout {
 .sidebar .sidebar-top #q:focus {
   outline: none;
 }
+/* line 215, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+.sidebar .sidebar-top .clear-search {
+  float: right;
+  margin-top: 16px;
+  cursor: pointer;
+}
 
-/* line 218, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 223, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .results {
   height: calc(100vh - 160px);
   overflow: auto;
@@ -7992,72 +7998,72 @@ nav a.logout {
   margin: auto;
 }
 
-/* line 227, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 232, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .filter label {
   font-size: .9em;
   font-weight: 700;
 }
-/* line 231, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 236, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .filter .check {
   margin-bottom: 6px;
 }
 
-/* line 236, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 241, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .modal-title {
   font-weight: 700;
   font-size: 1.3em;
 }
 
-/* line 241, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 246, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form {
   padding-left: 15%;
   padding-right: 15%;
   overflow: auto;
 }
-/* line 245, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 250, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form .job-form {
   padding-right: 15%;
 }
-/* line 248, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 253, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form .tag-form {
   width: 300px;
 }
-/* line 251, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 256, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form h1 {
   margin: 50px 0;
   color: #32C7DB;
 }
-/* line 255, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 260, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form h4 {
   margin: 25px 0;
   color: #32C7DB;
 }
-/* line 259, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 264, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form hr {
   color: #32C7DB;
   background-color: #32C7DB;
   height: 2px;
 }
-/* line 264, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 269, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form .warning {
   color: red;
 }
-/* line 267, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 272, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form .add-link {
   color: #32C7DB;
 }
-/* line 270, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 275, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form .add-job-link {
   color: #32C7DB;
   border: solid 2px #32C7DB;
   padding: 3px;
 }
-/* line 275, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 280, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form .delete-job-link {
   color: red;
   margin-top: 10px;
 }
-/* line 279, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 284, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .form .delete-writer-link {
   color: red;
   padding-left: 15px;
@@ -8067,12 +8073,12 @@ nav a.logout {
   display: inline-block;
 }
 
-/* line 289, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 294, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .hidden, .deleted {
   display: none;
 }
 
-/* line 293, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
+/* line 298, /Users/Andrew/Dev/Client/Solitare/nyk_app/app/assets/stylesheets/application.scss */
 .invsible {
   visibility: hidden;
 }

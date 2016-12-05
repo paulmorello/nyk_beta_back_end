@@ -86,7 +86,7 @@
     <% @outlet_ids.each do |outlet_id| %>
       <div class="outlet-writer-wrapper">
         <%= render partial: 'layouts/outletcard', locals: {outlet: Outlet.find(outlet_id)} %>
-        <% @jobs.joins(:writer).order("writers.f_name").each do |job| %>
+        <% @jobs.each do |job| %>
           <% if job.outlet_id == outlet_id %>
             <%= render partial: 'layouts/writercard', locals: {job: job} %>
           <% end %>

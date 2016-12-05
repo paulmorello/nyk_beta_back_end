@@ -8,6 +8,9 @@
     <%= render partial: 'layouts/outletcard', locals: {outlet: outlet} %>
   <% end %>
     <% outlet.jobs.joins(:writer).order("jobs.key_contact desc","writers.f_name").each do |job| %>
+      <% if job.writer.inactive == true %>
+        <% next %>
+      <% end %>
       <% print_job = true %>
       <% if @filters["country_id"].present? && job.writer.country_id.to_s != @filters["country_id"]%>
         <% print_job = false %>

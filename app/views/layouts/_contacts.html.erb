@@ -2,7 +2,9 @@
   <div class="outlet-writer-wrapper">
     <%= render partial: 'layouts/outletcard', locals: {outlet: outlet} %>
     <% outlet.jobs.joins(:writer).order("jobs.key_contact desc","writers.f_name").each do |job| %>
-      <%= render partial: 'layouts/writercard', locals: {job: job} %>
+      <% if job.writer.inactive == false %>
+        <%= render partial: 'layouts/writercard', locals: {job: job} %>
+      <% end %>
     <% end %>
   </div>
 <% end %>

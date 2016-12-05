@@ -1,14 +1,29 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  FACEBOOK_ID = "321227951591559"
-  FACEBOOK_SECRET = "f99b8112aff17782ce5a7152b0b89c6e"
+  FACEBOOK_ID = "1755281334723897"
+  FACEBOOK_SECRET = "6a1688f4b301abd301570cc226d7bf85"
 
-  TWITTER_ID = "1eUKruLVGKtfuyTXAHl1f2Zin"
-  TWITTER_SECRET = "62U49ZjVnCs75Ys8hok7EIWs2h64ZaM0nj9csnQLFlAomyJTPG"
+  TWITTER_ID = "zS6aPKHC8rDiYINZa5akuj2eB"
+  TWITTER_SECRET = "GpQWGCR1rgQHVwXjvnflyZphnHw5XcBBmjfl4yNqOfoDbQ1WdU"
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "localhost:3000",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: "nowyouknowpr@gmail.com",
+    password: "nykpr123"
+  }
 
   # Default URL
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -36,7 +51,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 

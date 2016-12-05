@@ -133,10 +133,16 @@
       <% genres = [] %>
       <% outlet.jobs.each do |job| %>
         <% job.writer.genres.each do |genre| %>
-          <% if genres.include?(genre.name) == false && genres.count < 9%>
+          <% if genres.include?(genre.name) == false%>
             <% genres.push(genre.name) %>
-            <p class="tag"><%=genre.name%></p>
           <% end %>
+        <% end %>
+      <% end %>
+      <% if genres.count > 8 %>
+        <p class="tag">All Genres</p>
+      <% elsif genres.count < 9 %>
+        <% genres.each do |genre| %>
+          <p class="tag"><%=genre%></p>
         <% end %>
       <% end %>
 
@@ -145,10 +151,16 @@
       <% presstypes = [] %>
       <% outlet.jobs.each do |job| %>
         <% job.presstypes.each do |presstype| %>
-          <% if presstypes.include?(presstype.name) == false && presstypes.count < 9%>
+          <% if presstypes.include?(presstype.name) == false%>
             <% presstypes.push(presstype.name) %>
-            <p class="tag"><%=presstype.name%></p>
           <% end %>
+        <% end %>
+      <% end %>
+      <% if presstypes.count > 8 %>
+        <p class="tag">All Press Types</p>
+      <% elsif presstypes.count < 9 %>
+        <% presstypes.each do |presstype| %>
+          <p class="tag"><%=presstype%></p>
         <% end %>
       <% end %>
     </div>

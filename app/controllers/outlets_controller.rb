@@ -6,7 +6,7 @@ class OutletsController < ApplicationController
   # GET /outlets
   # GET /outlets.json
   def index  # Essentially the main page of the application proper. This is the discover page.
-    @outlets = Outlet.all.order(:name).paginate(page: params[:page], per_page: 20)
+    @outlets = Outlet.where(inactive: false).order(:name).paginate(page: params[:page], per_page: 20)
     respond_to do |format|
       format.html
       format.js { render "layouts/morecontacts" }
@@ -34,8 +34,8 @@ class OutletsController < ApplicationController
       redirect_to '/outlets/search/'+params[:q]
     # GET /outlets/search/:q
     elsif request.get?
-      @outlets = Outlet.where("name ILIKE ?", "%#{params[:q]}%").distinct.order(:name)
-      writers = Writer.where("lower(f_name || ' ' || l_name) ILIKE ?", "%#{params[:q]}%").distinct.order(:f_name)
+      @outlets = Outlet.where(inactive: false).where("name ILIKE ?", "%#{params[:q]}%").distinct.order(:name)
+      writers = Writer.where(inactive: false).where("lower(f_name || ' ' || l_name) ILIKE ?", "%#{params[:q]}%").distinct.order(:f_name)
       # Everything below just for making sure not to double writers or outlets after search
       @jobs = []
       outlet_ids = []
@@ -69,7 +69,7 @@ class OutletsController < ApplicationController
       filters["presstype_id"].delete("")
     end
     @filters = filters
-    @outlets = Outlet.all.order(:name)
+    @outlets = Outlet.where(inactive: false).order(:name)
     if filters["hype_m"] === "1"
       @outlets = @outlets.where(hype_m: true)
     end
@@ -203,7 +203,8 @@ class OutletsController < ApplicationController
   # DELETE /outlets/1
   # DELETE /outlets/1.json
   def destroy
-    @outlet.destroy
+    # @outlet.destroy
+    @outlet.update(inactive: true)
     respond_to do |format|
       format.html { redirect_to outlets_url, notice: 'Outlet was successfully destroyed.' }
       format.json { head :no_content }

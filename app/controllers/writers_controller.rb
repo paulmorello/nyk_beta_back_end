@@ -6,8 +6,8 @@ class WritersController < ApplicationController
   # GET /writers
   # GET /writers.json
   def index  # This is being used for admins to see writers assigned to them
-    @writers = Writer.all
-    @outlets = Outlet.all
+    @writers = Writer.where(inactive: false)
+    @outlets = Outlet.where(inactive: false)
   end
 
   # GET /writers/1
@@ -81,7 +81,8 @@ class WritersController < ApplicationController
   # DELETE /writers/1
   # DELETE /writers/1.json
   def destroy
-    @writer.destroy
+    # @writer.destroy
+    @writer.update(inactive: true)
     respond_to do |format|
       format.html { redirect_to outlets_url, notice: 'Writer was successfully destroyed.' }
       format.json { head :no_content }
