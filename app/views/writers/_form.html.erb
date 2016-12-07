@@ -13,6 +13,8 @@
     </div>
   <% end %>
 
+  <h4>General Information</h4>
+
   <div class="form-group">
     <%= f.label(:first_name, "First Name *") %>
     <%= f.text_field(:f_name, class: "form-control") %>
@@ -45,25 +47,36 @@
     <%= f.label(:linkedin, "Linkedin - (EG If www.linkedin.com/danrutman, only write danrutman)") %>
     <%= f.text_field(:linkedin, class: "form-control") %>
   </div>
+  <div class="form-group">
+    <%= f.label(:notes) %>
+    <%= f.text_area(:notes, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:user_id, "Assigned To *") %>
+    <%= f.collection_select(:user_id, User.where(admin: true), :id, :email, {include_blank: true}, {class: "form-control"}) %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:freelance) %>
+    <%= f.check_box(:freelance, class: "form-check-inline") %>
+  </div>
 
-  <h4>genres</h4>
+  <!-- <h4>Genres</h4> -->
   <div class="tag-form">
   <%= f.nested_fields_for :genre_tags do |gt| %>
     <%= gt.remove_nested_fields_link%>
     <div class="form-group">
     <%= gt.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
-    <% if gt.object.persisted? %>
+    <!-- <% if gt.object.persisted? %>
       <%= gt.check_box :_destroy %>
       <%= gt.label :_destroy, "Delete Genre" %>
-    <% end %>
+    <% end %> -->
     </div>
   <% end %>
   <%= f.add_nested_fields_link :genre_tags, "Add a Genre", class: "btn btn-secondary"%>
   </div>
-
-  <h4>works for</h4>
+  <br>
+  <h4>Jobs *</h4>
   <div class="job-form">
-  <hr>
   <%= f.nested_fields_for :jobs do |j| %>
     <%= j.remove_nested_fields_link%>
     <%= j.hidden_field :id, :value => j.object.id %>
@@ -91,12 +104,12 @@
     <%= j.nested_fields_for :presstype_tags do |pt| %>
       <%= pt.remove_nested_fields_link%>
       <div class="form-group">
-      <%= pt.label :presstype_id, "Press Type" %>
+      <!-- <%= pt.label :presstype_id, "Press Type" %> -->
       <%= pt.collection_select(:presstype_id, Presstype.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
-      <% if pt.object.persisted? %>
+      <!-- <% if pt.object.persisted? %>
         <%= pt.check_box :_destroy %>
         <%= pt.label :_destroy, "Delete Press Type" %>
-      <% end %>
+      <% end %> -->
       </div>
     <% end %>
     <% if j.object.persisted? %>
@@ -110,27 +123,11 @@
       <%= link_to("Delete This Job", "/writers/delete_job/#{j.object.id}", method: :delete, class: "btn btn-delete", data: {confirm: "Are you sure you want to delete this Job?"}) %>
       </div>
     <% end %>
-    <hr>
+    <br>
   <% end %>
   <%= f.add_nested_fields_link :jobs, "Add New Job", class: "btn btn-secondary"%>
   </div>
   <br>
-
-  <div class="form-group">
-    <%= f.label(:notes) %>
-    <%= f.text_area(:notes, class: "form-control") %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label(:user_id, "Assigned To *") %>
-    <%= f.collection_select(:user_id, User.where(admin: true), :id, :email, {include_blank: true}, {class: "form-control"}) %>
-  </div>
-
-
-  <div class="form-group">
-    <%= f.label(:freelance) %>
-    <%= f.check_box(:freelance, class: "form-check-inline") %>
-  </div>
 
   <div class="actions">
     <%= f.submit "Finish and Save", class: "btn btn-primary"%>

@@ -17669,6 +17669,16 @@ var grabCampaignSelection = function() {
   return campaignValue;
 };
 
+var grabNewCampaignName = function() {
+  var name = $('#new_campaign').val();
+  return name;
+};
+
+var grabUserID = function() {
+  var user = $('#user_id').val();
+  return user;
+};
+
 var unselectAll = function() {
   $('.campaign-selector, .campaign-select-all-toggle').prop('checked', false);
 }
@@ -17678,12 +17688,36 @@ var toggleRemoveButton = function(e) {
 }
 
 var openFlagModal = function(e) {
+  val = $(e.target).parents('.writer-card').find('.flag-contact').attr('data-id');
+  $('.flag-option-wrapper').attr("data-writer-id", val);
   $('#flagModal').modal('toggle');
 }
 
+var selectFlag = function(e) {
+  $(e.target).parents('.flag-option-wrapper').find('.flag-option').removeClass("selected");
+  $(this).addClass("selected");
+  console.log(this)
+};
+
 var openCreateCampaignModal = function(e) {
   $('#createCampaignModal').modal('toggle');
-}
+};
+
+var createCampaign = function() {
+  $.ajax({
+    type: "POST",
+    url: "/campaigns",
+    dataType: "json",
+    data: { campaign: { name: grabNewCampaignName(), user_id: grabUserID()} },
+  }).done(function(data) {
+    var campaignID = data['id'];
+    $.ajax({
+      type: "POST",
+      url: "/saved_jobs",
+      data: { saved_job: { campaign_id: campaignID, job_ids: grabJobSelections()} },
+    }).done(unselectAll);
+  });
+};
 
 $(document).on('turbolinks:load', function() {
 
@@ -17696,7 +17730,10 @@ $(document).on('turbolinks:load', function() {
   $(document).on('change', '.campaign-select-all-toggle', toggleRemoveButton);
   $(document).on('change', '.campaign-selector', toggleRemoveButton);
   $(document).on('click', '.flag-contact', openFlagModal);
+  $(document).on('click', '.flag-option', selectFlag);
   $('.addCampaignFolder').click(openCreateCampaignModal);
+
+  $('.create-save-campaign-selections').click(createCampaign);
 
   $('.save-campaign-selections').click(function(e) {
     $.ajax({
@@ -17722,6 +17759,14 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
+  $('.flag-job').click(function(e) {
+    $.ajax({
+      type: "POST",
+      url: "/campaigns/flag",
+      data: {flag: { writer_id: $('.flag-option-wrapper').attr("data-writer-id"), flag_value: $('.flag-option-wrapper').find('.selected').attr('data-value')}},
+    });
+  });
+
   $(document).on('click', '.thumbs-up', function(e) {
     $(e.target).parents('.response').find('.thumbs-down').removeClass('selected');
     $(e.target).addClass('selected');
@@ -17741,6 +17786,7 @@ $(document).on('turbolinks:load', function() {
       data: { saved_job: { response: "negative"} },
     });
   });
+
 
 });
 // Place all the behaviors and hooks related to the matching controller here.
@@ -17773,11 +17819,19 @@ var selectAllWriters = function(e) {
 
 var toggleSaveButton = function(e) {
   $('#saveButton').removeClass("hidden");
+  $('#clearSaveButton').removeClass("hidden");
+}
+
+var clearSelections = function(e) {
+  $(".results").find(":checkbox").prop('checked',false);
+  $('#saveButton').addClass("hidden");
+  $('#clearSaveButton').addClass("hidden");
 }
 
 $(document).ready(function() {
   $(document).on('click', '.outlet-card', toggleShortCard);
   $(document).on('click', '.writer-card', toggleLongCard);
+  $(document).on('click', '#clearSaveButton', clearSelections);
   $(document).on('change', '.campaign-select-all-toggle', selectAllWriters);
   $(document).on('change', '.campaign-select-all-toggle', toggleSaveButton);
   $(document).on('change', '.campaign-selector', toggleSaveButton);
