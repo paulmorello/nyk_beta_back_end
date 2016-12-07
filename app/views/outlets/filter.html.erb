@@ -1,3 +1,30 @@
+
+<!-- Choose Modal -->
+<div class="modal fade" id="chooseModal" tabindex="-1" role="dialog" aria-labelledby="chooseModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="chooseModalLabel">Save To or Create a Campaign</h4>
+      </div>
+      <div class="modal-body" style="text-align:center;">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#saveCampaignModal">
+          Save to a Campaign
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#createSaveCampaignModal">
+          Create New Campaign
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- Save to Campaign Modal -->
 <div class="modal fade" id="saveCampaignModal" tabindex="-1" role="dialog" aria-labelledby="saveCampaignModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -16,6 +43,32 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary save-campaign-selections" data-dismiss="modal" data-toggle="modal" data-target="#gotoCampaignModal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create and Save to Campaign Modal -->
+<div class="modal fade" id="createSaveCampaignModal" tabindex="-1" role="dialog" aria-labelledby="createSaveCampaignModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="createSaveCampaignModalLabel">Create a Campaign</h4>
+      </div>
+      <div class="modal-body">
+        <%= hidden_field_tag :user_id, current_user.id.to_s %>
+
+        <div class="form-group">
+          <%= label_tag(:name) %>
+          <%= text_field_tag(:new_campaign, "", class: "form-control") %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary create-save-campaign-selections" data-dismiss="modal" data-toggle="modal" data-target="#gotoCampaignModal">Save</button>
       </div>
     </div>
   </div>
@@ -46,9 +99,14 @@
 
   <div class="results-header">
     <!-- Button trigger Save to campaign modal -->
-    <button type="button" style="margin-top: 12px; margin-right: 5px;" id="saveButton" class="btn btn-primary pull-xs-right hidden" data-toggle="modal" data-target="#saveCampaignModal">
-      Save
-    </button>
+    <div class="form-group pull-xs-right">
+      <button type="button" style="margin-top: 5px; margin-right: 5px;" id="saveButton" class="btn btn-primary hidden" data-toggle="modal" data-target="#chooseModal">
+        Save
+      </button>
+      <button type="button" style="margin-top: 5px; margin-right: 5px;" id="clearSaveButton" class="btn btn-secondary hidden">
+        Clear
+      </button>
+    </div>
     <h1>Discover</h1>
     <div class="main-labels">
       <div class="right-label label">
