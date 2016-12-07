@@ -15,6 +15,16 @@ var grabCampaignSelection = function() {
   return campaignValue;
 };
 
+var grabNewCampaignName = function() {
+  var name = $('#new_campaign').val();
+  return name;
+};
+
+var grabUserID = function() {
+  var user = $('#user_id').val();
+  return user;
+};
+
 var unselectAll = function() {
   $('.campaign-selector, .campaign-select-all-toggle').prop('checked', false);
 }
@@ -33,11 +43,27 @@ var selectFlag = function(e) {
   $(e.target).parents('.flag-option-wrapper').find('.flag-option').removeClass("selected");
   $(this).addClass("selected");
   console.log(this)
-}
+};
 
 var openCreateCampaignModal = function(e) {
   $('#createCampaignModal').modal('toggle');
-}
+};
+
+var createCampaign = function() {
+  $.ajax({
+    type: "POST",
+    url: "/campaigns",
+    dataType: "json",
+    data: { campaign: { name: grabNewCampaignName(), user_id: grabUserID()} },
+  }).done(function(data) {
+    var campaignID = data['id'];
+    $.ajax({
+      type: "POST",
+      url: "/saved_jobs",
+      data: { saved_job: { campaign_id: campaignID, job_ids: grabJobSelections()} },
+    }).done(unselectAll);
+  });
+};
 
 $(document).on('turbolinks:load', function() {
 
@@ -52,6 +78,8 @@ $(document).on('turbolinks:load', function() {
   $(document).on('click', '.flag-contact', openFlagModal);
   $(document).on('click', '.flag-option', selectFlag);
   $('.addCampaignFolder').click(openCreateCampaignModal);
+
+  $('.create-save-campaign-selections').click(createCampaign);
 
   $('.save-campaign-selections').click(function(e) {
     $.ajax({
@@ -104,5 +132,6 @@ $(document).on('turbolinks:load', function() {
       data: { saved_job: { response: "negative"} },
     });
   });
+
 
 });

@@ -28,11 +28,19 @@ var selectAllWriters = function(e) {
 
 var toggleSaveButton = function(e) {
   $('#saveButton').removeClass("hidden");
+  $('#clearSaveButton').removeClass("hidden");
+}
+
+var clearSelections = function(e) {
+  $(".results").find(":checkbox").prop('checked',false);
+  $('#saveButton').addClass("hidden");
+  $('#clearSaveButton').addClass("hidden");
 }
 
 $(document).ready(function() {
   $(document).on('click', '.outlet-card', toggleShortCard);
   $(document).on('click', '.writer-card', toggleLongCard);
+  $(document).on('click', '#clearSaveButton', clearSelections);
   $(document).on('change', '.campaign-select-all-toggle', selectAllWriters);
   $(document).on('change', '.campaign-select-all-toggle', toggleSaveButton);
   $(document).on('change', '.campaign-selector', toggleSaveButton);

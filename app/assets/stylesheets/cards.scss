@@ -22,6 +22,11 @@
     border: none;
     margin-top: 5px !important;
     box-shadow: 5px 5px 5px $grey;
+    input[type="checkbox"]{
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
     p {
       display: inline-block;
     }
@@ -180,7 +185,7 @@
     width: 4%;
     float: left;
     .card-checkbox {
-      margin-top: 20px;
+      margin-top: 15px;
       margin-left: 5px;
     }
     .thumbs-up, .thumbs-down {
