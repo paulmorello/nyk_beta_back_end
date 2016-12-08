@@ -128,7 +128,7 @@ class OutletsController < ApplicationController
     @outlet = Outlet.new(outlet_params)
     respond_to do |format|
       if @outlet.save
-        format.html { redirect_to edit_outlet_path(@outlet), notice: 'Outlet was successfully created.' }
+        format.html { redirect_to outlets_path, notice: 'Outlet was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @outlet.errors, status: :unprocessable_entity }

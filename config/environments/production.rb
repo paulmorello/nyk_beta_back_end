@@ -1,10 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  FACEBOOK_ID = "1755281334723897"
-  FACEBOOK_SECRET = "6a1688f4b301abd301570cc226d7bf85"
+  FACEBOOK_ID = ENV["FACEBOOK_ID"]
+  FACEBOOK_SECRET = ENV["FACEBOOK_SECRET"]
 
-  TWITTER_ID = "zS6aPKHC8rDiYINZa5akuj2eB"
-  TWITTER_SECRET = "GpQWGCR1rgQHVwXjvnflyZphnHw5XcBBmjfl4yNqOfoDbQ1WdU"
+  TWITTER_ID = ENV["ID"]
+  TWITTER_SECRET = ENV["TWITTER_SECRET"]
 
   config.action_mailer.default_url_options = { :host => 'limitless-tor-84431.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
@@ -17,8 +17,8 @@ Rails.application.configure do
     domain: "limitless-tor-84431.herokuapp.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "nowyouknowpr@gmail.com",
-    password: "nykpr123"
+    user_name: ENV["GMAIL_ACCOUNT"],
+    password: ENV["GMAIL_PASSWORD"]
   }
 
   # Code is not reloaded between requests.
