@@ -17687,12 +17687,6 @@ var toggleRemoveButton = function(e) {
   $('#removeButton').removeClass("hidden");
 }
 
-var openFlagModal = function(e) {
-  val = $(e.target).parents('.writer-card').find('.flag-contact').attr('data-id');
-  $('.flag-option-wrapper').attr("data-writer-id", val);
-  $('#flagModal').modal('toggle');
-}
-
 var selectFlag = function(e) {
   $(e.target).parents('.flag-option-wrapper').find('.flag-option').removeClass("selected");
   $(this).addClass("selected");
@@ -17719,6 +17713,8 @@ var createCampaign = function() {
   });
 };
 
+
+
 $(document).on('turbolinks:load', function() {
 
   var pgurl = window.location.href.substr(window.location.href.indexOf("/campaigns/"));
@@ -17729,7 +17725,6 @@ $(document).on('turbolinks:load', function() {
 
   $(document).on('change', '.campaign-select-all-toggle', toggleRemoveButton);
   $(document).on('change', '.campaign-selector', toggleRemoveButton);
-  $(document).on('click', '.flag-contact', openFlagModal);
   $(document).on('click', '.flag-option', selectFlag);
   $('.addCampaignFolder').click(openCreateCampaignModal);
 
