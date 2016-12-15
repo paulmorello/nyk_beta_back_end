@@ -43,34 +43,8 @@ class WritersController < ApplicationController
   # PATCH/PUT /writers/1.json
   def update
     respond_to do |format|
-      # twitter follower test
-      if @writer.twitter.present?
-        credentials = Base64.encode64("#{TWITTER_ID}:#{TWITTER_SECRET}").gsub("\n", '')
-        url = "https://api.twitter.com/oauth2/token"
-        body = "grant_type=client_credentials"
-        headers = {
-          "Authorization" => "Basic #{credentials}",
-          "Content-Type" => "application/x-www-form-urlencoded;charset=UTF-8"
-        }
-        r = HTTParty.post(url, body: body, headers: headers)
-        bearer_token = JSON.parse(r.body)['access_token']
-
-        api_auth_header = {"Authorization" => "Bearer #{bearer_token}"}
-        url = "https://api.twitter.com/1.1/users/show.json?screen_name=#{@writer.twitter}"
-        response = HTTParty.get(url, headers: api_auth_header).body
-        parsed_response = JSON.parse(response)
-        twitter_followers = parsed_response["followers_count"].to_s
-
-        if twitter_followers.present?
-          if twitter_followers.length > 3
-            twitter_followers = twitter_followers.chop.chop.chop+"k"
-          end
-          @writer.update(twitter_followers: twitter_followers)
-        end
-      end
-
       if @writer.update(writer_params)
-        format.html { redirect_to edit_outlet_path(@writer), notice: 'Writer was successfully updated.' }
+        format.html { redirect_to outlets_path, notice: 'Writer was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @writer.errors, status: :unprocessable_entity }

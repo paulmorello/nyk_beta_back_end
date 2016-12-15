@@ -44,7 +44,7 @@
       </div>
       <div class="form-group">
         <%= ff.label(:country_id, "Country") %>
-        <%= ff.collection_select(:country_id, Country.find(@current_countries), :id, :name, {include_blank: true, selected: (@filters["country_id"] if defined? @filters)}, {class: "form-control"}) %>
+        <%= ff.collection_select(:country_id, Country.order(:name).find(@current_countries), :id, :name, {include_blank: true, selected: (@filters["country_id"] if defined? @filters)}, {class: "form-control"}) %>
       </div>
       <div class="form-group">
         <%= ff.label(:state, "State") %>

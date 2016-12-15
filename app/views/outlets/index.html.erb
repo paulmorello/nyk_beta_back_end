@@ -37,7 +37,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-        <%= select_tag('Campaign', options_from_collection_for_select(Campaign.where(user_id: current_user), :id, :name),{ :class => 'form-control campaign-dropdown' }) %>
+        <%= select_tag('Campaign', options_from_collection_for_select(Campaign.order(:name).where(user_id: current_user), :id, :name),{ :class => 'form-control campaign-dropdown' }) %>
         </div>
       </div>
       <div class="modal-footer">

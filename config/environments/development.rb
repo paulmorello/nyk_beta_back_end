@@ -1,10 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  FACEBOOK_ID = ENV["FACEBOOK_ID"]
-  FACEBOOK_SECRET = ENV["FACEBOOK_SECRET"]
+  FACEBOOK_ID = "1755281334723897"
+  FACEBOOK_SECRET = "6a1688f4b301abd301570cc226d7bf85"
 
-  TWITTER_ID = ENV["ID"]
-  TWITTER_SECRET = ENV["TWITTER_SECRET"]
+  TWITTER_ID = "zS6aPKHC8rDiYINZa5akuj2eB"
+  TWITTER_SECRET = "GpQWGCR1rgQHVwXjvnflyZphnHw5XcBBmjfl4yNqOfoDbQ1WdU"
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
@@ -17,8 +17,8 @@ Rails.application.configure do
     domain: "localhost:3000",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_ACCOUNT"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: "nowyouknowpr@gmail.com",
+    password: "NowYouKnow_123!!"
   }
 
   # Default URL
