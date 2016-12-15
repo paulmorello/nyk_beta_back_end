@@ -100,3 +100,22 @@ task :update_social => :environment do
   end
 
 end
+
+desc "This task is can be called in console to quickly check twitter rate limits for users endpoint"
+task :check_twitter_rate_limit => :environment do
+  credentials = Base64.encode64("#{TWITTER_ID}:#{TWITTER_SECRET}").gsub("\n", '')
+  url = "https://api.twitter.com/oauth2/token"
+  body = "grant_type=client_credentials"
+  headers = {
+    "Authorization" => "Basic #{credentials}",
+    "Content-Type" => "application/x-www-form-urlencoded;charset=UTF-8"
+  }
+  r = HTTParty.post(url, body: body, headers: headers)
+  bearer_token = JSON.parse(r.body)['access_token']
+
+  api_auth_header = {"Authorization" => "Bearer #{bearer_token}"}
+  url = "https://api.twitter.com/1.1/application/rate_limit_status.json?resources=users"
+  response = HTTParty.get(url, headers: api_auth_header).body
+  parsed_response = JSON.parse(response)
+  print parsed_response
+end

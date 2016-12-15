@@ -3,7 +3,7 @@ Rails.application.configure do
   FACEBOOK_ID = ENV["FACEBOOK_ID"]
   FACEBOOK_SECRET = ENV["FACEBOOK_SECRET"]
 
-  TWITTER_ID = ENV["ID"]
+  TWITTER_ID = ENV["TWITTER_ID"]
   TWITTER_SECRET = ENV["TWITTER_SECRET"]
 
   config.action_mailer.default_url_options = { :host => 'limitless-tor-84431.herokuapp.com' }
