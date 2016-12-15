@@ -18,7 +18,7 @@ var toggleLongCard = function(e) {
     $(e.target).parents('.writer-card').find('.writer-card-bottom').toggleClass("hidden");
   };
 }
-
+// selects all writer checkboxes if Outlet checkbox is selected
 var selectAllWriters = function(e) {
   if (this.checked) {
     $(e.target).parents('.outlet-writer-wrapper').find('.campaign-selector').prop('checked',true);
@@ -26,18 +26,18 @@ var selectAllWriters = function(e) {
     $(e.target).parents('.outlet-writer-wrapper').find('.campaign-selector').prop('checked', false);
   };
 };
-
+// When checkboxes are selected, reveals/hides save and clear buttons
 var toggleSaveButton = function(e) {
   $('#saveButton').removeClass("hidden");
   $('#clearSaveButton').removeClass("hidden");
 }
-
+// clears selections with clear button
 var clearSelections = function(e) {
   $(".results").find(":checkbox").prop('checked',false);
   $('#saveButton').addClass("hidden");
   $('#clearSaveButton').addClass("hidden");
 }
-
+// event handlers
 $(document).ready(function() {
   $(document).on('click', '.outlet-card', toggleShortCard);
   $(document).on('click', '.writer-card', toggleLongCard);

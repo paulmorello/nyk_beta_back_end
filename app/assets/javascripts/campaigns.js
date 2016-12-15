@@ -32,7 +32,8 @@ var toggleRemoveButton = function(e) {
 }
 // sets the data-writer-id attribute in the flag modal which is later assed to the mailer along with choice of flag
 var setWriterID = function(e) {
-  // grab data-id attr tied to flag button clicked on and put in data-writer-id attr on flag option modal
+  console.log("worked")
+  $('.flag-option-wrapper').attr('data-writer-id', $(this).attr('data-id'));
 }
 // sets the selected class on chosen reason for flagging in the flag modal
 var selectFlag = function(e) {
@@ -73,6 +74,7 @@ $(document).on('turbolinks:load', function() {
   //  Event Handlers
   $(document).on('change', '.campaign-select-all-toggle', toggleRemoveButton);
   $(document).on('change', '.campaign-selector', toggleRemoveButton);
+  $(document).on('click', '.flag-contact', setWriterID);
   $(document).on('click', '.flag-option', selectFlag);
   $('.addCampaignFolder').click(openCreateCampaignModal);
   $('.create-save-campaign-selections').click(createCampaign);

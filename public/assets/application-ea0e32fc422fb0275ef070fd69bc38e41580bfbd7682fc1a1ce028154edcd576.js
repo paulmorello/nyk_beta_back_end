@@ -17652,51 +17652,54 @@ var o,i,s,a,u;return i=null!=n?n:{},a=i.restorationIdentifier,s=i.restorationDat
   App.cable = ActionCable.createConsumer();
 
 }).call(this);
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
 
-// <input type="checkbox" class="campaign-selector" data-id="<%=job.id%>" value="<%=job.id%>"/>
 
+// grabs ids of writers from checkboxes
 var grabJobSelections = function() {
   var checkedValues = $('.campaign-selector:checked').map(function() {
     return this.value;
   }).get();
   return checkedValues;
 };
-
+// gets the value of the campaing selection drop down in save to campaign modal
 var grabCampaignSelection = function() {
   var campaignValue = $('.campaign-dropdown').val();
   return campaignValue;
 };
-
+// grabs text input of create new campaign modal
 var grabNewCampaignName = function() {
   var name = $('#new_campaign').val();
   return name;
 };
-
+// Gets current Users ID
 var grabUserID = function() {
   var user = $('#user_id').val();
   return user;
 };
-
+// Unselects all checkboxes
 var unselectAll = function() {
   $('.campaign-selector, .campaign-select-all-toggle').prop('checked', false);
 }
-
+// hides/reveals button for removing writers
 var toggleRemoveButton = function(e) {
   $('#removeButton').removeClass("hidden");
 }
-
+// sets the data-writer-id attribute in the flag modal which is later assed to the mailer along with choice of flag
+var setWriterID = function(e) {
+  console.log("worked")
+  $('.flag-option-wrapper').attr('data-writer-id', $(this).attr('data-id'));
+}
+// sets the selected class on chosen reason for flagging in the flag modal
 var selectFlag = function(e) {
   $(e.target).parents('.flag-option-wrapper').find('.flag-option').removeClass("selected");
   $(this).addClass("selected");
   console.log(this)
 };
-
+// opens the modal for creating a campaign, tied to folder icon on sidebar
 var openCreateCampaignModal = function(e) {
   $('#createCampaignModal').modal('toggle');
 };
-
+// this is for creating and saving jobs at the same time through the creat and save modal
 var createCampaign = function() {
   $.ajax({
     type: "POST",
@@ -17716,20 +17719,20 @@ var createCampaign = function() {
 
 
 $(document).on('turbolinks:load', function() {
-
+  // for highlighting selected campaign blue in left side bar
   var pgurl = window.location.href.substr(window.location.href.indexOf("/campaigns/"));
   $(".campaign-link a").each(function(){
        if($(this).attr("href") == pgurl)
        $(this).addClass("selected-campaign-link");
   })
-
+  //  Event Handlers
   $(document).on('change', '.campaign-select-all-toggle', toggleRemoveButton);
   $(document).on('change', '.campaign-selector', toggleRemoveButton);
+  $(document).on('click', '.flag-contact', setWriterID);
   $(document).on('click', '.flag-option', selectFlag);
   $('.addCampaignFolder').click(openCreateCampaignModal);
-
   $('.create-save-campaign-selections').click(createCampaign);
-
+  // for saving jobs to campaign that already exists
   $('.save-campaign-selections').click(function(e) {
     $.ajax({
       type: "POST",
@@ -17737,7 +17740,7 @@ $(document).on('turbolinks:load', function() {
       data: { saved_job: { campaign_id: grabCampaignSelection(), job_ids: grabJobSelections()} },
     }).done(unselectAll);
   });
-
+  // deleting saved jobs
   $('.remove-campaign-selections').click(function(e) {
     $.ajax({
       type: "DELETE",
@@ -17745,7 +17748,7 @@ $(document).on('turbolinks:load', function() {
       data: { saved_job: { campaign_id: $('#campaign-name').attr('data-id'), job_ids: grabJobSelections()} },
     });
   });
-
+ // deleting a campaign
   $('.delete-campaign').click(function(e) {
     e.preventDefault();
     $.ajax({
@@ -17753,7 +17756,7 @@ $(document).on('turbolinks:load', function() {
       url: "/campaigns/"+$('.delete-campaign').attr('data-id'),
     });
   });
-
+  // sending flag values to controller that passes on to mailer
   $('.flag-job').click(function(e) {
     $.ajax({
       type: "POST",
@@ -17761,7 +17764,7 @@ $(document).on('turbolinks:load', function() {
       data: {flag: { writer_id: $('.flag-option-wrapper').attr("data-writer-id"), flag_value: $('.flag-option-wrapper').find('.selected').attr('data-value')}},
     });
   });
-
+  // adding thumbs up and down responses to a writer
   $(document).on('click', '.thumbs-up', function(e) {
     $(e.target).parents('.response').find('.thumbs-down').removeClass('selected');
     $(e.target).addClass('selected');
@@ -17771,7 +17774,6 @@ $(document).on('turbolinks:load', function() {
       data: { saved_job: { response: "positive"} },
     });
   });
-
   $(document).on('click', '.thumbs-down', function(e) {
     $(e.target).parents('.response').find('.thumbs-up').removeClass('selected');
     $(e.target).addClass('selected');
@@ -17782,11 +17784,11 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-
 });
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
 
+
+
+// expands outlet card and shows short writer cards/and reverse
 var toggleShortCard = function(e) {
   if (e.target.tagName.toLowerCase() !== 'a' && e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() !== 'svg') {
     var checked = $('#show-writers').is(':checked');
@@ -17797,13 +17799,13 @@ var toggleShortCard = function(e) {
     };
   };
 };
-
+// expands writer cards/ and reverse
 var toggleLongCard = function(e) {
   if (e.target.tagName.toLowerCase() !== 'a' && e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() !== 'svg') {
     $(e.target).parents('.writer-card').find('.writer-card-bottom').toggleClass("hidden");
   };
 }
-
+// selects all writer checkboxes if Outlet checkbox is selected
 var selectAllWriters = function(e) {
   if (this.checked) {
     $(e.target).parents('.outlet-writer-wrapper').find('.campaign-selector').prop('checked',true);
@@ -17811,18 +17813,18 @@ var selectAllWriters = function(e) {
     $(e.target).parents('.outlet-writer-wrapper').find('.campaign-selector').prop('checked', false);
   };
 };
-
+// When checkboxes are selected, reveals/hides save and clear buttons
 var toggleSaveButton = function(e) {
   $('#saveButton').removeClass("hidden");
   $('#clearSaveButton').removeClass("hidden");
 }
-
+// clears selections with clear button
 var clearSelections = function(e) {
   $(".results").find(":checkbox").prop('checked',false);
   $('#saveButton').addClass("hidden");
   $('#clearSaveButton').addClass("hidden");
 }
-
+// event handlers
 $(document).ready(function() {
   $(document).on('click', '.outlet-card', toggleShortCard);
   $(document).on('click', '.writer-card', toggleLongCard);
@@ -17839,10 +17841,11 @@ $(document).ready(function() {
 //     };
 // };
 
+// clears search bar
 var clearSearch = function(e) {
   $('#q').val('');
 };
-
+// configures multi-select plugin options for genre and press type drop downs
 $(document).on('turbolinks:load', function() {
   if ($('.multiselect-native-select')[0] == undefined) {
     $('#filter_params_genre_id').multiselect({
@@ -17858,9 +17861,11 @@ $(document).on('turbolinks:load', function() {
       buttonClass: "form-control"
     });
   }
-  // $('#show-writers').change(toggleShowWriters);
+  // event handler
   $('.clear-search').click(clearSearch);
 });
+// this handles infinite scroll
+
 $(document).on('turbolinks:load', function () {
   var isLoading = false;
   if ($('#infinite-scrolling').size() > 0) {
@@ -17880,6 +17885,7 @@ $(document).on('turbolinks:load', function () {
     });
   }
 });
+// just for highlighting current nav link
 $(document).on('turbolinks:load', function() {
      var pgurl = window.location.href.substr(window.location.href.indexOf(".com/")+4);
      $(".nav a").each(function(){
