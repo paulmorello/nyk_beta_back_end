@@ -53,6 +53,9 @@ task :update_social => :environment do
       insta_response = HTTParty.get url
       insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
       if insta_followers.present?
+        if insta_followers.length > 3
+          insta_followers = insta_followers.chop.chop.chop+"k"
+        end
         outlet.update(instagram_followers: insta_followers)
       end
     end
