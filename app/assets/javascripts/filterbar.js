@@ -6,10 +6,11 @@
 //     };
 // };
 
+// clears search bar
 var clearSearch = function(e) {
   $('#q').val('');
 };
-
+// configures multi-select plugin options for genre and press type drop downs
 $(document).on('turbolinks:load', function() {
   if ($('.multiselect-native-select')[0] == undefined) {
     $('#filter_params_genre_id').multiselect({
@@ -25,6 +26,6 @@ $(document).on('turbolinks:load', function() {
       buttonClass: "form-control"
     });
   }
-  // $('#show-writers').change(toggleShowWriters);
+  // event handler
   $('.clear-search').click(clearSearch);
 });

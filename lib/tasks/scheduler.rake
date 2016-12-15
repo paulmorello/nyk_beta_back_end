@@ -49,7 +49,7 @@ task :update_social => :environment do
 
     # insta follower
     if outlet.instagram.present?
-      url = "https://www.instagram.com/web/search/topsearch/?query=#{outlet.name}"
+      url = "https://www.instagram.com/web/search/topsearch/?query=#{outlet.instagram}"
       insta_response = HTTParty.get url
       insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
       if insta_followers.present?

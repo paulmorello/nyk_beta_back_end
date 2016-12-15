@@ -1,6 +1,7 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
 
+
+
+// expands outlet card and shows short writer cards/and reverse
 var toggleShortCard = function(e) {
   if (e.target.tagName.toLowerCase() !== 'a' && e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() !== 'svg') {
     var checked = $('#show-writers').is(':checked');
@@ -11,7 +12,7 @@ var toggleShortCard = function(e) {
     };
   };
 };
-
+// expands writer cards/ and reverse
 var toggleLongCard = function(e) {
   if (e.target.tagName.toLowerCase() !== 'a' && e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() !== 'svg') {
     $(e.target).parents('.writer-card').find('.writer-card-bottom').toggleClass("hidden");

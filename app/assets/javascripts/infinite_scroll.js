@@ -1,3 +1,5 @@
+// this handles infinite scroll
+
 $(document).on('turbolinks:load', function () {
   var isLoading = false;
   if ($('#infinite-scrolling').size() > 0) {
