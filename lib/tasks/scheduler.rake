@@ -26,7 +26,9 @@ task :update_social => :environment do
       twitter_followers = parsed_response["followers_count"].to_s
 
       if twitter_followers.present?
-        if twitter_followers.length > 3
+        if twitter_followers.length > 6
+          twitter_followers = twitter_followers.chop.chop.chop.chop.chop.chop+"m"
+        elsif twitter_followers.length > 3
           twitter_followers = twitter_followers.chop.chop.chop+"k"
         end
         outlet.update(twitter_followers: twitter_followers)
@@ -40,7 +42,9 @@ task :update_social => :environment do
       parsed_facebook_response = JSON.parse(facebook_response)
       facebook_followers = parsed_facebook_response["fan_count"].to_s
       if facebook_followers.present?
-        if facebook_followers.length > 3
+        if facebook_followers.length > 6
+          facebook_followers = facebook_followers.chop.chop.chop.chop.chop.chop+"m"
+        elsif facebook_followers.length > 3
           facebook_followers = facebook_followers.chop.chop.chop+"k"
         end
         outlet.update(facebook_likes: facebook_followers)
@@ -53,7 +57,9 @@ task :update_social => :environment do
       insta_response = HTTParty.get url
       insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
       if insta_followers.present?
-        if insta_followers.length > 3
+        if insta_followers.length > 6
+          insta_followers = insta_followers.chop.chop.chop.chop.chop.chop+"m"
+        elsif insta_followers.length > 3
           insta_followers = insta_followers.chop.chop.chop+"k"
         end
         outlet.update(instagram_followers: insta_followers)
@@ -81,7 +87,9 @@ task :update_social => :environment do
         twitter_followers = parsed_response["followers_count"].to_s
 
         if twitter_followers.present?
-          if twitter_followers.length > 3
+          if twitter_followers.length > 6
+            twitter_followers = twitter_followers.chop.chop.chop.chop.chop.chop+"m"
+          elsif twitter_followers.length > 3
             twitter_followers = twitter_followers.chop.chop.chop+"k"
           end
           writer.update(twitter_followers: twitter_followers)
