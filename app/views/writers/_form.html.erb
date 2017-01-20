@@ -1,0 +1,139 @@
+
+<%= form_for(writer) do |f| %>
+  <% if writer.errors.any?%>
+    <div id="error_explanation">
+      <h2><%= pluralize(writer.errors.count, "error") %> prohibited this writer from being saved:</h2>
+
+      <ul>
+      <% writer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h4>General Information</h4>
+
+  <div class="form-group">
+    <%= f.label(:first_name, "First Name *") %>
+    <%= f.text_field(:f_name, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:last_name, "Last Name") %>
+    <%= f.text_field(:l_name, class: "form-control") %>
+  </div>
+  <div class="form-group">
+  <%= f.label(:email_personal, "Personal Email - (usually @gmail, @hotmail, @yahoo, etc)") %>
+  <%= f.text_field(:email_personal, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:city) %>
+    <%= f.text_field(:city, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:state, "State - (Use acronym EG NY = New York, VIC = Victoria, etc)") %>
+    <%= f.text_field(:state, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:country_id, "Country *") %>
+    <%= f.collection_select(:country_id, Country.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:twitter, "Twitter - (EG If www.twitter.com/danrutman, only write danrutman)") %>
+    <%= f.text_field(:twitter, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:linkedin, "Linkedin - (EG If www.linkedin.com/danrutman, only write danrutman)") %>
+    <%= f.text_field(:linkedin, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:notes) %>
+    <%= f.text_area(:notes, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:user_id, "Assigned To *") %>
+    <%= f.collection_select(:user_id, User.where(admin: true), :id, :email, {include_blank: true}, {class: "form-control"}) %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:freelance) %>
+    <%= f.check_box(:freelance, class: "form-check-inline") %>
+  </div>
+
+  <!-- <h4>Genres</h4> -->
+  <div class="tag-form">
+  <%= f.nested_fields_for :genre_tags do |gt| %>
+    <%= gt.remove_nested_fields_link%>
+    <div class="form-group">
+    <%= gt.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+    <!-- <% if gt.object.persisted? %>
+      <%= gt.check_box :_destroy %>
+      <%= gt.label :_destroy, "Delete Genre" %>
+    <% end %> -->
+    </div>
+  <% end %>
+  <%= f.add_nested_fields_link :genre_tags, "Add a Genre", class: "btn btn-secondary"%>
+  </div>
+  <br>
+  <h4>Jobs *</h4>
+  <div class="job-form">
+  <%= f.nested_fields_for :jobs do |j| %>
+    <%= j.remove_nested_fields_link%>
+    <%= j.hidden_field :id, :value => j.object.id %>
+    <div class="form-group">
+    <%= j.label :outlet_id, "Outlet *" %>
+    <%= j.collection_select(:outlet_id, Outlet.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+    </div>
+    <div class="form-group">
+    <%= j.label(:email_work, "Work Email *") %>
+    <%= j.text_field(:email_work, class: "form-control") %>
+    </div>
+    <div class="form-group">
+    <%= j.label(:position, "Position *") %>
+    <%= j.text_field(:position, class: "form-control") %>
+    </div>
+    <div class="form-group">
+    <%= j.label(:outlet_profile, "Outlet Profile") %>
+    <%= j.text_field(:outlet_profile, class: "form-control") %>
+    </div>
+    <div class="form-group">
+      <%= j.label(:key_contact) %>
+      <%= j.check_box(:key_contact, class: "form-check-inline") %>
+    </div>
+    <div class="tag-form">
+    <%= j.nested_fields_for :presstype_tags do |pt| %>
+      <%= pt.remove_nested_fields_link%>
+      <div class="form-group">
+      <!-- <%= pt.label :presstype_id, "Press Type" %> -->
+      <%= pt.collection_select(:presstype_id, Presstype.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+      <!-- <% if pt.object.persisted? %>
+        <%= pt.check_box :_destroy %>
+        <%= pt.label :_destroy, "Delete Press Type" %>
+      <% end %> -->
+      </div>
+    <% end %>
+    <% if j.object.persisted? %>
+      <%= j.add_nested_fields_link :presstype_tags, "Add Press Type", class: "btn btn-secondary"%>
+    <% end %>
+    </div>
+    <% if j.object.persisted? %>
+      <div class="form-group delete-job-link">
+      <!-- <%= j.check_box :_destroy %>
+      <%= j.label :_destroy, "Delete Job" %> -->
+      <%= link_to("Delete This Job", "/writers/delete_job/#{j.object.id}", method: :delete, class: "btn btn-delete", data: {confirm: "Are you sure you want to delete this Job?"}) %>
+      </div>
+    <% end %>
+    <br>
+  <% end %>
+  <%= f.add_nested_fields_link :jobs, "Add New Job", class: "btn btn-secondary"%>
+  </div>
+  <br>
+
+  <div class="actions">
+    <%= f.submit "Finish and Save", class: "btn btn-primary"%>
+  </div>
+  <% if f.object.persisted? %>
+    <div class="delete-writer-link">
+      <%= link_to 'Delete Writer',  writer,  method: :delete, class: "btn btn-delete", data: { confirm: 'Are you sure?'} %>
+    </div>
+  <% end %>
+<% end %>

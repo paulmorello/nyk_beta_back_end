@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Now You Know</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap (not used but Bootstrap throws an error without this)-->
+    <script src="https://use.fontawesome.com/40cc1a04ae.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <% if user_signed_in? %>
+        <div class="nav navbar-nav pull-xs-right">
+          <% if current_user.admin %>
+            <a class="nav-item nav-link" href="/outlets/new">Create Outlet</a>
+            <a class="nav-item nav-link" href="/writers/new">Create Writer</a>
+            <a class="nav-item nav-link" href="/writers">Assigned</a>
+          <% end %>
+          <a class="nav-item nav-link" href="/outlets">Discover</a>
+          <a class="nav-item nav-link" href="/campaigns">Manage</a>
+          <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-item nav-link logout" %>
+        </div>
+      <% end %>
+
+    </nav>
+
+    <%= yield %>
+
+  </body>
+</html>

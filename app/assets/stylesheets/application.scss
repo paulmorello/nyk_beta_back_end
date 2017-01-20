@@ -1,0 +1,304 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+ // Colors
+ $light-grey: #E4E9EC;
+ $grey: #AAB8C1;
+ $dark-grey: #555D64;
+ $light-blue: #32C7DB;
+ $blue: #2A97DA;
+ $light-green:#9BDB36;
+
+ $navHeight: 60px;
+ $headerHeight: 100px;
+ $totalTopHeight: $navHeight + $headerHeight;
+ $sidebarWidth: 275px;
+ $resultsWidth: 1000px;
+ $totalWitdh: $sidebarWidth + $resultsWidth;
+
+ @import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800';
+ @import "bootstrap";
+ @import "bootstrap-multiselect";
+ @import "scaffolds";
+ @import "cards";
+ @import "campaigns";
+
+
+ *, *:before, *:after {
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+ }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: $dark-grey;
+  h1 {
+    font-size: 2em;
+    font-weight: 700;
+  }
+}
+
+.center{
+  text-align: center;
+}
+
+a {
+  color: inherit;
+  &:hover {
+    color: $light-blue;
+    text-decoration: none;
+  }
+}
+
+.btn {
+  border-radius: 100px;
+  height: 32px;
+  font-size: 12px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.btn-primary {
+  background-color: $light-blue;
+  border: solid 1px white;
+  &:hover {
+    background-color: $blue;
+    border: solid 1px white;
+  }
+}
+
+.btn-secondary {
+  background-color: white;
+  border: solid 1px $light-blue;
+  color: $light-blue;
+  &:hover {
+    background-color: $blue;
+    border: solid 1px $blue;
+    color: white;
+  }
+}
+
+.btn-delete {
+  background-color: white;
+  border: solid 1px red;
+  color: red;
+  &:hover {
+    background-color: red;
+    border: solid 1px white;
+    color: white;
+  }
+}
+
+
+
+nav {
+  height: $navHeight;
+  border-bottom: solid 1px $light-grey;
+  white-space: nowrap;
+  overflow: hidden;
+  a {
+    margin-right: 15px;
+    font-weight: 700;
+    &.hover, &.active {
+      color: $light-green;
+    }
+    &.logout {
+      color: $light-blue;
+    }
+  }
+}
+
+.main-container {
+  min-width: $totalWitdh;
+}
+
+.results-header {
+  height: $headerHeight;
+  width: $resultsWidth;
+  margin: auto;
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+.main-labels {
+  width: 1000px;
+  height: 22px;
+  margin-top: 20px;
+}
+
+.label {
+  margin: 0 5px;
+  height: 100%;
+  float: left;
+  background-color: $grey;
+  color: white;
+  font-size: .9em;
+  font-weight: 700;
+  text-align: center;
+}
+.filter-label {
+  width: 250px;
+  height: 22px;
+  margin: auto;
+  margin-top: 1px;
+}
+
+.manage-label {
+  width: 250px;
+  height: 22px;
+  margin: auto;
+  margin-top: 66px;
+}
+.right-label {
+  width: 55px;
+}
+.contact-info-label {
+  width: 340px;
+}
+.social-info-label {
+  width: 150px;
+}
+.genres-label, .presstypes-label {
+  width: 182.5px;
+}
+.left-label {
+  width: 30px;
+}
+
+.sidebar {
+  height: calc(100vh - #{$navHeight});
+  width: $sidebarWidth;
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow: auto;
+  .sidebar-top {
+    height: $headerHeight;
+    .search {
+      margin: 1px 0;
+    }
+    .magnifying-glass{
+      float: left;
+      width: 36px;
+      margin-top: 10px;
+      display: inline-block;
+      &:hover {
+        cursor: pointer;
+        fill: $light-blue;
+      }
+    }
+    #q {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: $blue;
+      border: none;
+      margin-left: 5px;
+      width: 183px;
+      height: 50px;
+      display: inline-block;
+      &:focus {
+        outline: none;
+      }
+    }
+    .clear-search {
+      float: right;
+      margin-top: 16px;
+      cursor: pointer;
+    }
+  }
+}
+
+.results {
+  height: calc(100vh - #{$totalTopHeight});
+  overflow: auto;
+  background-color: $light-grey;
+  width: $resultsWidth;
+  margin: auto;
+}
+
+.filter {
+  label {
+    font-size: .9em;
+    font-weight: 700;
+  }
+  .check {
+    margin-bottom: 6px;
+  }
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 1.3em;
+}
+
+.form {
+  padding-left: 15%;
+  padding-right: 15%;
+  overflow: auto;
+  .job-form {
+    padding-right: 15%;
+  }
+  .tag-form {
+    width: 300px;
+  }
+  h1 {
+    margin: 50px 0;
+    color: $light-blue;
+  }
+  h4 {
+   margin: 25px 0;
+   color: $light-blue;
+  }
+  hr {
+   color: $light-blue;
+   background-color: $light-blue;
+   height: 2px;
+  }
+  .warning {
+   color: red;
+  }
+  .add-link {
+    color: $light-blue;
+  }
+  .add-job-link {
+    color: $light-blue;
+    border: solid 2px $light-blue;
+    padding: 3px;
+  }
+  .delete-job-link {
+    color: red;
+    margin-top: 10px;
+  }
+  .delete-writer-link {
+    color: red;
+    padding-left: 15px;
+    padding: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+}
+
+.hidden, .deleted {
+  display: none;
+}
+
+.invsible {
+  visibility: hidden;
+}
+
+.selected {
+  color: $blue;
+}

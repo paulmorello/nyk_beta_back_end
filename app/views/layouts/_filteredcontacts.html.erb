@@ -1,0 +1,48 @@
+<% @outlets.each do |outlet| %>
+  <div class="outlet-writer-wrapper">
+  <% print_outlet = true %>
+  <% if @filters["freelance"] === "1" && !(outlet.writers.where(freelance: true).present?) %>
+    <% print_outlet = false %>
+  <% end %>
+  <% if print_outlet == true %>
+    <%= render partial: 'layouts/outletcard', locals: {outlet: outlet} %>
+  <% end %>
+    <% outlet.jobs.joins(:writer).order("jobs.key_contact desc","writers.f_name").each do |job| %>
+      <% if job.writer.inactive == true %>
+        <% next %>
+      <% end %>
+      <% print_job = true %>
+      <% if @filters["country_id"].present? && job.writer.country_id.to_s != @filters["country_id"]%>
+        <% print_job = false %>
+      <% end %>
+      <% if @filters["state"].present? && job.writer.state.to_s.downcase.include?(@filters["state"].to_s.downcase) == false%>
+        <% print_job = false %>
+      <% end %>
+      <% if @filters["city"].present? && job.writer.city.to_s.downcase.include?(@filters["city"].to_s.downcase) == false%>
+        <% print_job = false %>
+      <% end %>
+      <% if @filters["presstype_id"].present? %>
+        <% ptypes = job.presstype_tags.map {|t| t.presstype_id.to_s} %>
+        <% intersection =  @filters["presstype_id"] & ptypes %>
+        <% unless intersection.present? %>
+          <% print_job = false %>
+        <% end %>
+      <% end %>
+      <% if @filters["genre_id"].present? %>
+        <% gtypes = job.writer.genre_tags.map {|t| t.genre_id.to_s} %>
+        <% g_ids_plus_all = @filters["genre_id"] %>
+        <% g_ids_plus_all.push("19") unless g_ids_plus_all.include?("19") %>
+        <% intersection =  g_ids_plus_all & gtypes %>
+        <% unless intersection.present? %>
+          <% print_job = false %>
+        <% end %>
+      <% end %>
+      <% if @filters["freelance"] === "1" && job.writer.freelance != true %>
+        <% print_job = false %>
+      <% end %>
+      <% if print_job == true %>
+        <%= render partial: 'layouts/writercard', locals: {job: job} %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<div class="sidebar">
+  <div class="sidebar-top">
+    <div class="label manage-label">
+      <p>CAMPAIGNS</p>
+    </div>
+  </div>
+
+  <div class="campaigns">
+    <br>
+
+    <% @campaigns.each do |campaign| %>
+
+      <div class="campaign-link">
+        <a href="/campaigns/<%=campaign.id%>"><%=campaign.name%></a>
+        <p class="campaign-edit-link "><a href="/campaigns/<%=campaign.id%>/edit">edit</a></p>
+        <hr>
+      </div>
+    <% end %>
+
+    <!-- Button trigger modal -->
+    <div class="addCampaignFolder">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="70px" viewBox="0 0 512 640" enable-background="new 0 0 512 512" xml:space="preserve"><g><path fill="#2A97DA" d="M18.4,116.7h393.3v172.1h16.4V43H179.6L163.2,2H2v409.7h286.8v-16.4H18.4V116.7z M18.4,18.4h133.7l16.4,41h243.2v41H18.4   V18.4z"/><path fill="#2A97DA"d="M403.5,297C344.8,297,297,344.8,297,403.5c0,58.7,47.8,106.5,106.5,106.5c58.7,0,106.5-47.8,106.5-106.5   C510,344.8,462.2,297,403.5,297z M403.5,493.6c-49.7,0-90.1-40.4-90.1-90.1c0-49.7,40.4-90.1,90.1-90.1c49.7,0,90.1,40.4,90.1,90.1   C493.6,453.2,453.2,493.6,403.5,493.6z"/><polygon fill="#2A97DA" points="411.7,395.3 411.7,337.9 395.3,337.9 395.3,395.3 337.9,395.3 337.9,411.7 395.3,411.7 395.3,469 411.7,469    411.7,411.7 469,411.7 469,395.3  "/></g></svg>
+    </div>
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCampaignModal">
+      New Campaign
+    </button> -->
+
+  </div>
+
+</div>

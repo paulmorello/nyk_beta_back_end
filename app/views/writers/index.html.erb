@@ -1,0 +1,25 @@
+<%= render ("layouts/filterbar") %>
+
+<div class="main-container">
+  <div class="results-header">
+    <h1>Assigned To You</h1>
+  </div>
+
+  <div class="results">
+    <ul class="assigned-outlets">
+      <% @outlets.where(user_id: current_user.id).order(:updated_at).each do |outlet| %>
+
+          <li class="assigned-outlet" style="font-size: 1.3em;"><%= link_to outlet.name, edit_outlet_path(outlet) %> - Last Updated: <%=outlet.updated_at%> - Note: <%=outlet.notes%></li>
+      <% end %>
+    </ul>
+
+    <ul class="assigned-writers">
+      <% @writers.where(user_id: current_user.id).order(:updated_at).each do |writer| %>
+
+          <li class="assigned-writer" style="font-size: 1.3em;"><%= link_to "#{writer.f_name} #{writer.l_name}", edit_writer_path(writer) %> - Last Updated: <%=writer.updated_at%> - Note: <%=writer.notes%></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div style="clear: both;"></div>
+</div>

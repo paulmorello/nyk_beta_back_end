@@ -1,0 +1,152 @@
+<!-- Create Modal -->
+<div class="modal fade" id="createCampaignModal" tabindex="-1" role="dialog" aria-labelledby="createCampaignModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="createCampaignModalLabel">Create a new campaign folder?</h4>
+      </div>
+        <% @new_campaign = Campaign.new %>
+        <%= render 'form', campaign: @new_campaign %>
+
+    </div>
+  </div>
+</div>
+
+<!-- Remove Modal -->
+<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="removeModalLabel">Remove contacts from Campaign?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to remove the slected contacts?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary remove-campaign-selections" data-dismiss="modal" data-toggle="modal" data-target="#gotoCampaignModal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Flag Modal -->
+<div class="modal fade" id="flagModal" tabindex="-1" role="dialog" aria-labelledby="flagModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="flagModalLabel">Report a problem?</h4>
+      </div>
+      <div class="modal-body">
+        <!-- <input type="text" id="flag-select-contact" class="hidden" value=""></input>
+        <select name="flag-select" id="flag-select" class="hidden">
+          <option value="1">A</option>
+          <option value="2">B</option>
+          <option value="3">C</option>
+          <option value="4">D</option>
+        </select> -->
+        <div class="flag-option-wrapper" data-writer-id="">
+          <div class="flag-option" data-value="Email address is incorrect">
+            <p>Email address is incorrect</p>
+          </div>
+          <div class="flag-option" data-value="Outlet is incorrect">
+            <p>Outlet is incorrect</p>
+          </div>
+          <div class="flag-option" data-value="Contact has multiple outlets">
+            <p>Contact has multiple outlets</p>
+          </div>
+          <div class="flag-option" data-value="Contact is no longer available">
+            <p>Contact is no longer available</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary flag-job" data-dismiss="modal" data-toggle="modal" data-target="#thanksModal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Thanks Modal -->
+<div class="modal fade" id="thanksModal" tabindex="-1" role="dialog" aria-labelledby="thanksModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="thanksModalLabel">Thanks!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Thank you for taking the time to let us know. Someone on our team will take a second look at this real soon.</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-container">
+  <%= render ("layouts/managebar") %>
+
+  <div class="results-header">
+    <!-- Button trigger Save to campaign modal -->
+    <button type="button" style="margin-top: 5px; margin-right: 5px;" id="removeButton" class="btn btn-secondary pull-xs-right hidden" data-toggle="modal" data-target="#removeModal">
+      Remove
+    </button>
+    <h2 id="campaign-name" data-id="<%=@campaign.id%>"><%=@campaign.name%></h2>
+    <div class="main-labels">
+      <div class="right-label label">
+
+      </div>
+      <div class="contact-info-label label">
+        <p>CONTACT INFO</p>
+      </div>
+      <div class="social-info-label label">
+        <p>SOCIAL INFO</p>
+      </div>
+      <div class="genres-label label">
+        <p>GENRES</p>
+      </div>
+      <div class="presstypes-label label">
+        <p>PRESS TYPES</p>
+      </div>
+      <div class="left-label label">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="results">
+
+    <% if @jobs.present? %>
+      <% @outlets.each do |outlet| %>
+        <div class="outlet-writer-wrapper">
+          <%= render partial: 'layouts/outletcard', locals: {outlet: outlet} %>
+          <% @jobs.each do |job| %>
+            <% if job.outlet_id == outlet.id %>
+              <div class="saved-job-wrapper" data-id="<%=SavedJob.where(campaign_id: @campaign.id, job_id: job.id).first.id%>">
+                <%@thumb = SavedJob.where(campaign_id: @campaign.id, job_id: job.id).first.response%>
+                <%= render partial: 'layouts/writercard', locals: {job: job} %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% elsif !(@jobs.present?) %>
+      <div class="manage-instructions card">
+        <p class="instructions-title"> Doesn't look like you've saved any Contacts yet. </p>
+        <p> You can save Contacts to this Campaign from the Discover page, or from Filter and Search results. Just select the checkbox in the upper-left corner of a Writer or Outlet card and then click the Save button that appears in the upper-right of the page.</p>
+      </div>
+    <% end %>
+
+
+  </div>
+
+  <div style="clear: both;"></div>
+
+</div>

@@ -1,0 +1,90 @@
+
+
+<%= form_for(outlet) do |f| %>
+
+  <% if outlet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(outlet.errors.count, "error") %> prohibited this outlet from being saved:</h2>
+
+      <ul>
+      <% outlet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label(:name, "Name *") %>
+    <%= f.text_field(:name, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:website) %>
+    <%= f.text_field(:website, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:email) %>
+    <%= f.text_field(:email, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:staff_list) %>
+    <%= f.text_field(:staff_list, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:description) %>
+    <%= f.text_area(:description, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:city) %>
+    <%= f.text_field(:city, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:state, "State - (Use acronym EG NY = New York, VIC = Victoria, etc)") %>
+    <%= f.text_field(:state, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:country_id, "Country *") %>
+    <%= f.collection_select(:country_id, Country.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:twitter, "Twitter - (EG If www.twitter.com/danrutman, only write danrutman)") %>
+    <%= f.text_field(:twitter, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:facebook, "Facebook - (EG If www.facebook.com/danrutman, only write danrutman)") %>
+    <%= f.text_field(:facebook, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:instagram, "Instagram - (EG If www.instagram.com/danrutman, only write danrutman)") %>
+    <%= f.text_field(:instagram, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:linkedin, "Linkedin - (EG If www.linkedin.com/danrutman, only write danrutman)") %>
+    <%= f.text_field(:linkedin, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:hype_m) %>
+    <%= f.check_box(:hype_m, class: "form-check-inline") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:submithub) %>
+    <%= f.check_box(:submithub, class: "form-check-inline") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:notes) %>
+    <%= f.text_area(:notes, class: "form-control") %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:user_id, "Assigned To *") %>
+    <%= f.collection_select(:user_id, User.where(admin: true), :id, :email, {include_blank: true}, {class: "form-control"}) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Finish and Save",class:"btn btn-primary"%>
+  </div>
+  <% if f.object.persisted? %>
+  <div class="delete-writer-link">
+    <%= link_to 'Delete Outlet',  outlet,  method: :delete, class:"btn btn-delete", data: { confirm: 'Are you sure?' } %>
+  </div>
+  <% end %>
+<% end %>

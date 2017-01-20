@@ -1,0 +1,63 @@
+
+<!-- Create Modal -->
+<div class="modal fade" id="createCampaignModal" tabindex="-1" role="dialog" aria-labelledby="createCampaignModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="createCampaignModalLabel">Create a new campaign folder?</h4>
+      </div>
+
+        <%= render 'form', campaign: @new_campaign %>
+
+    </div>
+  </div>
+</div>
+
+<div class="main-container">
+  <%= render ("layouts/managebar") %>
+
+  <div class="results-header">
+    <h1>Manage</h1>
+    <div class="main-labels">
+      <div class="right-label label">
+
+      </div>
+      <div class="contact-info-label label">
+        <p>CONTACT INFO</p>
+      </div>
+      <div class="social-info-label label">
+        <p>SOCIAL INFO</p>
+      </div>
+      <div class="genres-label label">
+        <p>GENRES</p>
+      </div>
+      <div class="presstypes-label label">
+        <p>PRESS TYPES</p>
+      </div>
+      <div class="left-label label">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="results">
+
+    <div class="manage-instructions card">
+      <p class="instructions-title"> This is where you can save contacts to a campaign. </p>
+      <p> First you'll need to create a campaign by clicking the folder on the left or the button below. Then save cards from the Discover page, or Filter and Search results.</p>
+      <!-- Button trigger modal -->
+      <div class="center">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCampaignModal">
+          New Campaign
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="clear: both;"></div>
+
+</div>

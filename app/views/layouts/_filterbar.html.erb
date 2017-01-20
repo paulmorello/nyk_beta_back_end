@@ -1,0 +1,77 @@
+<div class="sidebar">
+
+  <div class="sidebar-top">
+    <div class="search">
+      <%= form_tag(:search_outlets, :url => { :controller => 'outlets', :action => 'search' }) do %>
+        <label>
+        <div class="magnifying-glass">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="30" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M59.67,74.223c-19.503,0-35.37-15.866-35.37-35.368c0-19.502,15.867-35.369,35.37-35.369  c19.5,0,35.367,15.866,35.367,35.369C95.037,58.356,79.17,74.223,59.67,74.223z M59.67,9.861c-15.988,0-28.995,13.006-28.995,28.993  c0,15.987,13.007,28.993,28.995,28.993c15.985,0,28.991-13.006,28.991-28.993C88.661,22.868,75.655,9.861,59.67,9.861z"/><rect x="15.779" y="61.361" transform="matrix(0.7072 0.707 -0.707 0.7072 62.3881 8.0674)" width="11.351" height="35.984"/></svg>
+        </div>
+        <%= submit_tag("Search", class:"hidden") %>
+        <%= text_field_tag(:q, nil, {placeholder: "Search", onfocus:"this.placeholder = ''", onblur: "this.placeholder = 'Search'"}) %>
+        <!-- <%= submit_tag("Search") %> -->
+        <div class="clear-search"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+          <svg viewBox="0 0 38 38" width="17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="noun_712733_cc" fill="#A9A9A9">
+                      <g id="Group">
+                          <g id="Shape">
+                              <path d="M37.5,19 C37.5,8.7827321 29.2172679,0.5 19,0.5 C8.7827321,0.5 0.5,8.7827321 0.5,19 C0.5,29.2172679 8.7827321,37.5 19,37.5 C29.2172679,37.5 37.5,29.2172679 37.5,19 Z M3.5,19 C3.5,10.4395864 10.4395864,3.5 19,3.5 C27.5604136,3.5 34.5,10.4395864 34.5,19 C34.5,27.5604136 27.5604136,34.5 19,34.5 C10.4395864,34.5 3.5,27.5604136 3.5,19 Z M21.1213203,19 L26.0606602,23.9393398 C26.6464466,24.5251263 26.6464466,25.4748737 26.0606602,26.0606602 C25.4748737,26.6464466 24.5251263,26.6464466 23.9393398,26.0606602 L19,21.1213203 L14.0606602,26.0606602 C13.4748737,26.6464466 12.5251263,26.6464466 11.9393398,26.0606602 C11.3535534,25.4748737 11.3535534,24.5251263 11.9393398,23.9393398 L16.8786797,19 L11.9393398,14.0606602 C11.3535534,13.4748737 11.3535534,12.5251263 11.9393398,11.9393398 C12.5251263,11.3535534 13.4748737,11.3535534 14.0606602,11.9393398 L19,16.8786797 L23.9393398,11.9393398 C24.5251263,11.3535534 25.4748737,11.3535534 26.0606602,11.9393398 C26.6464466,12.5251263 26.6464466,13.4748737 26.0606602,14.0606602 L21.1213203,19 Z"></path>
+                          </g>
+                      </g>
+                  </g>
+              </g>
+          </svg></div>
+        </label>
+      <% end %>
+    </div>
+    <div class="label filter-label">
+      <p>FILTER</p>
+    </div>
+  </div>
+  <div class="filter">
+    <br>
+    <!-- <label><input type="checkbox" id="show-writers" value="show_writers"> Show Writers</label> -->
+    <%= form_tag({ :controller => 'outlets', :action => 'filter' }, {method: :get }) do %>
+      <%= fields_for :filter_params do |ff| %>
+      <div class="form-group">
+        <%= ff.label(:genre_id, "Genre") %>
+        <%= ff.collection_select(:genre_id, Genre.where.not(id: 19), :id, :name, {selected: (@filters["genre_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:presstype_id, "Press Type") %>
+        <%= ff.collection_select(:presstype_id, Presstype.all, :id, :name, {selected: (@filters["presstype_id"] if defined? @filters)}, {class: "form-control", multiple: true}) %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:country_id, "Country") %>
+        <%= ff.collection_select(:country_id, Country.find(@current_countries), :id, :name, {include_blank: true, selected: (@filters["country_id"] if defined? @filters)}, {class: "form-control"}) %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:state, "State") %>
+        <%= ff.text_field(:state, value: (@filters["state"] if defined? @filters),class: "form-control") %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:city, "City") %>
+        <%= ff.text_field(:city , value: (@filters["city"] if defined? @filters), class: "form-control") %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:hype_m, "HypeM") %>
+        <%= ff.check_box(:hype_m, checked: (true if defined?(@filters) && @filters["hype_m"] === "1")) %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:submithub, "SubmitHub") %>
+        <%= ff.check_box(:submithub, checked: (true if defined?(@filters) && @filters["submithub"] === "1")) %>
+      </div>
+      <div class="form-group">
+        <%= ff.label(:freelance, "Freelance") %>
+        <%= ff.check_box(:freelance, checked: (true if defined?(@filters) && @filters["freelance"] === "1")) %>
+      </div>
+      <div class="form-group">
+        <%= ff.submit("Filter", :class => 'btn btn-primary') %>
+        <%= link_to("Clear", "/outlets", method: :get, class: "btn btn-secondary") %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

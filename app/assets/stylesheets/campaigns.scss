@@ -1,0 +1,84 @@
+// Place all the styles related to the Campaigns controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.campaigns {
+  padding-left: 15px;
+  padding-right: 15px;
+  a {
+    font-weight: 700;
+    font-size: 1em;
+  }
+  .campaign-link {
+    .campaign-edit-link {
+      visibility: hidden;
+      font-size: .7em;
+      color: #AAB8C1;
+      margin-left: 180px;
+      a {
+        font-weight: 400;
+      }
+    }
+    &:hover {
+      .campaign-edit-link {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.manage-instructions {
+  padding-top: 25px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 80px;
+  .instructions-title {
+    font-weight: 700;
+    font-size: 2em;
+    margin-bottom: 25px;
+  }
+  p {
+    display: block;
+    font-size: 1.4em;
+    font-weight: 300;
+    margin-bottom: 25px;
+  }
+  button{
+    margin: 0 auto;
+  }
+}
+
+.flag-option-wrapper {
+  width: 40%;
+  margin: auto;
+  .flag-option {
+    font-weight: 300;
+    &:hover {
+      color: $light-blue;
+      cursor: pointer;
+    }
+  }
+}
+
+.edit-campaign-wrapper {
+  width: 50%;
+  margin: auto;
+  padding-top: 150px;
+}
+
+.selected-campaign-link {
+  color: $blue;
+}
+
+.addCampaignFolder {
+  margin: auto;
+  margin-top: 20px;
+  width: 70px;
+  &:hover {
+      svg {
+      path, polygon {
+        fill: $light-blue;
+      }
+    }
+  }
+}

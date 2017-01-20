@@ -1,0 +1,7 @@
+$('#contacts').append('<%= j render "layouts/filteredcontacts" %>');
+<% if @outlets.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate :renderer => WillPaginate::ActionView::LinkRenderer %>');
+<% else %>
+  $('.results').off('scroll');
+  $('.pagination').remove();
+<% end %>

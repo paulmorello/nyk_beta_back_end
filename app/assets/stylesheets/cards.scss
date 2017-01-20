@@ -1,0 +1,210 @@
+// Results width currently 1000px;
+
+.results {
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 300;
+  box-shadow: inset 2px 2px 5px $grey;
+  .hidden {
+    display: none;
+  }
+  .invisible {
+    visibility: hidden;
+  }
+  #loading {
+    height: 100px;
+    text-align: center;
+    img {
+      margin-top: 40px;
+    }
+  }
+  .card {
+    border: none;
+    margin-top: 5px !important;
+    box-shadow: 5px 5px 5px $grey;
+    input[type="checkbox"]{
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+    p {
+      display: inline-block;
+    }
+    .card-heading {
+      font-size: 0.9em;
+      font-weight: 700;
+    }
+    .name {
+      margin-top: 10px;
+      margin-right: 30px;
+      font-size: 2.2em;
+      color: black;
+    }
+    .description {
+      font-weight: 400;
+    }
+    .tag {
+      font-size: 0.9em;
+      font-weight: 300;
+      color: inherit;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-right: 2px;
+      border: solid 1px #555D64;
+      border-radius: 2px;
+    }
+    .social-icon {
+      display: inline-block;
+      float: left;
+      margin-right: 15px;
+    }
+    .social-link {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 1.1em;
+      color: #555D64;
+    }
+    .social-wrapper {
+      margin-left: 30px;
+      margin-top: 1px;
+    }
+  }
+  .outlet-card {
+    background-color: white;
+    width: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: auto;
+    margin-top: 15px !important;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    &:hover {
+      -moz-transform: scale(1.015);
+      -webkit-transform: scale(1.015);
+      transform: scale(1.015);
+    }
+    .outlet-card-top {
+      height: 60px;
+      // border: solid black 1px;
+    }
+    .outlet-card-bottom {
+      height: 145px;
+      // border: solid black 1px;
+    }
+  }
+  .writer-card {
+    width: 96%;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: auto;
+    background-color: white;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    &:hover {
+      -moz-transform: scale(1.02);
+      -webkit-transform: scale(1.02);
+      transform: scale(1.02);
+    }
+    .writer-card-top {
+      height: 60px;
+      overflow: hidden;
+      // border: solid black 1px;
+      .position {
+        font-size: 1.2em;
+
+      }
+      .writer-name-col {
+        // border: solid 1px red;
+        height: 100%;
+        float: left;
+        width: 500px;
+      }
+      .writer-first-email-col {
+        // border: solid 1px red;
+        height: 100%;
+        float: left;
+        width: 195px;
+        p {
+          margin-top: 25px;
+        }
+      }
+      .writer-second-email-col {
+        // border: solid 1px red;
+        height: 100%;
+        float: left;
+        width: 190px;
+        p {
+          margin-top: 25px;
+        }
+        .key-contact-star {
+          margin-top: 15px;
+        }
+      }
+    }
+    .writer-card-bottom {
+      height: 145px;
+      overflow: hidden;
+      // border: solid black 1px;
+    }
+  }
+
+  .contact-info {
+    // border: solid black 1px;
+    height: 100%;
+    width: 35%;
+    float: left;
+  }
+  .social-info {
+    // border: solid black 1px;
+    height: 100%;
+    width: 19%;
+    float: left;
+  }
+  .genres, .presstypes {
+    // border: solid black 1px;
+    height: 100%;
+    width: 21%;
+    float: left;
+    padding: 0 8px;
+  }
+  .row1, .row2, .row3, .row4{
+    height: 25%;
+    // border: solid 1px red;
+  }
+  .heading-col {
+    // border: solid black 1px;
+    height: 100%;
+    width: 25%;
+    float: left;
+  }
+  .left-gutter {
+    // border: solid black 1px;
+    height: 100%;
+    width: 4%;
+    float: left;
+    .card-checkbox {
+      margin-top: 15px;
+      margin-left: 5px;
+    }
+    .thumbs-up, .thumbs-down {
+      fill: $grey;
+      &:hover {
+        fill: $light-blue;
+      }
+    }
+    .flag-contact{
+      margin-left: 2px;
+      margin-top: 25px;
+      fill: $grey;
+      &:hover {
+        fill: $light-blue;
+      }
+    }
+    .selected {
+      fill: $blue;
+    }
+  }
+
+}
