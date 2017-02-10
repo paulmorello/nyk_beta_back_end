@@ -247,7 +247,7 @@ class OutletsController < ApplicationController
       outlets = $redis.get('outlets')
       if outlets.nil?
         puts 'nil'
-        outlets = Outlet.where(inactive: false).includes(:jobs).order(:updated_at).limit(5)
+        outlets = Outlet.where(inactive: false).includes(:jobs).order(:updated_at)
         $redis.set('outlets', JSON.generate(outlets.as_json))
         $redis.expire('outlets', 30.seconds.to_i)
       else
