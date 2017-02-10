@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170106232214) do
+ActiveRecord::Schema.define(version: 20170209233613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 20170106232214) do
     t.string   "email_work"
     t.string   "position"
     t.string   "outlet_profile"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.boolean  "key_contact"
+    t.string   "secondary_email_work"
+    t.string   "notes"
     t.index ["outlet_id"], name: "index_jobs_on_outlet_id", using: :btree
     t.index ["writer_id"], name: "index_jobs_on_writer_id", using: :btree
   end
@@ -81,6 +83,8 @@ ActiveRecord::Schema.define(version: 20170106232214) do
     t.string   "description"
     t.string   "staff_list"
     t.integer  "user_id"
+    t.string   "second_email"
+    t.string   "third_email"
     t.index ["country_id"], name: "index_outlets_on_country_id", using: :btree
     t.index ["user_id"], name: "index_outlets_on_user_id", using: :btree
   end
@@ -157,6 +161,7 @@ ActiveRecord::Schema.define(version: 20170106232214) do
     t.integer  "user_id"
     t.string   "email_personal"
     t.string   "twitter_followers"
+    t.string   "personal_website"
     t.index ["country_id"], name: "index_writers_on_country_id", using: :btree
     t.index ["user_id"], name: "index_writers_on_user_id", using: :btree
   end
