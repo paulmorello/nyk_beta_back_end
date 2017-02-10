@@ -10,7 +10,8 @@ class OutletsController < ApplicationController
   def index  # Essentially the main page of the application proper. This is the discover page.
     #@outlets = Outlet.where(inactive: false).order(:name).paginate(page: params[:page], per_page: 20)
     fetch_outlets
-    render json: @outlets
+    byebug
+    render json: @new_outlets
   end
 
   # GET /outlets/1
@@ -73,7 +74,7 @@ class OutletsController < ApplicationController
   end
 
   def filter
-    filters = params
+    filters = params["filters"]
     if filters["genre_id"]
       filters["genre_id"].delete("")
     end
@@ -81,13 +82,14 @@ class OutletsController < ApplicationController
       filters["presstype_id"].delete("")
     end
     @outlets = Outlet.where(inactive: false).order(:name)
-    if filters["hype_m"] === "1"
+    if filters["hype_m"] == true
       @outlets = @outlets.where(hype_m: true)
     end
-    if filters["submithub"] === "1"
+    if filters["submithub"] == true
       @outlets = @outlets.where(submithub: true)
     end
-    if filters["country_id"] != nil
+    if filters["country_id"].nil? == false
+      filters["country_id"] = Country.find_by(name: filters["country_id"]).id
       o_arr = []
       @outlets.each do |outlet|
         if outlet.country_id.to_s == filters["country_id"] || outlet.writers.where(country_id: filters["country_id"]).present?
@@ -96,7 +98,7 @@ class OutletsController < ApplicationController
       end
       @outlets = @outlets.where(id: o_arr)
     end
-    if filters["state"] != nil
+    if filters["state"].nil? == false
       o_arr = []
       @outlets.each do |outlet|
         if outlet.state.to_s.downcase.include?(filters["state"].downcase) || outlet.writers.where("state ILIKE ?", "%#{filters["state"]}%").present?
@@ -105,7 +107,7 @@ class OutletsController < ApplicationController
       end
       @outlets = @outlets.where(id: o_arr)
     end
-    if filters["city"] != nil
+    if filters["city"].nil? == false
       o_arr = []
       @outlets.each do |outlet|
         if outlet.city.to_s.downcase.include?(filters["city"].downcase) || outlet.writers.where("city ILIKE ?", "%#{filters["city"]}%").present?
@@ -115,9 +117,11 @@ class OutletsController < ApplicationController
       @outlets = @outlets.where(id: o_arr)
     end
     if filters["presstype_id"].present?
-      @outlets = @outlets.joins(jobs: :presstype_tags).where(presstype_tags: {presstype_id: filters["presstype_id"].to_i}).distinct
+      filters["presstype_id"] = Presstype.find_by(name: filters["presstype_id"]).id
+      @outlets = @outlets.joins(jobs: :presstype_tags).where(presstype_tags: {presstype_id: filters["presstype_id"]}).distinct
     end
     if filters["genre_id"].present?
+      filters["genre_id"] = Genre.find_by(name: filters["genre_id"]).id
       g_ids_plus_all = [filters["genre_id"]]
       g_ids_plus_all.push("19") unless g_ids_plus_all.include?("19")
       @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
@@ -132,22 +136,26 @@ class OutletsController < ApplicationController
   # POST /outlets
   # POST /outlets.json
   def create
+    byebug
     @outlet = Outlet.new(outlet_params)
-    respond_to do |format|
+    # respond_to do |format|
       if @outlet.save
-        format.html { redirect_to outlets_path, notice: 'Outlet was successfully created.' }
+        # format.html { redirect_to outlets_path, notice: 'Outlet was successfully created.' }
+        render json: {status:"Successfully added!", outlet: @outlet}
       else
-        format.html { render :new }
-        format.json { render json: @outlet.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @outlet.errors, status: :unprocessable_entity }
+        render json: {status:"Couldn't add outlet", outlet: @outlet}
       end
-    end
+    # end
   end
 
   # PATCH/PUT /outlets/1
   # PATCH/PUT /outlets/1.json
   def update
+    @outlet = Outlet.find_by(id: params[:outlet][:id])
 
-    respond_to do |format|
+    # respond_to do |format|
       # twitter follower test
       if @outlet.twitter.present?
         credentials = Base64.encode64("#{TWITTER_ID}:#{TWITTER_SECRET}").gsub("\n", '')
@@ -198,13 +206,20 @@ class OutletsController < ApplicationController
         end
       end
 
+      Rails.logger.info(@outlet.errors.inspect)
+
+
       if @outlet.update(outlet_params)
-        format.html { redirect_to edit_outlet_path(@outlet), notice: 'Outlet was successfully updated.' }
+        byebug
+
+        # format.html { redirect_to edit_outlet_path(@outlet), notice: 'Outlet was successfully updated.' }
+        render json: {status:"Update successful", outlet: @outlet}
       else
-        format.html { render :edit }
-        format.json { render json: @outlet.errors, status: :unprocessable_entity }
+        # format.html { render :edit }
+        # format.json { render json: @outlet.errors, status: :unprocessable_entity }
+        render json: {status:"Update unsuccessful", outlet: @outlet}
       end
-    end
+    # end
   end
 
   # DELETE /outlets/1
@@ -226,21 +241,21 @@ class OutletsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def outlet_params
-      params.require(:outlet).permit(:name,:website,:email,:staff_list, :description, :city,:state,:country_id,:twitter,:facebook,:instagram,:linkedin,:hype_m,:submithub, :notes, :user_id)
+      params.require(:outlet).permit(:id, :name,:website,:email,:staff_list, :description, :city,:state,:country_id, :twitter, :facebook, :instagram, :linkedin, :twitter_followers, :facebook_likes, :instagram_followers, :hype_m, :submithub, :flagged, :inactive, :notes, :user_id)
     end
 
     def fetch_outlets
       outlets = $redis.get('outlets')
       if outlets.nil?
         puts 'nil'
-        outlets = Outlet.where(inactive: false).includes(:jobs).limit(10)
+        outlets = Outlet.where(inactive: false).includes(:jobs).order(:updated_at).limit(5)
         $redis.set('outlets', JSON.generate(outlets.as_json))
         $redis.expire('outlets', 30.seconds.to_i)
       else
         puts 'redis'
         outlets = JSON.parse(outlets)
       end
-      @outlets = outlets
+      format_country_id(outlets)
     end
 
     def fetch_outlet

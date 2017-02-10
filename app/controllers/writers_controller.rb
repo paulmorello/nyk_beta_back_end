@@ -31,11 +31,16 @@ class WritersController < ApplicationController
           {
             outlet: j.outlet.name,
             position: j.position,
+            email_work: j.email_work,
+            outlet_profile: j.outlet_profile,
+            key_contact: j.key_contact,
             presstypes: p_types
           }
         )
       end
     end
+    # ReStrucWriter = Struct.new(:id, :f_name, :l_name, :city, :state, :country_id, :twitter, :linkedin, :freelance, :flagged, :inactive, :notes, :created_at, :updated_at, :user_id, :email_personal, :twitter_followers)
+
     @writer = ReStrucWriter.new(writer[0].id, writer[0].f_name, writer[0].l_name, writer[0].city, writer[0].state, writer[0].country_id, writer[0].twitter, writer[0].linkedin, writer[0].freelance, writer[0].flagged, writer[0].inactive, writer[0].notes, writer[0].created_at, writer[0].updated_at, writer[0].user_id, writer[0].email_personal, writer[0].twitter_followers).to_h
     @writer[:genres] = genres
     @writer[:outlets] = outlets
@@ -55,16 +60,19 @@ class WritersController < ApplicationController
   # POST /writers
   # POST /writers.json
   def create
-    @writer = Writer.new(writer_params)
+    @writer = Writer.create(writer_params)
 
-    respond_to do |format|
+    # respond_to do |format|
       if @writer.save
-        format.html { redirect_to outlets_path, notice: 'Writer was successfully created.' }
+        # TODO: recreate the writer_params?
+        # TODO: build out a way to creat Jobs, etc. first?
+        # format.html { redirect_to outlets_path, notice: 'Writer was successfully created.' }
+        render json: { notice: 'Writer was successfully created.'}
       else
-        format.html { render :new }
-        format.json { render json: @writer.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        render json: { errors: @writer.errors, status: :unprocessable_entity }
       end
-    end
+    # end
   end
 
   # PATCH/PUT /writers/1
@@ -127,6 +135,13 @@ class WritersController < ApplicationController
     end
   end
 
+  def flag
+    byebug
+    flag = params[:flag]
+    FlagMailer.flag_email(flag).deliver
+    render json: {notice: 'Writer was successfully flagged'}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_writer
@@ -139,6 +154,8 @@ class WritersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def writer_params
-      params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id, genre_tags_attributes: [:id, :genre_id, :_destroy], jobs_attributes: [:id, :outlet_id, :email_work, :position, :outlet_profile, :key_contact, :_destroy, presstype_tags_attributes: [:id, :presstype_id, :_destroy]])
+      params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id, jobs_attributes: [:id, :outlet_id, :email_work, :position, :outlet_profile, :key_contact, :_destroy, presstype_tags_attributes: [:id, :presstype_id, :_destroy]], genre_tags_attributes: [:id, :writer_id, :genre_id, :_destroy])
     end
 end
+
+# }

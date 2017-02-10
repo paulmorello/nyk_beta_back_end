@@ -1,0 +1,12 @@
+id,writer_id,outlet_id,email_work,secondary_email_work,position,outlet_profile,key_contact,notes
+1,1,2,jimmy@allthegreatestmusic.com,,Co-Founder,N/A,,
+2,2,2,chet@allthegreatestmusic.com,,Co-Founder,http://www.adhoc.fm/author/112/,,
+3,3,2,john@allthegreatestmusic.com,,Co-Founder,,,
+4,4,2,samantha@allthegreatestmusic.com,,Contributor,,TRUE,
+5,5,2,tim@allthegreatestmusic.com,,Contributor,,,
+6,6,2,bert@allthegreatestmusic.com,,Contributor,,,
+7,7,2,kurt@allthegreatestmusic.com,,Contributor,,,
+8,8,2,joe@allthegreatestmusic.com,,Contributor,,,
+9,9,2,fay@allthegreatestmusic.com,,Contributor,,,
+10,10,2,paula@allthegreatestmusic.com,,Contributor,,,
+11,4,4,samthat@gmail.com,,Freelance,,,

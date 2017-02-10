@@ -14,11 +14,11 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "localhost:3000",
+    domain: "localhost:5000",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["GMAIL_ACCOUNT"],
-    password: ENV["GMAIL_PASSWORD"]
+    password: ENV["GOOGLE_PASS"]
   }
 
   # Default URL

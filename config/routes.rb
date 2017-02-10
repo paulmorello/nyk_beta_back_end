@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :writers do
     collection do
       delete 'delete_job/:id', action: :delete_job, controller: 'writers'
+      post 'flag/:id', action: :flag, controller: 'writers'
     end
   end
   resources :outlets do

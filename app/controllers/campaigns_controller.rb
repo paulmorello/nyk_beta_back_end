@@ -6,7 +6,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns.json
   def index
     @campaigns = Campaign.where(user_id: params[:user_id])
-    @new_campaign = Campaign.new
+    # @new_campaign = Campaign.new
     render json: @campaigns
   end
 

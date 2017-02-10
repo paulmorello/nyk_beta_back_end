@@ -1,10 +1,33 @@
 module OutletsHelper
   ReStrucOutlet = Struct.new(:id, :name, :website, :email, :city, :state, :country_id, :twitter, :facebook, :instagram, :linkedin, :twitter_followers, :facebook_likes, :instagram_followers, :hype_m, :submithub, :flagged, :inactive, :notes, :created_at, :updated_at, :description, :staff_list, :user_id)
 
+  def format_country_id(outlets)
+    new_outlets = []
+    outlets.each do |outlet|
+      new_country = Country.find_by(id: outlet["country_id"]).name
+      @outlet = ReStrucOutlet.new(outlet["id"], outlet["name"], outlet["website"], outlet["email"],
+        outlet["city"], outlet["state"],
+        outlet["country_id"], outlet["twitter"], outlet["facebook"],
+        outlet["instagram"], outlet["linkedin"], outlet["twitter_followers"],
+        outlet["facebook_likes"], outlet["instagram_followers"], outlet["hype_m"],
+        outlet["submithub"], outlet["flagged"],
+        outlet["inactive"], outlet["notes"],
+        outlet["created_at"], outlet["updated_at"],
+        outlet["description"], outlet["staff_list"], outlet["user_id"]).to_h
+      @outlet[:country_id] = new_country
+      new_outlets.push(@outlet)
+    end
+    @new_outlets = new_outlets
+  end
+
+
+
+
   def reshape_data(outlet)
     outlet.each do |outlet|
-      exported_outlet = ReStrucOutlet.new(outlet.id, outlet.name, outlet.website, outlet.city, outlet.state, outlet.country_id, outlet.twitter, outlet.facebook, outlet.instagram, outlet.linkedin, outlet.twitter_followers, outlet.facebook_likes, outlet.instagram_followers, outlet.hype_m, outlet.submithub, outlet.flagged, outlet.inactive, outlet.notes, outlet.created_at, outlet.updated_at, outlet.description, outlet.staff_list, outlet.user_id)
+      exported_outlet = ReStrucOutlet.new(outlet.id, outlet.name, outlet.website, outlet.email, outlet.city, outlet.state, outlet.country_id, outlet.twitter, outlet.facebook, outlet.instagram, outlet.linkedin, outlet.twitter_followers, outlet.facebook_likes, outlet.instagram_followers, outlet.hype_m, outlet.submithub, outlet.flagged, outlet.inactive, outlet.notes, outlet.created_at, outlet.updated_at, outlet.description, outlet.staff_list, outlet.user_id)
       @exported_outlet = exported_outlet.to_h
+      @exported_outlet[:country_id] = Country.find_by(id: exported_outlet.country_id).name
       @exported_outlet[:jobs] = []
       @exported_outlet[:genres] = []
       @exported_outlet[:presstypes] = []
@@ -39,5 +62,3 @@ module OutletsHelper
     @exported_outlet
   end
 end
-
-# Genre.where(id: outlet[0].jobs[0].writer.genre_tags[0].genre_id)[0].name
