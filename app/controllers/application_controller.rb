@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :null_session
 
   include DeviseTokenAuth::Concerns::SetUserByToken
 
   # prepend_before_action :require_no_authentication, :only => [:create]
-  before_action :authenticate_user!, except: [:new, :create]
+  # before_action :authenticate_user!, except: [:new, :create]
   # before_action :set_countries
   # before_action :set_thumb
 
