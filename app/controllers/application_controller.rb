@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
 
   # prepend_before_action :require_no_authentication, :only => [:create]
-  # before_action :authenticate_user!, except: [:new, :create]
+  before_action :authenticate_user!, except: [:new, :create]
   # before_action :set_countries
   # before_action :set_thumb
 
