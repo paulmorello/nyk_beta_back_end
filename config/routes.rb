@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     collection do
       post 'flag', action: :flag, controller: 'campaigns'
       post 'copy', action: :copy, controller: 'campaigns'
+      put  'update_note/:id', action: :update_note, controller: 'campaigns'
     end
   end
   resources :writers do
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   end
   resources :saved_jobs, only: [:create, :update] do
     collection do
+      # post '', action: :create, controller: 'saved_jobs'
       delete '', action: :destroy, controller: 'saved_jobs'
     end
   end

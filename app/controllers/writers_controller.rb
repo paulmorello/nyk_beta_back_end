@@ -1,4 +1,5 @@
 class WritersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_writer, only: [:show, :edit, :update, :destroy]
   # before_action :set_job, only: [:delete_job]
   # before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
@@ -136,7 +137,6 @@ class WritersController < ApplicationController
   end
 
   def flag
-    byebug
     flag = params[:flag]
     FlagMailer.flag_email(flag).deliver
     render json: {notice: 'Writer was successfully flagged'}

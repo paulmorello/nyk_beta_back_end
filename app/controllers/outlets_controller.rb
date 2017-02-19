@@ -135,7 +135,6 @@ class OutletsController < ApplicationController
   # POST /outlets
   # POST /outlets.json
   def create
-    byebug
     @outlet = Outlet.new(outlet_params)
     # respond_to do |format|
       if @outlet.save
@@ -209,7 +208,6 @@ class OutletsController < ApplicationController
 
 
       if @outlet.update(outlet_params)
-        byebug
 
         # format.html { redirect_to edit_outlet_path(@outlet), notice: 'Outlet was successfully updated.' }
         render json: {status:"Update successful", outlet: @outlet}

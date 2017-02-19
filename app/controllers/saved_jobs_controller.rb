@@ -1,4 +1,5 @@
 class SavedJobsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_saved_job, only: [:update]
   respond_to :html, :xml, :json
 
@@ -9,7 +10,7 @@ class SavedJobsController < ApplicationController
     job_ids = params[:saved_job][:job_ids].split(",")
     job_ids.each do |id|
       unless SavedJob.where(campaign_id: campaign_id, job_id: id).present?
-        SavedJob.create(campaign_id: campaign_id, job_id: id, response: "none")
+        SavedJob.create(campaign_id: campaign_id, job_id: id, response: "")
       end
     end
   end
@@ -18,7 +19,12 @@ class SavedJobsController < ApplicationController
   # PATCH/PUT /saved_jobs/1.json
   def update
     response = params[:saved_job][:response]
-    @saved_job.update(response: response, response_updated_at: Time.now)
+    follow_up = params[:saved_job][:follow_up]
+    if response
+      @saved_job.update(response: "Yes", response_updated_at: DateTime.now)
+    elsif follow_up
+      @saved_job.update(followed_up: "Yes", response_updated_at: DateTime.now)
+    end
   end
 
   # DELETE /saved_jobs

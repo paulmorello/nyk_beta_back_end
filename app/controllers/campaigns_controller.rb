@@ -1,4 +1,5 @@
 class CampaignsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   respond_to :json
 
@@ -13,11 +14,20 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
 
-  ReStrucCamp = Struct.new(:id, :name, :user_id, :created_at, :updated_at)
+  ReStrucCamp = Struct.new(
+    :id,
+    :name,
+    :user_id,
+    :created_at,
+    :updated_at,
+    :notes,
+    :artist,
+    :promotion
+    )
 
   def show
     campaign = Campaign.find_by(id: params[:id])
-    saved = SavedJob.where(campaign_id: campaign.id)
+    saved = SavedJob.where(campaign_id: campaign.id).order(created_at: :desc)
     outlet_arr = []
     job_arr = []
     saved.each do |s|
@@ -36,7 +46,17 @@ class CampaignsController < ApplicationController
         })
       end
     # TODO we need to have Outlets, Jobs, Writers, organized by Saved Jobs, which are owned by Campaigns
-    deconstructed = ReStrucCamp.new(campaign.id, campaign.name, campaign.user_id, campaign.created_at, campaign.updated_at)
+
+    deconstructed = ReStrucCamp.new(
+      campaign.id,
+      campaign.name,
+      campaign.user_id,
+      campaign.created_at,
+      campaign.updated_at,
+      campaign.notes,
+      campaign.artist,
+      campaign.promotion
+      )
     @campaign = deconstructed.to_h
     @campaign[:saved_jobs] = @jobs
     @campaign[:saved_outlets] = @outlets
@@ -69,7 +89,7 @@ class CampaignsController < ApplicationController
     if name.empty?
       name = @current_campaign.name
     end
-    @new_campaign = Campaign.new(user_id: @current_campaign.user_id, name: "#{name}")
+    @new_campaign = Campaign.new(user_id: @current_campaign.user_id, name: "#{name}", artist:@current_campaign.artist, promotion: @current_campaign.promotion, notes:@current_campaign.notes)
     @new_campaign.save
     sj_arr = []
     @current_campaign.saved_jobs.each do |sj|
@@ -79,6 +99,7 @@ class CampaignsController < ApplicationController
       nsj = SavedJob.new(campaign_id: @new_campaign.id, job_id: sj)
       nsj.save
     end
+    render json: @new_campaign
   end
 
   # PATCH/PUT /campaigns/1
@@ -93,6 +114,15 @@ class CampaignsController < ApplicationController
         format.json { render json: @campaign.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def update_note
+    id = params[:id]
+    notes = params[:campaign][:notes]
+    @campaign = Campaign.find(id)
+    @campaign.update(notes: notes)
+    render json: @campaign
   end
 
   # DELETE /campaigns/1
@@ -118,6 +148,6 @@ class CampaignsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
-      params.require(:campaign).permit(:user_id, :name)
+      params.require(:campaign).permit(:user_id, :name, :artist, :promotion)
     end
 end

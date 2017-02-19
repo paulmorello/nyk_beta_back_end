@@ -18,7 +18,7 @@ module NykApp
         origins '*'
         resource '*',
           :headers => :any,
-          :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+          :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'sign_in_count'],
           :methods => [:get, :post, :options, :delete, :put, :patch]
       end
     end

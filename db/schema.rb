@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209233613) do
+ActiveRecord::Schema.define(version: 20170218043302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20170209233613) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "notes"
+    t.string   "artist"
+    t.string   "promotion"
     t.index ["user_id"], name: "index_campaigns_on_user_id", using: :btree
   end
 
@@ -111,6 +114,7 @@ ActiveRecord::Schema.define(version: 20170209233613) do
     t.datetime "updated_at",          null: false
     t.string   "response"
     t.datetime "response_updated_at"
+    t.string   "followed_up"
     t.index ["campaign_id"], name: "index_saved_jobs_on_campaign_id", using: :btree
     t.index ["job_id"], name: "index_saved_jobs_on_job_id", using: :btree
   end
@@ -139,6 +143,7 @@ ActiveRecord::Schema.define(version: 20170209233613) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.boolean  "admin",                  default: false,   null: false
+    t.integer  "visit_count"
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
