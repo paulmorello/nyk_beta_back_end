@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   respond_to :json
 
   # GET /campaigns
@@ -128,7 +128,6 @@ class CampaignsController < ApplicationController
   # DELETE /campaigns/1
   # DELETE /campaigns/1.json
   def destroy
-    @campaigns = Campaign.where(user_id: params[:user_id])
     @campaign.destroy
     respond_to do |format|
       # format.html { redirect_to campaigns_url, notice: 'Campaign was successfully destroyed.' }
