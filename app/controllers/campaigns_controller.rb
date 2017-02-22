@@ -128,6 +128,7 @@ class CampaignsController < ApplicationController
   # DELETE /campaigns/1
   # DELETE /campaigns/1.json
   def destroy
+    @campaigns = Campaign.where(user_id: params[:user_id])
     @campaign.destroy
     respond_to do |format|
       # format.html { redirect_to campaigns_url, notice: 'Campaign was successfully destroyed.' }
