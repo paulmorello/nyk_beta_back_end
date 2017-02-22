@@ -8,7 +8,6 @@ class WelcomeMailer < ApplicationMailer
     @company_description = params["company_description"]
     @account = params["account"]
     mail(to: 'stefanhartmann@gmail.com', subject: "New User Signup: #{@name}" )
-    render json: {status: 'Signup Successfully Sent'}
   end
 
 end
