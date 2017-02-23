@@ -46,7 +46,7 @@ module OutletsHelper
           job_id: job.id,
           position: job.position,
           outlet: jobsOutlet.name,
-          key_contatact: job.key_contact,
+          key_contact: job.key_contact,
           email_work: job.email_work,
           writer: {
             f_name: jobsWriter.f_name,
