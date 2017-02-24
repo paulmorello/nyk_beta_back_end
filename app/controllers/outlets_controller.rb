@@ -3,12 +3,13 @@ class OutletsController < ApplicationController
   include OutletsHelper
   # before_action :set_outlet, only: [:show, :edit, :update, :destroy]
   # before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
-  skip_before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!
 
   # GET /outlets
   # GET /outlets.json
   def index  # Essentially the main page of the application proper. This is the discover page.
     #@outlets = Outlet.where(inactive: false).order(:name).paginate(page: params[:page], per_page: 20)
+    byebug
     fetch_outlets
     render json: @new_outlets
   end
