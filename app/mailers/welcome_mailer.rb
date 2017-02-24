@@ -10,4 +10,10 @@ class WelcomeMailer < ApplicationMailer
     mail(to: 'stefanhartmann@gmail.com', subject: "New User Signup: #{@name}" )
   end
 
+  def client_email(params)
+    @name = params["name"]
+    @client_email = params["email"]
+    mail(to: @client_email, subject: 'Welcome to NYK')
+  end
+
 end
