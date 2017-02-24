@@ -9,8 +9,11 @@ class OutletsController < ApplicationController
   # GET /outlets.json
   def index  # Essentially the main page of the application proper. This is the discover page.
     #@outlets = Outlet.where(inactive: false).order(:name).paginate(page: params[:page], per_page: 20)
-    byebug
-    fetch_outlets
+    # if params[:trial]
+
+    # else
+      fetch_outlets
+    # end
     render json: @new_outlets
   end
 
@@ -243,6 +246,20 @@ class OutletsController < ApplicationController
     end
 
     def fetch_outlets
+      outlets = $redis.get('outlets')
+      if outlets.nil?
+        puts 'nil'
+        outlets = Outlet.where(inactive: false).includes(:jobs).order(:updated_at)
+        $redis.set('outlets', JSON.generate(outlets.as_json))
+        $redis.expire('outlets', 30.seconds.to_i)
+      else
+        puts 'redis'
+        outlets = JSON.parse(outlets)
+      end
+      format_country_id(outlets)
+    end
+
+    def fetch_outlets_trials
       outlets = $redis.get('outlets')
       if outlets.nil?
         puts 'nil'
