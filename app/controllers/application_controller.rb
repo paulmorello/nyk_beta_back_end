@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   # before_action :set_countries
   # before_action :set_thumb
 
-
   private
 
   def create
@@ -19,7 +18,6 @@ class ApplicationController < ActionController::Base
     if resource.valid_password?(params[:password])
       sign_in("user", resource)
       current_user = resource
-      byebyg
       # TODO POST to http://localhost:5000/auth creates a new user -- explore why devise auto-sends a response
       # also how to go from auth to /outlets?
       # render :json => {:success => true, :auth_token => resource.authentication_token, :login=>resource.login, email:=>resource.email, :current_user=>current_user}
