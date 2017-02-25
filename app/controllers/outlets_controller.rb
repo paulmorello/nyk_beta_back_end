@@ -210,7 +210,6 @@ class OutletsController < ApplicationController
         end
       end
 
-      Rails.logger.info(@outlet.errors.inspect)
 
 
       if @outlet.update(outlet_params)
@@ -220,7 +219,7 @@ class OutletsController < ApplicationController
       else
         # format.html { render :edit }
         # format.json { render json: @outlet.errors, status: :unprocessable_entity }
-        render json: {status:"Update unsuccessful", outlet: @outlet}
+        render json: {status:"Update unsuccessful", outlet: @outlet, error: Rails.logger.info(@outlet.errors.inspect)}
       end
     # end
   end
