@@ -16,7 +16,7 @@ class WritersController < ApplicationController
   # GET /writers/1
   # GET /writers/1.json
   def show
-    writer = Writer.where(id: params[:id]).includes(:jobs)
+    writer = Writer.where(id: params[:id]).where(inactive:false).includes(:jobs)
     genres = []
     outlets = []
     writer.each do |writer|
@@ -146,7 +146,7 @@ class WritersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_writer
-      @writer = Writer.find(params[:id])
+      @writer = Writer.find(params[:id]).where(inactive:false)
     end
 
     def set_job
