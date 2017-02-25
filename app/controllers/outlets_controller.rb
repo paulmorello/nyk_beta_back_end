@@ -3,7 +3,7 @@ class OutletsController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
 
   include OutletsHelper
-  # before_action :set_outlet, only: [:show, :edit, :update, :destroy]
+  before_action :set_outlet, only: [:show, :edit, :update, :destroy]
   # before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
   before_action :authenticate_user!
 
@@ -157,7 +157,7 @@ class OutletsController < ApplicationController
   # PATCH/PUT /outlets/1
   # PATCH/PUT /outlets/1.json
   def update
-    @outlet = Outlet.find(id: params[:outlet][:id])
+    # @outlet = Outlet.find(id: params[:outlet][:id])
 
     # respond_to do |format|
       # twitter follower test
