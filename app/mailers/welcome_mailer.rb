@@ -7,13 +7,21 @@ class WelcomeMailer < ApplicationMailer
     @company_name = params["company_name"]
     @company_description = params["company_description"]
     @account = params["account"]
-    mail(to: 'stefanhartmann@gmail.com', subject: "New User Signup: #{@name}" )
+    mail(to: 'nowyouknowpr@gmail.com', subject: "New User Trial Signup: #{@name}" )
   end
 
   def client_email(params)
     @name = params["name"]
     @client_email = params["email"]
     mail(to: @client_email, subject: 'Welcome to NYK')
+  end
+
+  def scheduling_email(params)
+    @date = params["date"]
+    @notes = params["notes"]
+    @phone_number = params["phone_number"]
+    @time_range = params["time_range"]
+    mail(to: 'nowyouknowpr@gmail.com', subject: "New User Basic Signup: #{@name}" )
   end
 
 end
