@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   skip_before_action :authenticate_user!
+
   def index
     if params[:account] == 'basic'
       WelcomeMailer.scheduling_email(params).deliver
@@ -9,4 +10,5 @@ class WelcomeController < ApplicationController
     end
     render json: {status: 'Signup Successfully Sent'}
   end
+
 end
