@@ -294,7 +294,7 @@ class OutletsController < ApplicationController
         # TODO: find a way to bundle genres with this. Maybe (:includes => :genre_tags) or somethign?
         @exported_outlet = reshape_data(outlet)
         $redis.set("@exported_outlet_#{id}", JSON.generate(@exported_outlet.as_json))
-        $redis.expire("@exported_outlet_#{id}", 30.seconds.to_i)
+        $redis.expire("@exported_outlet_#{id}", 10.seconds.to_i)
       else
         puts 'redis'
         @exported_outlet = outlet
