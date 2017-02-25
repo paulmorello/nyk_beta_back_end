@@ -201,15 +201,13 @@ class OutletsController < ApplicationController
       end
 
       # insta follower test
-      if @outlet.instagram.present?
-        url = "https://www.instagram.com/web/search/topsearch/?query=#{@outlet.name}"
-        insta_response = HTTParty.get url
-        if insta_response["users"].nil? == false
-          insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
-          if insta_followers.present?
-            @outlet.update(instagram_followers: insta_followers)
-          end
-        end
+      # if @outlet.instagram.present?
+      #   url = "https://www.instagram.com/web/search/topsearch/?query=#{@outlet.name}"
+      #   insta_response = HTTParty.get url
+      #   insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
+      #   if insta_followers.present?
+      #     @outlet.update(instagram_followers: insta_followers)
+      #   end
       end
 
 
