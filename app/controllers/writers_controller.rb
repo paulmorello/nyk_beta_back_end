@@ -120,10 +120,11 @@ class WritersController < ApplicationController
   def destroy
     # @writer.destroy
     @writer.update(inactive: true)
-    respond_to do |format|
-      format.html { redirect_to outlets_url, notice: 'Writer was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render :json {notice: 'Writer was successfully destroyed.'}
+    # respond_to do |format|
+    #   format.html { redirect_to outlets_url, notice: 'Writer was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   # DELETE /writers/delete_job/1
