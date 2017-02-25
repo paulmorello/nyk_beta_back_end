@@ -229,10 +229,11 @@ class OutletsController < ApplicationController
   def destroy
     # @outlet.destroy
     @outlet.update(inactive: true)
-    respond_to do |format|
-      format.html { redirect_to outlets_url, notice: 'Outlet was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # respond_to do |format|
+      # format.html { redirect_to outlets_url, notice: 'Outlet was successfully destroyed.' }
+      # format.json { head :no_content }
+    # end
+    render json: { notice: 'Outlet was successfully destroyed.' }
   end
 
   private
