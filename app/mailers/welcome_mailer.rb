@@ -17,7 +17,6 @@ class WelcomeMailer < ApplicationMailer
   end
 
   def scheduling_email(params)
-    puts params
     @date = params["date"]
     @notes = params["notes"]
     @phone_number = params["phone_number"]
