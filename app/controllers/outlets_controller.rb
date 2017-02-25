@@ -244,7 +244,15 @@ class OutletsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def outlet_params
-      params.require(:outlet).permit(:id, :name,:website,:email,:staff_list, :description, :city,:state,:country_id, :twitter, :facebook, :instagram, :linkedin, :twitter_followers, :facebook_likes, :instagram_followers, :hype_m, :submithub, :flagged, :inactive, :notes, :user_id)
+      params.require(:outlet).permit(
+      :id, :name,:website,:email,
+      :city,:state,:country_id,
+      :twitter, :facebook, :instagram,
+      :linkedin, :twitter_followers, :facebook_likes, :instagram_followers,
+      :hype_m, :submithub, :flagged, :inactive, :notes,
+      :description, :staff_list, :user_id,
+      :second_email, :third_email
+      )
     end
 
     def fetch_outlets
