@@ -157,7 +157,7 @@ class OutletsController < ApplicationController
   # PATCH/PUT /outlets/1
   # PATCH/PUT /outlets/1.json
   def update
-    @outlet = Outlet.find_by(id: params[:outlet][:id])
+    @outlet = Outlet.find(id: params[:outlet][:id])
 
     # respond_to do |format|
       # twitter follower test
