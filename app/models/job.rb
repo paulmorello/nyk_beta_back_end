@@ -11,7 +11,7 @@ class Job < ApplicationRecord
 
   validates_uniqueness_of :outlet_id, scope: [:writer_id]
   validates :outlet_id, presence: true
-  validates :writer, presence: true
+  validates :writer, presence: true, inactive: false
   validates :email_work, presence: true
   validates :position, presence: true
 
