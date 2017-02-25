@@ -1,6 +1,6 @@
 class WritersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_writer, only: [:show, :edit, :update, :destroy]
+  before_action :set_writer, only: [:edit, :update, :destroy]
   # before_action :set_job, only: [:delete_job]
   # before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
 
@@ -40,8 +40,6 @@ class WritersController < ApplicationController
         )
       end
     end
-    # ReStrucWriter = Struct.new(:id, :f_name, :l_name, :city, :state, :country_id, :twitter, :linkedin, :freelance, :flagged, :inactive, :notes, :created_at, :updated_at, :user_id, :email_personal, :twitter_followers)
-
     @writer = ReStrucWriter.new(writer[0].id, writer[0].f_name, writer[0].l_name, writer[0].city, writer[0].state, writer[0].country_id, writer[0].twitter, writer[0].linkedin, writer[0].freelance, writer[0].flagged, writer[0].inactive, writer[0].notes, writer[0].created_at, writer[0].updated_at, writer[0].user_id, writer[0].email_personal, writer[0].twitter_followers).to_h
     @writer[:genres] = genres
     @writer[:outlets] = outlets
