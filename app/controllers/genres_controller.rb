@@ -8,7 +8,7 @@ class GenresController < ApplicationController
       puts 'nil'
       @genres = Genre.all
       $redis.set('genres', JSON.generate(@genres.as_json))
-      $redis.expire('genres', 300.seconds.to_i)
+      $redis.expire('genres', 5.seconds.to_i)
     else
       puts 'redis'
       @genres = JSON.parse(genres)
@@ -19,7 +19,7 @@ class GenresController < ApplicationController
       puts 'nil'
       @presstypes = Presstype.all
       $redis.set('presstypes', JSON.generate(@presstypes.as_json))
-      $redis.expire('presstypes', 300.seconds.to_i)
+      $redis.expire('presstypes', 5.seconds.to_i)
     else
       puts 'redis'
       @presstypes = JSON.parse(presstypes)
@@ -30,7 +30,7 @@ class GenresController < ApplicationController
       puts 'nil'
       @outlets = Outlet.where(inactive: false)
       $redis.set('outlet_names', JSON.generate(@outlets.as_json))
-      $redis.expire('outlet_names', 300.seconds.to_i)
+      $redis.expire('outlet_names', 5.seconds.to_i)
     else
       puts 'redis'
       @outlets = JSON.parse(outlets)
@@ -51,7 +51,7 @@ class GenresController < ApplicationController
       end
       @countries.sort! { |a,b| a.name.downcase <=> b.name.downcase}
       $redis.set('countries', JSON.generate(@countries.as_json))
-      $redis.expire('countries', 300.seconds.to_i)
+      $redis.expire('countries', 5.seconds.to_i)
     else
       #if it is in redis, we parse it and capture it in @countries
       puts 'redis'

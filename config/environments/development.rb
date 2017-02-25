@@ -17,8 +17,8 @@ Rails.application.configure do
     domain: "localhost:5000",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "pukeahontasco@gmail.com",
-    password: "patrol-vibrato-foretell-county"
+    user_name: ENV["GMAIL_ACCOUNT"],
+    password: ENV["GMAIL_PASSWORD"]
   }
 
   # Default URL
