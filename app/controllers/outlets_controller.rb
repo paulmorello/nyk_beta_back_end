@@ -208,7 +208,7 @@ class OutletsController < ApplicationController
       #   if insta_followers.present?
       #     @outlet.update(instagram_followers: insta_followers)
       #   end
-      end
+      # end
 
 
 
