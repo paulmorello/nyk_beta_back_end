@@ -203,7 +203,7 @@ class OutletsController < ApplicationController
       # insta follower test
       if @outlet.instagram.present?
         url = "https://www.instagram.com/web/search/topsearch/?query=#{@outlet.name}"
-        insta_response = HTTParty.get url
+        insta_response = HTTParty.get(url)
         insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
         if insta_followers.present?
           @outlet.update(instagram_followers: insta_followers)
