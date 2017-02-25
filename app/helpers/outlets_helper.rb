@@ -41,7 +41,7 @@ module OutletsHelper
             presstypes.push(Presstype.find_by(id: ptag.presstype_id).name)
         end
         jobsOutlet = Outlet.find_by(id: job.outlet_id)
-        jobsWriter = Writer.find_by(id: job.writer_id)
+        jobsWriter = Writer.where(inactive: false).find_by(id: job.writer_id)
         @exported_outlet[:jobs].push({
           job_id: job.id,
           position: job.position,
