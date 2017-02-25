@@ -261,7 +261,7 @@ class OutletsController < ApplicationController
         puts 'nil'
         outlets = Outlet.where(inactive: false).includes(:jobs).order(:updated_at)
         $redis.set('outlets', JSON.generate(outlets.as_json))
-        $redis.expire('outlets', 30.seconds.to_i)
+        $redis.expire('outlets', 5.seconds.to_i)
       else
         puts 'redis'
         outlets = JSON.parse(outlets)
@@ -275,7 +275,7 @@ class OutletsController < ApplicationController
         puts 'nil'
         outlets = Outlet.where(inactive: false).includes(:jobs).order(:updated_at)
         $redis.set('outlets', JSON.generate(outlets.as_json))
-        $redis.expire('outlets', 30.seconds.to_i)
+        $redis.expire('outlets', 5.seconds.to_i)
       else
         puts 'redis'
         outlets = JSON.parse(outlets)
