@@ -189,7 +189,7 @@ class OutletsController < ApplicationController
       # facebook follower test
       if @outlet.facebook.present?
         url = "https://graph.facebook.com/#{@outlet.facebook}?fields=fan_count&access_token=#{FACEBOOK_ID}|#{FACEBOOK_SECRET}"
-        facebook_response = HTTParty.get url
+        facebook_response = HTTParty.get(url)
         parsed_facebook_response = JSON.parse(facebook_response)
         facebook_followers = parsed_facebook_response["fan_count"].to_s
         if facebook_followers.present?
@@ -203,7 +203,8 @@ class OutletsController < ApplicationController
       # insta follower test
       if @outlet.instagram.present?
         url = "https://www.instagram.com/web/search/topsearch/?query=#{@outlet.name}"
-        insta_response = HTTParty.get(url)
+        insta_response = HTTParty.get url
+        p "this is the insta response #{insta_response}"
         insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
         if insta_followers.present?
           @outlet.update(instagram_followers: insta_followers)
