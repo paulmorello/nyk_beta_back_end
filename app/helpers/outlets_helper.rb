@@ -32,33 +32,38 @@ module OutletsHelper
       @exported_outlet[:genres] = []
       @exported_outlet[:presstypes] = []
       outlet.jobs.each do |job|
-        genres = []
-        presstypes = []
-        job.writer.genre_tags.each do |gtag|
-          genres.push(Genre.find_by(id: gtag.genre_id).name)
+        if job.writer.inactive == false
+          genres = []
+          presstypes = []
+          job.writer.genre_tags.each do |gtag|
+            genres.push(Genre.find_by(id: gtag.genre_id).name)
+          end
+          job.presstype_tags.each do |ptag|
+              presstypes.push(Presstype.find_by(id: ptag.presstype_id).name)
+          end
+          jobsOutlet = Outlet.find_by(id: job.outlet_id)
+          jobsWriter = Writer.find_by(id: job.writer_id)
+          @exported_outlet[:jobs].push({
+            job_id: job.id,
+            position: job.position,
+            outlet: jobsOutlet.name,
+            key_contact: job.key_contact,
+            email_work: job.email_work,
+            writer: {
+              f_name: jobsWriter.f_name,
+              l_name: jobsWriter.l_name,
+              email_personal: jobsWriter.email_personal,
+              writer_id: jobsWriter.id
+              }
+            })
+            @exported_outlet[:genres] = genres.uniq
+            @exported_outlet[:presstypes] = presstypes.uniq
         end
-        job.presstype_tags.each do |ptag|
-            presstypes.push(Presstype.find_by(id: ptag.presstype_id).name)
-        end
-        jobsOutlet = Outlet.find_by(id: job.outlet_id)
-        jobsWriter = Writer.find_by(id: job.writer_id)
-        @exported_outlet[:jobs].push({
-          job_id: job.id,
-          position: job.position,
-          outlet: jobsOutlet.name,
-          key_contact: job.key_contact,
-          email_work: job.email_work,
-          writer: {
-            f_name: jobsWriter.f_name,
-            l_name: jobsWriter.l_name,
-            email_personal: jobsWriter.email_personal,
-            writer_id: jobsWriter.id
-            }
-          })
-          @exported_outlet[:genres] = genres.uniq
-          @exported_outlet[:presstypes] = presstypes.uniq
       end
     end
     @exported_outlet
   end
+
+
+
 end

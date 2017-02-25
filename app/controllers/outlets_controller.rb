@@ -290,8 +290,9 @@ class OutletsController < ApplicationController
       outlet = $redis.get(outlet_redis)
       if outlet.nil?
         puts 'nil'
-        outlet = Outlet.includes(:jobs, :writers).where(id: id)
+        outlet = Outlet.where(id: id).includes(:jobs, :writers)
         # TODO: find a way to bundle genres with this. Maybe (:includes => :genre_tags) or somethign?
+        byebug
         @exported_outlet = reshape_data(outlet)
         $redis.set("@exported_outlet_#{id}", JSON.generate(@exported_outlet.as_json))
         $redis.expire("@exported_outlet_#{id}", 10.seconds.to_i)

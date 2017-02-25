@@ -1,7 +1,7 @@
 class WritersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_writer, only: [:edit, :update, :destroy]
-  # before_action :set_job, only: [:delete_job]
+  before_action :set_job, only: [:delete_job]
   # before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
 
   # GET /writers
@@ -63,8 +63,6 @@ class WritersController < ApplicationController
 
     # respond_to do |format|
       if @writer.save
-        # TODO: recreate the writer_params?
-        # TODO: build out a way to creat Jobs, etc. first?
         # format.html { redirect_to outlets_path, notice: 'Writer was successfully created.' }
         render json: { notice: 'Writer was successfully created.'}
       else
@@ -118,7 +116,7 @@ class WritersController < ApplicationController
   def destroy
     # @writer.destroy
     @writer.update(inactive: true)
-    render json: {notice: 'Writer was successfully destroyed.'}
+    render json: {notice: 'Writer was successfully destroyed.', error: Rails.logger.info(@writer.errors.inspect)}
     # respond_to do |format|
     #   format.html { redirect_to outlets_url, notice: 'Writer was successfully destroyed.' }
     #   format.json { head :no_content }
@@ -129,10 +127,11 @@ class WritersController < ApplicationController
   def delete_job
     writer_id = @job.writer_id
     @job.destroy
-    respond_to do |format|
-      format.html { redirect_to "/writers/#{writer_id}/edit", notice: 'Job was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render json: {notice: 'Writer was successfully destroyed.'}
+    # respond_to do |format|
+    #   format.html { redirect_to "/writers/#{writer_id}/edit", notice: 'Job was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   def flag
