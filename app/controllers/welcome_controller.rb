@@ -2,7 +2,7 @@ class WelcomeController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    if params[:account] == 'trial'
+    if params["account"] == 'trial'
       WelcomeMailer.welcome_email(params).deliver
       WelcomeMailer.client_email(params).deliver
     else
