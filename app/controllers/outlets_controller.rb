@@ -1,5 +1,7 @@
 
 class OutletsController < ApplicationController
+  include DeviseTokenAuth::Concerns::SetUserByToken
+
   include OutletsHelper
   # before_action :set_outlet, only: [:show, :edit, :update, :destroy]
   # before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]

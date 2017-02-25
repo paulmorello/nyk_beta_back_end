@@ -8,6 +8,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
 
+
   strip_attributes
 
   has_many :writers

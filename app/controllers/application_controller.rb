@@ -5,8 +5,12 @@ class ApplicationController < ActionController::Base
 
   # prepend_before_action :require_no_authentication, :only => [:create]
   before_action :authenticate_user!, except: [:new, :create]
+  # before_action :sign_in_count, except: [:new, :create]
+  # before_action :configure_permitted_parameters, if: :devise_controller?
+
   # before_action :set_countries
   # before_action :set_thumb
+
 
   private
 
@@ -26,8 +30,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def authenticate_user!
-  end
   # List of currently used countries
   def set_countries
     writer_arr = Writer.select("country_id").distinct.map{|c| c.country_id}
