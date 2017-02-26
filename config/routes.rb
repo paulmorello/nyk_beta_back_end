@@ -28,7 +28,11 @@ Rails.application.routes.draw do
     end
   end
   resources :genres
-
+  resources :user_details do
+    collection do
+      get 'user_deets', action: :user_deets, controller: 'user_details'
+    end
+  end
   # devise_for :users
   get 'welcome/index'
   root 'welcome#index'
