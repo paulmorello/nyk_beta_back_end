@@ -26,7 +26,7 @@ class WelcomeMailer < ApplicationMailer
     @notes = params["notes"]
     @phone_number = params["phone_number"]
     @time_range = params["time_range"]
-    mail(to: 'nowyouknowpr@gmail.com', subject: "New User Basic Signup: #{@name}" )
+    mail(to: 'stefanhartmann@gmail.com', subject: "New User Basic Signup: #{@name}" )
   end
 
 end
