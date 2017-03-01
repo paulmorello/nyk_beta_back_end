@@ -55,7 +55,7 @@ class GenresController < ApplicationController
     else
       #if it is in redis, we parse it and capture it in @countries
       puts 'redis'
-      @active_countries = JSON.parse(countries)
+      @active_countries = JSON.parse(active_countries)
     end
 
     all_countries = $redis.get('all_countries')
@@ -68,7 +68,7 @@ class GenresController < ApplicationController
     else
       #if it is in redis, we parse it and capture it in @countries
       puts 'redis'
-      @active_countries = JSON.parse(countries)
+      @active_countries = JSON.parse(all_countries)
     end
 
     render json: {genres: @genres, presstypes: @presstypes, active_countries: @active_countries, all_countries: @all_countries, outlets: @outlets}
