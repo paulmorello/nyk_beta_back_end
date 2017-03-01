@@ -36,29 +36,42 @@ class GenresController < ApplicationController
       @outlets = JSON.parse(outlets)
     end
 
-    countries = $redis.get('countries')
+    active_countries = $redis.get('active_countries')
     # if countries isn't in redis, build it below from scratch below
-    if countries.nil?
+    if active_countries.nil?
       puts 'nil'
-      @countries = []
+      @active_countries = []
       c_arr = []
       @outlets.each do |o|
         c_arr.push(o["country_id"])
       end
       c_arr.uniq!
       c_arr.each do |c_id|
-        @countries.push( Country.find_by(id: c_id))
+        @active_countries.push( Country.find_by(id: c_id))
       end
-      @countries.sort! { |a,b| a.name.downcase <=> b.name.downcase}
-      $redis.set('countries', JSON.generate(@countries.as_json))
-      $redis.expire('countries', 5.seconds.to_i)
+      @active_countries.sort! { |a,b| a.name.downcase <=> b.name.downcase}
+      $redis.set('active_countries', JSON.generate(@active_countries.as_json))
+      $redis.expire('active_countries', 5.seconds.to_i)
     else
       #if it is in redis, we parse it and capture it in @countries
       puts 'redis'
-      @countries = JSON.parse(countries)
+      @active_countries = JSON.parse(countries)
     end
 
-    render json: {genres: @genres, presstypes: @presstypes, countries: @countries, outlets: @outlets}
+    all_countries = $redis.get('all_countries')
+    # if countries isn't in redis, build it below from scratch below
+    if all_countries.nil?
+      puts 'nil'
+      @all_countries = Country.all.order(:name)
+      $redis.set('all_countries', JSON.generate(@all_countries.as_json))
+      $redis.expire('all_countries', 5.seconds.to_i)
+    else
+      #if it is in redis, we parse it and capture it in @countries
+      puts 'redis'
+      @active_countries = JSON.parse(countries)
+    end
+
+    render json: {genres: @genres, presstypes: @presstypes, active_countries: @active_countries, all_countries: @all_countries, outlets: @outlets}
   end
 
 end
