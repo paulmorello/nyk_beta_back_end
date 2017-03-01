@@ -28,7 +28,7 @@ class GenresController < ApplicationController
     outlets = $redis.get('outlet_names')
     if outlets.nil?
       puts 'nil'
-      @outlets = Outlet.where(inactive: false)
+      @outlets = Outlet.where(inactive: false).order(:name)
       $redis.set('outlet_names', JSON.generate(@outlets.as_json))
       $redis.expire('outlet_names', 5.seconds.to_i)
     else
