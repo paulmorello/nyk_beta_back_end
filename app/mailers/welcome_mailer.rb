@@ -19,11 +19,16 @@ class WelcomeMailer < ApplicationMailer
   def scheduling_email(params)
     @name = params["name"]
     @email = params["email"]
+    @email = params["email"]
     @company_name = params["company_name"]
     @company_description = params["company_description"]
     @account = params["account"]
     @date = params["date"]
-    @notes = params["notes"]
+    if params["notes"].nil? == false
+      @notes = params["notes"]
+    else
+      @notes = "Nothing to add."
+    end
     @phone_number = params["phone_number"]
     @time_range = params["time_range"]
     mail(to: 'stefanhartmann@gmail.com', subject: "New User Basic Signup: #{@name}" )
