@@ -43,7 +43,8 @@ class WritersController < ApplicationController
     @writer = ReStrucWriter.new(writer[0].id, writer[0].f_name, writer[0].l_name, writer[0].city, writer[0].state, writer[0].country_id, writer[0].twitter, writer[0].linkedin, writer[0].freelance, writer[0].flagged, writer[0].inactive, writer[0].notes, writer[0].created_at, writer[0].updated_at, writer[0].user_id, writer[0].email_personal, writer[0].twitter_followers).to_h
     @writer[:genres] = genres
     @writer[:outlets] = outlets
-    @writer[:country_id] = Country.find_by(id: @writer[:country_id]).name
+    # @writer[:country_id] = Country.find_by(id: @writer[:country_id]).name
+    @writer[:country_id] = @writer[:country_id]
     render json: @writer
   end
 
