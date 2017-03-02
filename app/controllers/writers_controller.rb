@@ -21,7 +21,7 @@ class WritersController < ApplicationController
     outlets = []
     writer.each do |writer|
       writer.genres.each do |genre|
-        genres.push(genre.name)
+        genres.push(genre)
       end
       writer.jobs.each do |j|
         p_types = []
