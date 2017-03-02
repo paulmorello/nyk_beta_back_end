@@ -75,7 +75,7 @@ class WritersController < ApplicationController
   # PATCH/PUT /writers/1
   # PATCH/PUT /writers/1.json
   def update
-    respond_to do |format|
+    # respond_to do |format|
       # twitter follower test
       if @writer.twitter.present?
         credentials = Base64.encode64("#{TWITTER_ID}:#{TWITTER_SECRET}").gsub("\n", '')
@@ -103,12 +103,12 @@ class WritersController < ApplicationController
       end
 
       if @writer.update(writer_params)
-        format.html { redirect_to edit_outlet_path(@writer), notice: 'Writer was successfully updated.' }
+        # format.html { redirect_to edit_outlet_path(@writer), notice: 'Writer was successfully updated.' }
+        render json: {writer: @writer, notice: 'Writer was successfully updated.'}
       else
-        format.html { render :edit }
-        format.json { render json: @writer.errors, status: :unprocessable_entity }
+        render json: {errors: @writer.errors, status: :unprocessable_entity }
       end
-    end
+    # end
   end
 
   # DELETE /writers/1
