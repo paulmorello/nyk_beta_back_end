@@ -106,7 +106,7 @@ class WritersController < ApplicationController
         # format.html { redirect_to edit_outlet_path(@writer), notice: 'Writer was successfully updated.' }
         render json: {writer: @writer, notice: 'Writer was successfully updated.'}
       else
-        render json: {errors: @writer.errors, status: :unprocessable_entity }
+        render json: {errors:Rails.logger.info(@writer.errors.inspect), status: :unprocessable_entity }
       end
     # end
   end
