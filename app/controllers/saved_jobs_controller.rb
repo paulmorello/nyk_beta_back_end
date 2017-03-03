@@ -1,7 +1,11 @@
 class SavedJobsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_saved_job, only: [:update]
+  before_action :set_saved_job, only: [:show, :update]
   respond_to :html, :xml, :json
+
+  # def show
+  #   render json: @saved_job
+  # end
 
   # POST /saved_jobs
   # POST /saved_jobs.json
@@ -19,12 +23,15 @@ class SavedJobsController < ApplicationController
   # PATCH/PUT /saved_jobs/1.json
   def update
     response = params[:saved_job][:response]
-    follow_up = params[:saved_job][:follow_up]
-    if response
+    followed_up = params[:saved_job][:followed_up]
+    
+    if response == "Yes"
       @saved_job.update(response: "Yes", response_updated_at: DateTime.now)
-    elsif follow_up
+    end
+    if followed_up == "Yes"
       @saved_job.update(followed_up: "Yes", response_updated_at: DateTime.now)
     end
+    render json: @saved_job
   end
 
   # DELETE /saved_jobs
