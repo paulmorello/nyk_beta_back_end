@@ -33,7 +33,7 @@ class CampaignsController < ApplicationController
             :job => {
               :include => {
                 :writer => {
-                  only: [:f_name, :l_name]
+                  only: [:id, :f_name, :l_name]
                 },
                 :outlet => {
                   only: :name
