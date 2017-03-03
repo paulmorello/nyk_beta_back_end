@@ -37,7 +37,7 @@ class SavedJobsController < ApplicationController
         SavedJob.destroy(savedjob.id)
       end
     end
-    redirect_to "/campaigns/#{@campaign_id}"
+    # redirect_to "/campaigns/#{@campaign_id}"
   end
 
   private

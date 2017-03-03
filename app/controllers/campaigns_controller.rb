@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :set_campaign, only: [:edit, :update, :destroy]
   respond_to :json
 
   # GET /campaigns
@@ -26,41 +26,77 @@ class CampaignsController < ApplicationController
     )
 
   def show
-    campaign = Campaign.find_by(id: params[:id])
-    saved = SavedJob.where(campaign_id: campaign.id).order(created_at: :desc)
-    outlet_arr = []
-    job_arr = []
-    saved.each do |s|
-      outlet_arr.push(s.job.outlet_id) unless outlet_arr.include?(s.job.outlet_id)
-      job_arr.push(s.job.id)
-    end
-    @outlets = Outlet.find(outlet_arr)
-    @jobs = []
-    jobs = Job.find(job_arr)
-    jobs.each do |j|
-      @jobs.push({
-        job: j,
-        details: j.saved_jobs[0],
-        writer: j.writer,
-        outlet: j.outlet
-        })
-      end
-    # TODO we need to have Outlets, Jobs, Writers, organized by Saved Jobs, which are owned by Campaigns
-
-    deconstructed = ReStrucCamp.new(
-      campaign.id,
-      campaign.name,
-      campaign.user_id,
-      campaign.created_at,
-      campaign.updated_at,
-      campaign.notes,
-      campaign.artist,
-      campaign.promotion
-      )
-    @campaign = deconstructed.to_h
-    @campaign[:saved_jobs] = @jobs
-    @campaign[:saved_outlets] = @outlets
+    @campaign = Campaign.where(id: 77).as_json(
+      :include => {
+        :saved_jobs => {
+          :include => {
+            :job => {
+              :include => {
+                :writer => {
+                  only: [:f_name, :l_name]
+                },
+                :outlet => {
+                  only: :name
+                }
+              }
+            }
+          }
+        }
+      }
+    )
     render json:  @campaign
+  #
+  #   campaign = Campaign.find_by(id: params[:id])
+  #   saved = SavedJob.where(campaign_id: campaign.id).order(created_at: :desc)
+  #   outlet_arr = []
+  #   job_arr = []
+  #   saved.each do |s|
+  #     outlet_arr.push(s.job.outlet_id) unless outlet_arr.include?(s.job.outlet_id)
+  #     job_arr.push(s.job.id)
+  #   end
+  #   @outlets = Outlet.find(outlet_arr)
+  #   @jobs = []
+  #   jobs = Job.find(job_arr)
+  #   jobs.each do |j|
+  #     @jobs.push({
+  #       job: j,
+  #       details: j.saved_jobs[0],
+  #       writer: j.writer,
+  #       outlet: j.outlet
+  #       })
+  #     end
+  #   # TODO we need to have Outlets, Jobs, Writers, organized by Saved Jobs, which are owned by Campaigns
+  #
+  #   deconstructed = ReStrucCamp.new(
+  #     campaign.id,
+  #     campaign.name,
+  #     campaign.user_id,
+  #     campaign.created_at,
+  #     campaign.updated_at,
+  #     campaign.notes,
+  #     campaign.artist,
+  #     campaign.promotion
+  #     )
+  #   @campaign = deconstructed.to_h
+  #   @campaign[:saved_jobs] = @jobs
+  #   @campaign[:saved_outlets] = @outlets
+  #   render json:  @campaign
+  #
+  #   campaign = Campaign.where(id: params[:id]).includes(:saved_jobs, :jobs)
+  #   saved_jobs= []
+  #   campaign[0].saved_jobs.each do |sj|
+  #     saved_jobs.push(
+  #       {
+  #         campaign_id: sj.campaign_id,
+  #         updated_at: sj.updated_at,
+  #         response: sj.response,
+  #         response_updated_at: sj.response_updated_at,
+  #         followed_up: sj.followed_up,
+  #         email_work: sj.job.email_work,
+  #         name: "#{sj.job.writer.f_name}",
+  #         outlet: sj.job.outlet.name
+  #       }
+  #     )
   end
 
 
