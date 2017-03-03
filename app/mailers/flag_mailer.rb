@@ -8,7 +8,7 @@ class FlagMailer < ApplicationMailer
     @comment = @flag["flag_comment"]
     assigned = User.find(@writer.user_id)
     @assigned = assigned.email
-    mail(to: 'stefanhartmann@gmail.com', subject: 'FLAG: '+@writer.f_name+' '+@writer.l_name+' - '+@reason)
+    mail(to: 'nowyouknowpr@gmail.com', subject: 'FLAG: '+@writer.f_name+' '+@writer.l_name+' - '+@reason)
   end
 
 end
