@@ -47,7 +47,7 @@ class WritersController < ApplicationController
     # # @writer[:country_id] = Country.find_by(id: @writer[:country_id]).name
     # @writer[:country_id] = @writer[:country_id]
 
-    @writer = Writer.where(inactive:false).where(id: 1).as_json(
+    @writer = Writer.where(inactive:false).where(id: params[:id]).as_json(
       :include => {
         :jobs => {
           :include =>
