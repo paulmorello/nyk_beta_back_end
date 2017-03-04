@@ -46,7 +46,7 @@ class WritersController < ApplicationController
     # respond_to do |format|
       if @writer.save
         # format.html { redirect_to outlets_path, notice: 'Writer was successfully created.' }
-        render json: { notice: 'Writer was successfully created.'}
+        render json: { notice: 'Writer was successfully created.', writer: @writer.as_json(:include  => {:jobs => {only: [:outlet_id]}})}
       else
         # format.html { render :new }
         render json: { errors: @writer.errors, status: :unprocessable_entity }
