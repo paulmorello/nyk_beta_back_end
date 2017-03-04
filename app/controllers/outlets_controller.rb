@@ -12,11 +12,12 @@ class OutletsController < ApplicationController
   def index  # Essentially the main page of the application proper. This is the discover page.
     #@outlets = Outlet.where(inactive: false).order(:name).paginate(page: params[:page], per_page: 20)
     if current_user.trial == true
-      outlets = Outlet.where(name: '3musicguys').or(Outlet.where(name: 'All The Greatest Music')).or(Outlet.where(name: 'Anthesis Music Blog'))
+      @new_outlets = fetch_trial_outlets
+      # outlets = Outlet.where(name: '3musicguys').or(Outlet.where(name: 'All The Greatest Music')).or(Outlet.where(name: 'Anthesis Music Blog'))
       # outlets = Outlet.where(name: 'AdHoc').or(Outlet.where(name: '2DopeBoys')).or(Outlet.where(name: 'Austin Town Hall'))
-      format_country_id(outlets)
+      # format_country_id(outlets)
     else
-      fetch_outlets
+      @new_outlets = fetch_outlets
     end
     render json: @new_outlets
   end
@@ -261,15 +262,94 @@ class OutletsController < ApplicationController
       outlets = $redis.get('outlets')
       if outlets.nil?
         puts 'nil'
-        outlets = Outlet.where(inactive: false).includes(:jobs).order(:name)
+        outlets = Outlet.where(inactive: false).order(:name).as_json(
+          :include => {
+            :jobs => {
+              :include =>
+                [:presstypes,
+                :writer => {
+                  only: [:id, :f_name, :l_name],
+                  :include => {
+                    :genres => {
+                      only: [:id, :name]
+                    }
+                  }
+                }]
+            },
+            :country => {
+              only: [:id, :name]
+            }
+          }
+        )
         $redis.set('outlets', JSON.generate(outlets.as_json))
         $redis.expire('outlets', 5.seconds.to_i)
       else
         puts 'redis'
         outlets = JSON.parse(outlets)
       end
-      format_country_id(outlets)
+      # format_country_id(outlets)
     end
+
+    def fetch_trial_outlets
+      outlets = Outlet.where(name: '3musicguys').as_json(
+        :include => {
+          :jobs => {
+            :include =>
+              [:presstypes,
+              :writer => {
+                only: [:id, :f_name, :l_name],
+                :include => {
+                  :genres => {
+                    only: [:id, :name]
+                  }
+                }
+              }]
+          },
+          :country => {
+            only: [:id, :name]
+          }
+        }
+      )
+      .or(Outlet.where(name: 'All The Greatest Music')
+      .as_json(
+        :include => {
+          :jobs => {
+            :include =>
+              [:presstypes,
+              :writer => {
+                only: [:id, :f_name, :l_name],
+                :include => {
+                  :genres => {
+                    only: [:id, :name]
+                  }
+                }
+              }]
+          },
+          :country => {
+            only: [:id, :name]
+          }
+        }
+      )).or(Outlet.where(name: 'Anthesis Music Blog').as_json(
+        :include => {
+          :jobs => {
+            :include =>
+              [:presstypes,
+              :writer => {
+                only: [:id, :f_name, :l_name],
+                :include => {
+                  :genres => {
+                    only: [:id, :name]
+                  }
+                }
+              }]
+          },
+          :country => {
+            only: [:id, :name]
+          }
+        }
+      ))
+    end
+
 
     def fetch_outlet
       puts "params: #{params[:id]}"

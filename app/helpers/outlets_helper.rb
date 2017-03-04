@@ -63,7 +63,4 @@ module OutletsHelper
     end
     @exported_outlet
   end
-
-
-
 end
