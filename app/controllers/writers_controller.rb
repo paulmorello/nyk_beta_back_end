@@ -51,7 +51,7 @@ class WritersController < ApplicationController
       :include => {
         :jobs => {
           :include =>
-            :presstypes
+            [:presstypes, :outlet]
         },
         :genres => {
           only: [:id, :name]
