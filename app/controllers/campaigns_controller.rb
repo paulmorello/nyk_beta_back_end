@@ -113,10 +113,10 @@ class CampaignsController < ApplicationController
   # DELETE /campaigns/1.json
   def destroy
     @campaign.destroy
-    respond_to do |format|
+    # respond_to do |format|
       # format.html { redirect_to campaigns_url, notice: 'Campaign was successfully destroyed.' }
-      format.json { render json: 'Campaign was successfully destroyed' }
-    end
+      render json: { notice: 'Campaign was successfully destroyed' }
+    # end
   end
 
   # POST /campaigns/flag
