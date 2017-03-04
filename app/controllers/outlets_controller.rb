@@ -259,7 +259,7 @@ class OutletsController < ApplicationController
       outlets = $redis.get('outlets')
       if outlets.nil?
         puts 'nil'
-        @outlets = Outlet.where(inactive: false).order(:name).as_json(
+        @outlets = Outlet.where(inactive: false).order("lower(name) ASC").as_json(
           :include => {
             :jobs => {
               :include =>
