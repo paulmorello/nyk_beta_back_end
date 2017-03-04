@@ -31,6 +31,7 @@ class WritersController < ApplicationController
         outlets.push(
           {
             outlet: j.outlet.name,
+            outlet_id: j.outlet.id,
             position: j.position,
             email_work: j.email_work,
             outlet_profile: j.outlet_profile,
