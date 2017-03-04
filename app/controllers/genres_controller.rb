@@ -39,7 +39,7 @@ class GenresController < ApplicationController
     active_countries = $redis.get('active_countries')
     # if countries isn't in redis, build it below from scratch below
     if active_countries.nil?
-      puts 'nil'
+      puts 'nil active countries'
       @active_countries = []
       c_arr = []
       @outlets.each do |o|
@@ -61,14 +61,14 @@ class GenresController < ApplicationController
     all_countries = $redis.get('all_countries')
     # if countries isn't in redis, build it below from scratch below
     if all_countries.nil?
-      puts 'nil'
+      puts 'nil all countries'
       @all_countries = Country.all.order(:name)
       $redis.set('all_countries', JSON.generate(@all_countries.as_json))
       $redis.expire('all_countries', 5.seconds.to_i)
     else
       #if it is in redis, we parse it and capture it in @countries
       puts 'redis'
-      @active_countries = JSON.parse(all_countries)
+      @all_countries = JSON.parse(all_countries)
     end
 
     render json: {genres: @genres, presstypes: @presstypes, active_countries: @active_countries, all_countries: @all_countries, outlets: @outlets}

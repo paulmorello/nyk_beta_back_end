@@ -11,42 +11,9 @@ class WritersController < ApplicationController
     @outlets = Outlet.where(inactive: false)
   end
 
-  ReStrucWriter = Struct.new(:id, :f_name, :l_name, :city, :state, :country_id, :twitter, :linkedin, :freelance, :flagged, :inactive, :notes, :created_at, :updated_at, :user_id, :email_personal, :twitter_followers)
-
   # GET /writers/1
   # GET /writers/1.json
   def show
-    # writer = Writer.where(inactive:false).where(id: params[:id]).includes(:jobs)
-    # genres = []
-    # outlets = []
-    # writer.each do |writer|
-    #   writer.genres.each do |genre|
-    #     genres.push(genre)
-    #   end
-    #   writer.jobs.each do |j|
-    #     p_types = []
-    #     j.presstypes.each do |pr|
-    #       p_types.push(pr.name)
-    #     end
-    #     outlets.push(
-    #       {
-    #         outlet: j.outlet.name,
-    #         outlet_id: j.outlet.id,
-    #         position: j.position,
-    #         email_work: j.email_work,
-    #         outlet_profile: j.outlet_profile,
-    #         key_contact: j.key_contact,
-    #         presstypes: p_types.uniq
-    #       }
-    #     )
-    #   end
-    # end
-    # @writer = ReStrucWriter.new(writer[0].id, writer[0].f_name, writer[0].l_name, writer[0].city, writer[0].state, writer[0].country_id, writer[0].twitter, writer[0].linkedin, writer[0].freelance, writer[0].flagged, writer[0].inactive, writer[0].notes, writer[0].created_at, writer[0].updated_at, writer[0].user_id, writer[0].email_personal, writer[0].twitter_followers).to_h
-    # @writer[:genres] = genres.uniq
-    # @writer[:outlets] = outlets
-    # # @writer[:country_id] = Country.find_by(id: @writer[:country_id]).name
-    # @writer[:country_id] = @writer[:country_id]
-
     @writer = Writer.where(inactive:false).where(id: params[:id]).as_json(
       :include => {
         :jobs => {
