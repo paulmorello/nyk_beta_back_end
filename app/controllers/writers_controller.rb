@@ -18,10 +18,26 @@ class WritersController < ApplicationController
       :include => {
         :jobs => {
           :include =>
-            [:presstypes, :outlet]
+            { :presstype_tags => {
+              only: [:id, :job_id],
+              :include => {
+                :presstype => {
+                  only: [:id, :name]
+                }
+              }
+            },
+              :outlet => {
+                except: [:updated_at]
+              }
+              }
         },
-        :genres => {
-          only: [:id, :name]
+        :genre_tags => {
+          only: [:id, :writer_id, :genre_id],
+          :include => {
+            :genre => {
+              only: [:id, :name]
+            }
+          }
         }
       }
     )
@@ -57,6 +73,8 @@ class WritersController < ApplicationController
   # PATCH/PUT /writers/1
   # PATCH/PUT /writers/1.json
   def update
+      jobs = params[:writer][:jobs_attributes]
+      genre_tags = params[:writer][:genre_tags_attributes]
     # respond_to do |format|
       # twitter follower test
       if @writer.twitter.present?
@@ -136,8 +154,12 @@ class WritersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def writer_params
-      params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id, jobs_attributes: [:id, :outlet_id, :email_work, :position, :outlet_profile, :key_contact, :_destroy, presstype_tags_attributes: [:presstype_id, :_destroy]], genre_tags_attributes: [:genre_id, :_destroy])
+      params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id, jobs_attributes: [:id, :outlet_id, :email_work, :secondary_email_work, :notes, :position, :outlet_profile, :key_contact, :_destroy, presstype_tags_attributes: [:id, :presstype_id, :job_id, :_destroy]], genre_tags_attributes: [:id, :genre_id, :writer_id, :_destroy])
     end
+
+    # def writer_update_params
+    #   params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id)
+    # end
 end
 
 # }
