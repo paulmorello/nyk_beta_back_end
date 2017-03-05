@@ -1,7 +1,7 @@
 class Job < ApplicationRecord
 
-  belongs_to :outlet
-  belongs_to :writer
+  belongs_to :outlet, optional: true
+  belongs_to :writer, optional: true
 
   has_many :presstype_tags, dependent: :destroy
   has_many :presstypes, :through => :presstype_tags
