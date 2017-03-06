@@ -87,11 +87,24 @@ class OutletsController < ApplicationController
       filters["presstype_id"].delete("")
     end
     @outlets = Outlet.where(inactive: false).order(:name)
-    if filters["hype_m"] == true
+    if filters["hype_m"] == "HypeM"
       @outlets = @outlets.where(hype_m: true)
     end
-    if filters["submithub"] == true
+    if filters["submithub"] == "Submithub Only"
       @outlets = @outlets.where(submithub: true)
+    end
+    if filters["freelance"] == "Freelance Writer"
+      o_arr = []
+      @outlets.each do |outlet|
+        outlet.writers.each do |writer|
+          if writer.freelance == true
+            writer.outlets.each do |o|
+              o_arr.push(o.id)
+            end
+          end
+        end
+      end
+      @outlets = @outlets.where(id: o_arr)
     end
     if filters["country_id"].nil? == false
       filters["country_id"] = Country.find_by(name: filters["country_id"]).id
@@ -131,8 +144,31 @@ class OutletsController < ApplicationController
       g_ids_plus_all.push("19") unless g_ids_plus_all.include?("19")
       @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
     end
+    @outlets = @outlets.as_json(
+      :include => {
+        :jobs => {
+          :include =>
+            [:presstypes,
+            :writer => {
+              only: [:id, :f_name, :l_name],
+              :include => {
+                :genres => {
+                  only: [:id, :name]
+                }
+              }
+            }]
+        },
+        :country => {
+          only: [:id, :name]
+        }
+      }
+    )
     render json: @outlets
   end
+
+  @outlets = Outlet.where(inactive: false).order("lower(name) ASC")
+
+
 
   # GET /outlets/1/edit
   def edit
