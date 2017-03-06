@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     collection do
       delete 'delete_job/:id', action: :delete_job, controller: 'writers'
       post 'flag/:id', action: :flag, controller: 'writers'
+      delete 'delete_presstype_tag/:id', action: :delete_presstype_tag, controller: 'writers'
+      delete 'delete_genre_tag/:id', action: :delete_genre_tag, controller: 'writers'
     end
   end
   resources :outlets do

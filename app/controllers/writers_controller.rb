@@ -1,6 +1,6 @@
 class WritersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_writer, only: [:edit, :update, :destroy]
+  before_action :set_writer, only: [:edit, :update, :destroy ]
   before_action :set_job, only: [:delete_job]
   # before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
 
@@ -127,13 +127,32 @@ class WritersController < ApplicationController
 
   # DELETE /writers/delete_job/1
   def delete_job
-    writer_id = @job.writer_id
+    # writer_id = @job.writer_id
+    byebug
     @job.destroy
-    render json: {notice: 'Writer was successfully destroyed.'}
+    render json: {notice: 'Job was successfully destroyed.'}
     # respond_to do |format|
     #   format.html { redirect_to "/writers/#{writer_id}/edit", notice: 'Job was successfully destroyed.' }
     #   format.json { head :no_content }
     # end
+  end
+
+  def delete_genre_tag
+    gtag = GenreTag.find(params[:id])
+    if gtag.destroy
+      render json: {notice: 'Genre Tag successfully destroyed'}
+    else
+      render json: {error: Rails.logger.info(gtag.errors.inspect), status: :unprocessable_entity}
+    end
+  end
+
+  def delete_presstype_tag
+    ptag = PresstypeTag.find(params[:id])
+    if ptag.destroy
+      render json: {notice: 'Presstype Tag successfully destroyed'}
+    else
+      render json: {error: Rails.logger.info(ptag.errors.inspect), status: :unprocessable_entity}
+    end
   end
 
   def flag
