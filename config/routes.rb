@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
   resources :genres
-  resources :user_details do
+  resources :user_details, only: [:index] do
     collection do
       get 'user_deets', action: :user_deets, controller: 'user_details'
     end
