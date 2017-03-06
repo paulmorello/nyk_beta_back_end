@@ -12,11 +12,14 @@ class SavedJobsController < ApplicationController
   def create
     campaign_id = params[:saved_job][:campaign_id]
     job_ids = params[:saved_job][:job_ids].split(",")
+    count = 0
     job_ids.each do |id|
       unless SavedJob.where(campaign_id: campaign_id, job_id: id).present?
         SavedJob.create(campaign_id: campaign_id, job_id: id, response: "")
+        count += 1
       end
     end
+    render json: {status: "Created #{count} jobs"}
   end
 
   # PATCH/PUT /saved_jobs/1
@@ -24,7 +27,7 @@ class SavedJobsController < ApplicationController
   def update
     response = params[:saved_job][:response]
     followed_up = params[:saved_job][:followed_up]
-    
+
     if response == "Yes"
       @saved_job.update(response: "Yes", response_updated_at: DateTime.now)
     end
