@@ -323,7 +323,7 @@ class OutletsController < ApplicationController
     end
 
     def fetch_trial_outlets
-      @outlets = Outlet.where(name: '3musicguys').as_json(
+      @outlets = Outlet.where(name: '3musicguys').or(Outlet.where(name: 'All The Greatest Music')).or(Outlet.where(name: 'Anthesis Music Blog')).as_json(
         :include => {
           :jobs => {
             :include =>
@@ -342,44 +342,6 @@ class OutletsController < ApplicationController
           }
         }
       )
-      .or(Outlet.where(name: 'All The Greatest Music')
-      .as_json(
-        :include => {
-          :jobs => {
-            :include =>
-              [:presstypes,
-              :writer => {
-                only: [:id, :f_name, :l_name],
-                :include => {
-                  :genres => {
-                    only: [:id, :name]
-                  }
-                }
-              }]
-          },
-          :country => {
-            only: [:id, :name]
-          }
-        }
-      )).or(Outlet.where(name: 'Anthesis Music Blog').as_json(
-        :include => {
-          :jobs => {
-            :include =>
-              [:presstypes,
-              :writer => {
-                only: [:id, :f_name, :l_name],
-                :include => {
-                  :genres => {
-                    only: [:id, :name]
-                  }
-                }
-              }]
-          },
-          :country => {
-            only: [:id, :name]
-          }
-        }
-      ))
     end
 
 
