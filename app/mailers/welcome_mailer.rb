@@ -7,7 +7,7 @@ class WelcomeMailer < ApplicationMailer
     @company_name = params["company_name"]
     @company_description = params["company_description"]
     @account = params["account"]
-    mail(to: 'stefanhartmann@gmail.com', subject: "New User Trial Signup: #{@name}" )
+    mail(to: 'nowyouknowpr@gmail.com', subject: "New User Trial Signup: #{@name}" )
   end
 
   def client_email(params)
@@ -31,13 +31,13 @@ class WelcomeMailer < ApplicationMailer
     end
     @phone_number = params["phone_number"]
     @time_range = params["time_range"]
-    mail(to: 'stefanhartmann@gmail.com', subject: "New User Basic Signup: #{@name}" )
+    mail(to: 'nowyouknowpr@gmail.com', subject: "New User Basic Signup: #{@name}" )
   end
 
   def mailing_list(params)
     @email = params["email"]
     @name = params["name"]
-    mail(to: 'stefanhartmann@gmail.com', subject: "New Mailing List Signup: #{@name}")
+    mail(to: 'nowyouknowpr@gmail.com', subject: "New Mailing List Signup: #{@name}")
   end
 
 end
