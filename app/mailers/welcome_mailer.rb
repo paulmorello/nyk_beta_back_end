@@ -24,7 +24,7 @@ class WelcomeMailer < ApplicationMailer
     @company_description = params["company_description"]
     @account = params["account"]
     @date = params["date"]
-    if params["notes"] == nil
+    if params["notes"].nil? == false
       @notes = params["notes"]
     else
       @notes = "Nothing to add."
