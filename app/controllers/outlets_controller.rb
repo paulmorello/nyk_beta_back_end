@@ -358,7 +358,7 @@ class OutletsController < ApplicationController
               :include =>
                 [:presstypes,
                 :writer => {
-                  only: [:id, :f_name, :l_name],
+                  only: [:id, :f_name, :l_name, :email_personal ],
                   :include => {
                     :genres => {
                       only: [:id, :name]
