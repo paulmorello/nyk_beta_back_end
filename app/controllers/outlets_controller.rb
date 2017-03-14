@@ -358,7 +358,7 @@ class OutletsController < ApplicationController
               :include =>
                 [:presstypes,
                 :writer => {
-                  only: [:id, :f_name, :l_name, :email_personal ],
+                  only: [:id, :f_name, :l_name, :email_personal, :inactive ],
                   :include => {
                     :genres => {
                       only: [:id, :name]
@@ -371,6 +371,12 @@ class OutletsController < ApplicationController
             }
           }
         )
+        outlet = outlet[0]
+        outlet["jobs"].each do |j|
+          if j["writer"]["inactive"] == true
+            outlet["jobs"].delete(j)
+          end
+        end
         $redis.set("outlet_#{id}", JSON.generate(outlet.as_json))
         $redis.expire("outlet_#{id}", 10.seconds.to_i)
       else
