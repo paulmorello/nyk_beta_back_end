@@ -23,7 +23,7 @@ class OutletsController < ApplicationController
   # GET /outlets/1.json
   def show
     fetch_outlet
-    render json: @exported_outlet
+    render json: @outlet
   end
 
   # GET /outlets/new
@@ -348,18 +348,34 @@ class OutletsController < ApplicationController
     def fetch_outlet
       puts "params: #{params[:id]}"
       id = params[:id]
-      outlet_redis = "@exported_outlet_#{id}"
-      outlet = $redis.get(outlet_redis)
+      outlet_w_id = "outlet_#{id}"
+      outlet = $redis.get(outlet_w_id)
       if outlet.nil?
         puts 'nil'
-        outlet = Outlet.where(inactive: false, id: id).includes(:jobs, :writers)
-        # TODO: find a way to bundle genres with this. Maybe (:includes => :genre_tags) or somethign?
-        @exported_outlet = reshape_data(outlet)
-        $redis.set("@exported_outlet_#{id}", JSON.generate(@exported_outlet.as_json))
-        $redis.expire("@exported_outlet_#{id}", 10.seconds.to_i)
+        outlet = Outlet.where(inactive: false, id: id).as_json(
+          :include => {
+            :jobs => {
+              :include =>
+                [:presstypes,
+                :writer => {
+                  only: [:id, :f_name, :l_name],
+                  :include => {
+                    :genres => {
+                      only: [:id, :name]
+                    }
+                  }
+                }]
+            },
+            :country => {
+              only: [:id, :name]
+            }
+          }
+        )
+        $redis.set("outlet_#{id}", JSON.generate(outlet.as_json))
+        $redis.expire("outlet_#{id}", 10.seconds.to_i)
       else
         puts 'redis'
-        @exported_outlet = outlet
+        @outlet = outlet
       end
     end
 
