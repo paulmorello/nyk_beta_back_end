@@ -40,7 +40,8 @@ class CampaignsController < ApplicationController
                 }
               }
             }
-          }
+          },
+          :order =>  :created_at
         }
       }
     )
