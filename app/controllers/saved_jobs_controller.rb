@@ -30,9 +30,13 @@ class SavedJobsController < ApplicationController
 
     if response == "Yes"
       @saved_job.update(response: "Yes", response_updated_at: DateTime.now)
+    elsif response == nil
+      @saved_job.update(response: nil, response_updated_at: nil)
     end
     if followed_up == "Yes"
       @saved_job.update(followed_up: "Yes", response_updated_at: DateTime.now)
+    elsif followed_up == nil
+      @saved_job.update(followed_up: nil, response_updated_at: nil)
     end
     render json: @saved_job
   end
