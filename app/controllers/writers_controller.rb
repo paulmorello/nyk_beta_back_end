@@ -128,7 +128,6 @@ class WritersController < ApplicationController
   # DELETE /writers/delete_job/1
   def delete_job
     # writer_id = @job.writer_id
-    byebug
     @job.destroy
     render json: {notice: 'Job was successfully destroyed.'}
     # respond_to do |format|
