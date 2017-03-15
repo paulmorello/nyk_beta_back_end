@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post 'flag', action: :flag, controller: 'campaigns'
       post 'copy', action: :copy, controller: 'campaigns'
       put  'update_note/:id', action: :update_note, controller: 'campaigns'
+      patch 'update/:id', action: :update, controller: 'campaigns'
     end
   end
   resources :writers do

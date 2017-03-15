@@ -78,15 +78,17 @@ class CampaignsController < ApplicationController
   # PATCH/PUT /campaigns/1
   # PATCH/PUT /campaigns/1.json
   def update
-    respond_to do |format|
+    # respond_to do |format|
       if @campaign.update(campaign_params)
-        format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
-        format.json { render :show, status: :ok, location: @campaign }
+        render json: {campaign: @campaign, notice: 'Campaign was successfully updated.'}
+        # format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @campaign }
       else
-        format.html { render :edit }
-        format.json { render json: @campaign.errors, status: :unprocessable_entity }
+        render json: { errors:@campaign.errors, status: :unprocessable_entity }
+        # format.html { render :edit }
+        # format.json { render json: @campaign.errors, status: :unprocessable_entity }
       end
-    end
+    # end
   end
 
 
