@@ -25,8 +25,10 @@ class SavedJobsController < ApplicationController
   # PATCH/PUT /saved_jobs/1
   # PATCH/PUT /saved_jobs/1.json
   def update
+    byebug
     response = params[:saved_job][:response]
     followed_up = params[:saved_job][:followed_up]
+    response_updated_at = params[:saved_job][:response_updated_at]
 
     if response == "Yes"
       @saved_job.update(response: "Yes", response_updated_at: DateTime.now)
@@ -37,6 +39,11 @@ class SavedJobsController < ApplicationController
       @saved_job.update(followed_up: "Yes", response_updated_at: DateTime.now)
     elsif followed_up == nil
       @saved_job.update(followed_up: nil, response_updated_at: nil)
+    end
+    if response_updated_at != nil
+      @saved_job.update(response_updated_at: response_updated_at)
+    else
+      @saved_job.update(response_updated_at: nil)
     end
     render json: @saved_job
   end
