@@ -14,17 +14,6 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
 
-  ReStrucCamp = Struct.new(
-    :id,
-    :name,
-    :user_id,
-    :created_at,
-    :updated_at,
-    :notes,
-    :artist,
-    :promotion
-    )
-
   def show
     @campaign = Campaign.where(id: params[:id]).as_json(
       :include => {
@@ -40,8 +29,7 @@ class CampaignsController < ApplicationController
                 }
               }
             }
-          },
-          :order =>  :created_at
+          }
         }
       }
     )
