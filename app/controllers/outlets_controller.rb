@@ -287,7 +287,7 @@ class OutletsController < ApplicationController
       :linkedin, :twitter_followers, :facebook_likes, :instagram_followers,
       :hype_m, :submithub, :flagged, :inactive, :notes,
       :description, :staff_list, :user_id,
-      :second_email, :third_email
+      :second_email, :third_email, :updated_at
       )
     end
 
@@ -358,7 +358,7 @@ class OutletsController < ApplicationController
               :include =>
                 [:presstypes,
                 :writer => {
-                  only: [:id, :f_name, :l_name, :email_personal, :inactive ],
+                  only: [:id, :f_name, :l_name, :email_personal, :inactive, :updated_at ],
                   :include => {
                     :genres => {
                       only: [:id, :name]

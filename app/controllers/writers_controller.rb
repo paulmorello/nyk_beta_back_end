@@ -172,7 +172,7 @@ class WritersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def writer_params
-      params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id, jobs_attributes: [:id, :outlet_id, :email_work, :secondary_email_work, :notes, :position, :outlet_profile, :key_contact, :_destroy, presstype_tags_attributes: [:id, :presstype_id, :job_id, :_destroy]], genre_tags_attributes: [:id, :genre_id, :writer_id, :_destroy])
+      params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id, :updated_at, jobs_attributes: [:id, :outlet_id, :email_work, :secondary_email_work, :notes, :position, :outlet_profile, :key_contact, :_destroy, presstype_tags_attributes: [:id, :presstype_id, :job_id, :_destroy]], genre_tags_attributes: [:id, :genre_id, :writer_id, :_destroy])
     end
 
     # def writer_update_params

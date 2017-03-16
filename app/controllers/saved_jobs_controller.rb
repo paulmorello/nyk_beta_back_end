@@ -25,7 +25,6 @@ class SavedJobsController < ApplicationController
   # PATCH/PUT /saved_jobs/1
   # PATCH/PUT /saved_jobs/1.json
   def update
-    byebug
     response = params[:saved_job][:response]
     followed_up = params[:saved_job][:followed_up]
     response_updated_at = params[:saved_job][:response_updated_at]
