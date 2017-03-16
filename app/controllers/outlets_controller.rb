@@ -185,10 +185,6 @@ class OutletsController < ApplicationController
     render json: @outlets
   end
 
-  @outlets = Outlet.where(inactive: false).order("lower(name) ASC")
-
-
-
   # GET /outlets/1/edit
   def edit
   end
