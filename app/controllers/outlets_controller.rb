@@ -43,7 +43,25 @@ class OutletsController < ApplicationController
     # GET /outlets/search/:q
     elsif request.get?
       puts "valid get request"
-      @outlets = Outlet.where(inactive: false).where("name ILIKE ?", "%#{params[:q]}%").distinct.order(:name)
+      @outlets = Outlet.where(inactive: false).where("name ILIKE ?", "%#{params[:q]}%").distinct.order(:name).as_json(
+        :include => {
+          :jobs => {
+            :include =>
+              [:presstypes,
+              :writer => {
+                only: [:id, :f_name, :l_name],
+                :include => {
+                  :genres => {
+                    only: [:id, :name]
+                  }
+                }
+              }]
+          },
+          :country => {
+            only: [:id, :name]
+          }
+        }
+      )
       writers = Writer.where(inactive: false).where("lower(f_name || ' ' || l_name) ILIKE ?", "%#{params[:q]}%").distinct.order(:f_name)
       # Everything below just for making sure not to double writers or outlets after search
       @jobs = []
@@ -74,6 +92,7 @@ class OutletsController < ApplicationController
           @outlets_results.push(@exported_outlet)
         end
       end
+      byebug
       render json: @outlets_results
     end
   end
