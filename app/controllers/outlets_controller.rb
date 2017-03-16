@@ -92,7 +92,6 @@ class OutletsController < ApplicationController
           @outlets_results.push(@exported_outlet)
         end
       end
-      byebug
       render json: @outlets_results
     end
   end
