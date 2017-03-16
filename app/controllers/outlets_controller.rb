@@ -348,9 +348,9 @@ class OutletsController < ApplicationController
     def fetch_outlet
       puts "params: #{params[:id]}"
       id = params[:id]
-      outlet_w_id = "outlet_#{id}"
-      outlet = $redis.get(outlet_w_id)
-      if outlet.nil?
+      # outlet_w_id = "outlet_#{id}"
+      # outlet = $redis.get(outlet_w_id)
+      # if outlet.nil?
         puts 'nil'
         outlet = Outlet.where(inactive: false, id: id).as_json(
           :include => {
@@ -377,12 +377,12 @@ class OutletsController < ApplicationController
             outlet["jobs"].delete(j)
           end
         end
-        $redis.set("outlet_#{id}", JSON.generate(outlet.as_json))
-        $redis.expire("outlet_#{id}", 10.seconds.to_i)
-      else
-        puts 'redis'
+        # $redis.set("outlet_#{id}", JSON.generate(outlet.as_json))
+        # $redis.expire("outlet_#{id}", 10.seconds.to_i)
+      # else
+        # puts 'redis'
         @outlet = outlet
-      end
+      # end
     end
 
 end
