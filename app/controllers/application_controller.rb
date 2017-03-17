@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
 
   # prepend_before_action :require_no_authentication, :only => [:create]
-  before_action :authenticate_user!, except: [:new, :create]
+  before_action :authenticate_user!, except: [:new, :create, :edit]
   # before_action :sign_in_count, except: [:new, :create]
   # before_action :configure_permitted_parameters, if: :devise_controller?
 
