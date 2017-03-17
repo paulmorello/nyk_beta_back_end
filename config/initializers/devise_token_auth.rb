@@ -41,6 +41,9 @@ DeviseTokenAuth.setup do |config|
                          :'uid' => 'Uid',
                          :'token-type' => 'Token-Type' }
 
+   config.default_confirm_success_url	= 'http://localhost:3000/pass'
+
+   config.default_password_reset_url = 'http://localhost:3000/pass'
 
   # By default, only Bearer Token authentication is implemented out of the box.
   # If, however, you wish to integrate with legacy Devise authentication, you can
