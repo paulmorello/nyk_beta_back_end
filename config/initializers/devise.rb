@@ -14,6 +14,12 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'nowyouknowpr@gmail.com'
 
+
+  config.default_confirm_success_url	= 'http://localhost:3000/pass'
+
+  config.default_password_reset_url = 'http://localhost:3000/pass'
+
+
   # Configure the class responsible to send e-mails.
   config.mailer = 'Devise::Mailer'
 
