@@ -31,7 +31,7 @@ class WelcomeMailer < ApplicationMailer
     end
     @phone_number = params["phone_number"]
     @time_range = params["time_range"]
-    mail(to: 'nowyouknowpr@gmail.com', subject: "New User Basic Signup: #{@name}" )
+    mail(to: 'nowyouknowpr@gmail.com', subject: "New User #{@account.uppercase} Signup: #{@name}" )
   end
 
   def mailing_list(params)
