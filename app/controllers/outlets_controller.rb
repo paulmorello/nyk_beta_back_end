@@ -87,8 +87,27 @@ class OutletsController < ApplicationController
       @outlets_results = @outlets.as_json
       if @outlet_ids.empty? == false
         @outlet_ids.each do |o|
-          outlet_by_writer = Outlet.includes(:jobs, :writers).where(id: o)
-          @exported_outlet = reshape_data(outlet_by_writer)
+          outlet_by_writer = Outlet.includes(:jobs, :writers).where(id: o)[0]
+          # @exported_outlet = reshape_data(outlet_by_writer)
+          @exported_outlet = outlet_by_writer.as_json(
+            :include => {
+              :jobs => {
+                :include =>
+                  [:presstypes,
+                  :writer => {
+                    only: [:id, :f_name, :l_name],
+                    :include => {
+                      :genres => {
+                        only: [:id, :name]
+                      }
+                    }
+                  }]
+              },
+              :country => {
+                only: [:id, :name]
+              }
+            }
+          )
           @outlets_results.push(@exported_outlet)
         end
       end
