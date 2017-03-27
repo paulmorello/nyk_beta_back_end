@@ -20,6 +20,9 @@ Rails.application.configure do
     user_name: ENV["GMAIL_ACCOUNT"],
     password: ENV["GMAIL_PASSWORD"]
   }
+  # config.action_mailer.smtp_settings = {
+  #  :address => "localhost", :port => 1025
+  # }
 
   # Default URL
   # config.action_mailer.delivery_method = :letter_opener
