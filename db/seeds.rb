@@ -26,32 +26,32 @@ require 'csv'
 # User.create(email: "user04@test.com", password: "user04", password_confirmation: "user04", confirmed_at: Time.now)
 # User.create(email: "user05@test.com", password: "user05", password_confirmation: "user05", confirmed_at: Time.now)
 
-# CSV.foreach(Rails.root.to_s+'/db/imports/country.csv',
-#             headers: true,
-#             skip_blanks: true,
-#             skip_lines: /^(?:,\s*)+$/) do |row|
-#             row = row.to_hash
-#             puts row["name"]
-#             unless Country.where(name: row["name"]).exists?
-#               Country.create(row)
-#             else
-#               puts "country DOES exist so skip"
-#             end
-# end
+CSV.foreach(Rails.root.to_s+'/db/imports/country.csv',
+            headers: true,
+            skip_blanks: true,
+            skip_lines: /^(?:,\s*)+$/) do |row|
+            row = row.to_hash
+            puts row["name"]
+            unless Country.where(name: row["name"]).exists?
+              Country.create(row)
+            else
+              puts "country DOES exist so skip"
+            end
+end
 
-# CSV.foreach(Rails.root.to_s+'/db/imports/genres.csv',
-#             headers: true,
-#             skip_blanks: true,
-#             skip_lines: /^(?:,\s*)+$/) do |row|
-#   Genre.create(row.to_hash)
-# end
-#
-# CSV.foreach(Rails.root.to_s+'/db/imports/press_types.csv',
-#             headers: true,
-#             skip_blanks: true,
-#             skip_lines: /^(?:,\s*)+$/) do |row|
-#   Presstype.create(row.to_hash)
-# end
+CSV.foreach(Rails.root.to_s+'/db/imports/genres.csv',
+            headers: true,
+            skip_blanks: true,
+            skip_lines: /^(?:,\s*)+$/) do |row|
+  Genre.create(row.to_hash)
+end
+
+CSV.foreach(Rails.root.to_s+'/db/imports/press_types.csv',
+            headers: true,
+            skip_blanks: true,
+            skip_lines: /^(?:,\s*)+$/) do |row|
+  Presstype.create(row.to_hash)
+end
 
 CSV.foreach(Rails.root.to_s+'/db/imports/outlets.csv',
             headers: true,
