@@ -327,6 +327,7 @@ class OutletsController < ApplicationController
 
     def fetch_outlets
       outlets = $redis.get('outlets')
+      puts "outlets: #{outlets}"
       if outlets.nil?
         puts 'nil'
         @outlets = Outlet.where(inactive: false).order("lower(name) ASC").as_json(
