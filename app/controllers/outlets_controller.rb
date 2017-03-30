@@ -12,6 +12,7 @@ class OutletsController < ApplicationController
   def index  # Essentially the main page of the application proper. This is the discover page.
     #@outlets = Outlet.where(inactive: false).order(:name).paginate(page: params[:page], per_page: 20)
     if current_user.trial == true
+      puts "current_user is trial user"
       fetch_trial_outlets
     else
       fetch_outlets
