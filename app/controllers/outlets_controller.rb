@@ -356,7 +356,7 @@ class OutletsController < ApplicationController
     end
 
     def fetch_trial_outlets
-      @outlets = Outlet.where(name: '3musicguys').or(Outlet.where(name: 'All The Greatest Music')).or(Outlet.where(name: 'Anthesis Music Blog')).as_json(
+      @outlets = Outlet.where(name: '2dopeboyz').or(Outlet.where(name: 'AdHoc')).or(Outlet.where(name: 'Austin Town Hall')).as_json(
         :include => {
           :jobs => {
             :include =>
