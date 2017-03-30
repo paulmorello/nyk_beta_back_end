@@ -330,7 +330,7 @@ class OutletsController < ApplicationController
       puts "outlets: #{outlets}"
       if outlets.nil?
         puts 'nil'
-        @outlets = Outlet.where(inactive: false).order("lower(name) ASC").as_json(
+        @outlets = Outlet.where(inactive: false).order("lower(name) ASC").limit(25).as_json(
           :include => {
             :jobs => {
               :include =>
