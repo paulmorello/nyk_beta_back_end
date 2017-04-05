@@ -11,11 +11,15 @@ class OutletsController < ApplicationController
   # GET /outlets.json
   def index  # Essentially the main page of the application proper. This is the discover page.
     #@outlets = Outlet.where(inactive: false).order(:name).paginate(page: params[:page], per_page: 20)
+    offset = params[:offset].to_i
+    if offset == nil
+      offset = 0
+    end
     if current_user.trial == true
       puts "current_user is trial user"
       fetch_trial_outlets
     else
-      fetch_outlets
+      fetch_outlets(offset)
     end
     render json: @outlets
   end
@@ -325,12 +329,12 @@ class OutletsController < ApplicationController
       )
     end
 
-    def fetch_outlets
-      outlets = $redis.get('outlets')
-      puts "outlets: #{outlets}"
-      if outlets.nil?
-        puts 'nil'
-        @outlets = Outlet.where(inactive: false).order("lower(name) ASC").limit(25).as_json(
+    def fetch_outlets(offset)
+      #outlets = $redis.get('outlets')
+      #puts "outlets: #{outlets}"
+      #if outlets.nil?
+       # puts 'nil'
+        @outlets = Outlet.where(inactive: false).order("lower(name) ASC").offset(offset * 25).limit(25).as_json(
           :include => {
             :jobs => {
               :include =>
@@ -349,12 +353,12 @@ class OutletsController < ApplicationController
             }
           }
         )
-        $redis.set('outlets', JSON.generate(@outlets.as_json))
-        $redis.expire('outlets', 5.seconds.to_i)
-      else
-        puts 'redis'
-        @outlets = JSON.parse(outlets)
-      end
+       # $redis.set('outlets', JSON.generate(@outlets.as_json))
+       # $redis.expire('outlets', 5.seconds.to_i)
+      #else
+      #  puts 'redis'
+       # @outlets = JSON.parse(outlets)
+     # end
     end
 
     def fetch_trial_outlets
