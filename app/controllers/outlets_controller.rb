@@ -69,7 +69,7 @@ class OutletsController < ApplicationController
         }
       )
       # writers = Writer.where(inactive: false).where("lower(f_name || ' ' || l_name) ILIKE ?", "%#{params[:q]}%").distinct.order(:f_name)
-      writers = Writer.where(inactive: false).where("name ILIKE ?", params[:q]).distinct.order(:f_name)
+      writers = Writer.where(inactive: false).where("lower(f_name || ' ' || l_name) ILIKE ?", params[:q]).distinct.order(:f_name)
       # Everything below just for making sure not to double writers or outlets after search
       @jobs = []
       outlet_ids = []
