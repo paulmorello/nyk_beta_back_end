@@ -57,6 +57,7 @@ class WritersController < ApplicationController
   # POST /writers
   # POST /writers.json
   def create
+    byebug
     @writer = Writer.create(writer_params)
 
     # respond_to do |format|
