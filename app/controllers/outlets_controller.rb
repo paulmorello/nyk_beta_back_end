@@ -121,6 +121,7 @@ class OutletsController < ApplicationController
   end
 
   def filter
+    offset = params["offset"].to_i
     filters = params["filters"]
     if filters["genre_id"]
       filters["genre_id"].delete("")
@@ -128,6 +129,8 @@ class OutletsController < ApplicationController
     if filters["presstype_id"]
       filters["presstype_id"].delete("")
     end
+    # below is a placeholder for trying to implement offsetting filter results
+    # @outlets = Outlet.where(inactive: false).order(:name).offset(offset * 25).limit(25)
     @outlets = Outlet.where(inactive: false).order(:name)
     if filters["hype_m"] == "HypeM"
       @outlets = @outlets.where(hype_m: true)
