@@ -1,33 +1,19 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-<<<<<<< HEAD
   FACEBOOK_ID = ENV["FACEBOOK_ID"]
   FACEBOOK_SECRET = ENV["FACEBOOK_SECRET"]
 
-  TWITTER_ID = ENV["ID"]
+  TWITTER_ID = ENV["TWITTER_ID"]
   TWITTER_SECRET = ENV["TWITTER_SECRET"]
 
   config.action_mailer.default_url_options = { :host => 'localhost:5000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-=======
-  FACEBOOK_ID = "1755281334723897"
-  FACEBOOK_SECRET = "6a1688f4b301abd301570cc226d7bf85"
-
-  TWITTER_ID = "zS6aPKHC8rDiYINZa5akuj2eB"
-  TWITTER_SECRET = "GpQWGCR1rgQHVwXjvnflyZphnHw5XcBBmjfl4yNqOfoDbQ1WdU"
-
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = false
->>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-<<<<<<< HEAD
     domain: "localhost:5000",
     authentication: "plain",
     enable_starttls_auto: true,
@@ -41,19 +27,6 @@ Rails.application.configure do
   # Default URL
   # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { host: 'localhost', port: 5000 }
-=======
-    domain: "localhost:3000",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: "nowyouknowpr@gmail.com",
-    password: "NowYouKnow_123!!"
-  }
-
-  # Default URL
-  # config.action_mailer.delivery_method = :letter_opener
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
->>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
-
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -104,9 +77,6 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-<<<<<<< HEAD
 
   config.action_controller.action_on_unpermitted_parameters = :log
-=======
->>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
 end
