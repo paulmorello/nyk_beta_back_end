@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170226041644) do
+=======
+ActiveRecord::Schema.define(version: 20161213215850) do
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +24,23 @@ ActiveRecord::Schema.define(version: 20170226041644) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.string   "notes"
     t.string   "artist"
     t.string   "promotion"
     t.index ["user_id"], name: "index_campaigns_on_user_id", using: :btree
   end
 
+=======
+    t.index ["user_id"], name: "index_campaigns_on_user_id", using: :btree
+  end
+
+  create_table "counters", force: :cascade do |t|
+    t.string  "name"
+    t.integer "count"
+  end
+
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   create_table "countries", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -53,11 +68,17 @@ ActiveRecord::Schema.define(version: 20170226041644) do
     t.string   "email_work"
     t.string   "position"
     t.string   "outlet_profile"
+<<<<<<< HEAD
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.boolean  "key_contact"
     t.string   "secondary_email_work"
     t.string   "notes"
+=======
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.boolean  "key_contact"
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     t.index ["outlet_id"], name: "index_jobs_on_outlet_id", using: :btree
     t.index ["writer_id"], name: "index_jobs_on_writer_id", using: :btree
   end
@@ -86,8 +107,11 @@ ActiveRecord::Schema.define(version: 20170226041644) do
     t.string   "description"
     t.string   "staff_list"
     t.integer  "user_id"
+<<<<<<< HEAD
     t.string   "second_email"
     t.string   "third_email"
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     t.index ["country_id"], name: "index_outlets_on_country_id", using: :btree
     t.index ["user_id"], name: "index_outlets_on_user_id", using: :btree
   end
@@ -114,12 +138,16 @@ ActiveRecord::Schema.define(version: 20170226041644) do
     t.datetime "updated_at",          null: false
     t.string   "response"
     t.datetime "response_updated_at"
+<<<<<<< HEAD
     t.string   "followed_up"
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     t.index ["campaign_id"], name: "index_saved_jobs_on_campaign_id", using: :btree
     t.index ["job_id"], name: "index_saved_jobs_on_job_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
+<<<<<<< HEAD
     t.string   "provider",               default: "email", null: false
     t.string   "uid",                    default: "",      null: false
     t.string   "encrypted_password",     default: "",      null: false
@@ -131,10 +159,25 @@ ActiveRecord::Schema.define(version: 20170226041644) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+=======
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "label_url"
+    t.boolean  "admin",                  default: false, null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+<<<<<<< HEAD
     t.string   "name"
     t.string   "nickname"
     t.string   "image"
@@ -147,6 +190,13 @@ ActiveRecord::Schema.define(version: 20170226041644) do
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
+=======
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   create_table "writers", force: :cascade do |t|
@@ -166,7 +216,10 @@ ActiveRecord::Schema.define(version: 20170226041644) do
     t.integer  "user_id"
     t.string   "email_personal"
     t.string   "twitter_followers"
+<<<<<<< HEAD
     t.string   "personal_website"
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     t.index ["country_id"], name: "index_writers_on_country_id", using: :btree
     t.index ["user_id"], name: "index_writers_on_user_id", using: :btree
   end
@@ -175,6 +228,13 @@ ActiveRecord::Schema.define(version: 20170226041644) do
   add_foreign_key "genre_tags", "writers"
   add_foreign_key "jobs", "outlets"
   add_foreign_key "jobs", "writers"
+<<<<<<< HEAD
   add_foreign_key "presstype_tags", "jobs"
   add_foreign_key "presstype_tags", "presstypes"
+=======
+  add_foreign_key "outlets", "users"
+  add_foreign_key "presstype_tags", "jobs"
+  add_foreign_key "presstype_tags", "presstypes"
+  add_foreign_key "writers", "users"
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
 end

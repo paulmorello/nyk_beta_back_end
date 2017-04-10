@@ -1,4 +1,5 @@
 module OutletsHelper
+<<<<<<< HEAD
   ReStrucOutlet = Struct.new(:id, :name, :website, :email, :city, :state, :country_id, :twitter, :facebook, :instagram, :linkedin, :twitter_followers, :facebook_likes, :instagram_followers, :hype_m, :submithub, :flagged, :inactive, :notes, :created_at, :updated_at, :description, :staff_list, :user_id)
 
   def format_country_id(outlets)
@@ -63,4 +64,6 @@ module OutletsHelper
     end
     @exported_outlet
   end
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
 end

@@ -3,6 +3,7 @@ Rails.application.configure do
   FACEBOOK_ID = ENV["FACEBOOK_ID"]
   FACEBOOK_SECRET = ENV["FACEBOOK_SECRET"]
 
+<<<<<<< HEAD
   TWITTER_ID = ENV["ID"]
   TWITTER_SECRET = ENV["TWITTER_SECRET"]
 
@@ -11,11 +12,23 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
+=======
+  TWITTER_ID = ENV["TWITTER_ID"]
+  TWITTER_SECRET = ENV["TWITTER_SECRET"]
+
+  config.action_mailer.default_url_options = { :host => 'limitless-tor-84431.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
+<<<<<<< HEAD
     # domain: "schmartmann-nyk-beta-backend.herokuapp.com",
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     domain: "limitless-tor-84431.herokuapp.com",
     authentication: "plain",
     enable_starttls_auto: true,

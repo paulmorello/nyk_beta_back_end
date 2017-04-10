@@ -47,8 +47,11 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+<<<<<<< HEAD
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     bootstrap (4.0.0.alpha4)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
@@ -72,9 +75,12 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+<<<<<<< HEAD
     devise_token_auth (0.1.39)
       devise (> 3.5.2, <= 4.2)
       rails (< 6)
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
@@ -129,7 +135,10 @@ GEM
       slop (~> 3.4)
     puma (3.6.0)
     rack (2.0.1)
+<<<<<<< HEAD
     rack-cors (0.4.0)
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.1)
@@ -159,6 +168,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+<<<<<<< HEAD
     rb-readline (0.5.3)
     redis (3.3.1)
     redis-actionpack (5.0.0)
@@ -182,6 +192,10 @@ GEM
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rubyzip (0.9.9)
+=======
+    responders (2.3.0)
+      railties (>= 4.2.0, < 5.1)
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -231,13 +245,19 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+<<<<<<< HEAD
   binding_of_caller
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   bootstrap
   bootstrap-will_paginate
   byebug
   coffee-rails (~> 4.2)
   devise
+<<<<<<< HEAD
   devise_token_auth
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   httparty
   jbuilder (~> 2.5)
   jquery-rails
@@ -248,6 +268,7 @@ DEPENDENCIES
   pg (~> 0.18)
   pry
   puma (~> 3.0)
+<<<<<<< HEAD
   rack-cors
   rails (~> 5.0.0, >= 5.0.0.1)
   rb-readline
@@ -255,6 +276,9 @@ DEPENDENCIES
   redis-namespace
   redis-rails
   rubyzip (= 0.9.9)
+=======
+  rails (~> 5.0.0, >= 5.0.0.1)
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   sass-rails (~> 5.0)
   smarter_csv
   spring
@@ -267,7 +291,14 @@ DEPENDENCIES
   will_paginate
 
 RUBY VERSION
+<<<<<<< HEAD
    ruby 2.3.3
 
 BUNDLED WITH
    1.13.7
+=======
+   ruby 2.3.1p112
+
+BUNDLED WITH
+   1.12.5
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931

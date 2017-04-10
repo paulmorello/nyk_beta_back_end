@@ -36,7 +36,11 @@
   </div>
   <div class="form-group">
     <%= f.label(:country_id, "Country *") %>
+<<<<<<< HEAD
     <%= f.collection_select(:country_id, Country.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+=======
+    <%= f.collection_select(:country_id, Country.all.order(:name), :id, :name, {include_blank: true}, {class: "form-control"}) %>
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   </div>
   <div class="form-group">
     <%= f.label(:twitter, "Twitter - (EG If www.twitter.com/danrutman, only write danrutman)") %>
@@ -52,7 +56,11 @@
   </div>
   <div class="form-group">
     <%= f.label(:user_id, "Assigned To *") %>
+<<<<<<< HEAD
     <%= f.collection_select(:user_id, User.where(admin: true), :id, :email, {include_blank: true}, {class: "form-control"}) %>
+=======
+    <%= f.collection_select(:user_id, User.order(:email).where(admin: true), :id, :email, {include_blank: true}, {class: "form-control"}) %>
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   </div>
   <div class="form-group">
     <%= f.label(:freelance) %>
@@ -81,7 +89,11 @@
     <%= j.hidden_field :id, :value => j.object.id %>
     <div class="form-group">
     <%= j.label :outlet_id, "Outlet *" %>
+<<<<<<< HEAD
     <%= j.collection_select(:outlet_id, Outlet.all, :id, :name, {include_blank: true}, {class: "form-control"}) %>
+=======
+    <%= j.collection_select(:outlet_id, Outlet.all.order(:name), :id, :name, {include_blank: true}, {class: "form-control"}) %>
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     </div>
     <div class="form-group">
     <%= j.label(:email_work, "Work Email *") %>

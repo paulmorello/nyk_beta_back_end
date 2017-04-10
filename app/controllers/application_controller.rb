@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+<<<<<<< HEAD
   protect_from_forgery with: :null_session
 
   include DeviseTokenAuth::Concerns::SetUserByToken
@@ -30,6 +31,15 @@ class ApplicationController < ActionController::Base
   end
 
 
+=======
+  protect_from_forgery with: :exception
+  before_action :authenticate_user!
+  before_action :set_countries
+  before_action :set_thumb
+
+  private
+
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   # List of currently used countries
   def set_countries
     writer_arr = Writer.select("country_id").distinct.map{|c| c.country_id}
@@ -42,7 +52,11 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin?
+<<<<<<< HEAD
     # redirect_to '/outlets' unless current_user.admin == true
     redirect_to '/outlets'
+=======
+    redirect_to '/outlets' unless current_user.admin == true
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 end

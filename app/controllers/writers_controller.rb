@@ -1,8 +1,14 @@
 class WritersController < ApplicationController
+<<<<<<< HEAD
   before_action :authenticate_user!
   before_action :set_writer, only: [:edit, :update, :destroy ]
   before_action :set_job, only: [:delete_job]
   # before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
+=======
+  before_action :set_writer, only: [:show, :edit, :update, :destroy]
+  before_action :set_job, only: [:delete_job]
+  before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
 
   # GET /writers
   # GET /writers.json
@@ -14,6 +20,7 @@ class WritersController < ApplicationController
   # GET /writers/1
   # GET /writers/1.json
   def show
+<<<<<<< HEAD
     @writer = Writer.where(inactive:false).where(id: params[:id]).as_json(
       :include => {
         :jobs => {
@@ -43,6 +50,8 @@ class WritersController < ApplicationController
     )
 
     render json: @writer
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   # GET /writers/new
@@ -57,6 +66,7 @@ class WritersController < ApplicationController
   # POST /writers
   # POST /writers.json
   def create
+<<<<<<< HEAD
     byebug
     @writer = Writer.create(writer_params)
 
@@ -69,11 +79,24 @@ class WritersController < ApplicationController
         render json: { errors: @writer.errors, status: :unprocessable_entity }
       end
     # end
+=======
+    @writer = Writer.new(writer_params)
+
+    respond_to do |format|
+      if @writer.save
+        format.html { redirect_to outlets_path, notice: 'Writer was successfully created.' }
+      else
+        format.html { render :new }
+        format.json { render json: @writer.errors, status: :unprocessable_entity }
+      end
+    end
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   # PATCH/PUT /writers/1
   # PATCH/PUT /writers/1.json
   def update
+<<<<<<< HEAD
       jobs = params[:writer][:jobs_attributes]
       genre_tags = params[:writer][:genre_tags_attributes]
     # respond_to do |format|
@@ -110,6 +133,16 @@ class WritersController < ApplicationController
         render json: {errors:Rails.logger.info(@writer.errors.inspect), status: :unprocessable_entity }
       end
     # end
+=======
+    respond_to do |format|
+      if @writer.update(writer_params)
+        format.html { redirect_to outlets_path, notice: 'Writer was successfully updated.' }
+      else
+        format.html { render :edit }
+        format.json { render json: @writer.errors, status: :unprocessable_entity }
+      end
+    end
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   # DELETE /writers/1
@@ -117,6 +150,7 @@ class WritersController < ApplicationController
   def destroy
     # @writer.destroy
     @writer.update(inactive: true)
+<<<<<<< HEAD
     render json: {
       notice: 'Writer was successfully destroyed.',
       error: Rails.logger.info(@writer.errors.inspect)}
@@ -124,10 +158,17 @@ class WritersController < ApplicationController
     #   format.html { redirect_to outlets_url, notice: 'Writer was successfully destroyed.' }
     #   format.json { head :no_content }
     # end
+=======
+    respond_to do |format|
+      format.html { redirect_to outlets_url, notice: 'Writer was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   # DELETE /writers/delete_job/1
   def delete_job
+<<<<<<< HEAD
     # writer_id = @job.writer_id
     @job.destroy
     render json: {notice: 'Job was successfully destroyed.'}
@@ -165,6 +206,20 @@ class WritersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_writer
       @writer = Writer.where(inactive:false).find(params[:id])
+=======
+    writer_id = @job.writer_id
+    @job.destroy
+    respond_to do |format|
+      format.html { redirect_to "/writers/#{writer_id}/edit", notice: 'Job was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_writer
+      @writer = Writer.find(params[:id])
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     end
 
     def set_job
@@ -173,6 +228,7 @@ class WritersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def writer_params
+<<<<<<< HEAD
       params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id, :updated_at, jobs_attributes: [:id, :outlet_id, :email_work, :secondary_email_work, :notes, :position, :outlet_profile, :key_contact, :_destroy, presstype_tags_attributes: [:id, :presstype_id, :job_id, :_destroy]], genre_tags_attributes: [:id, :genre_id, :writer_id, :_destroy])
     end
 
@@ -182,3 +238,8 @@ class WritersController < ApplicationController
 end
 
 # }
+=======
+      params.require(:writer).permit(:f_name,:l_name, :email_personal, :city, :state, :country_id,:twitter, :linkedin, :freelance, :notes, :user_id, genre_tags_attributes: [:id, :genre_id, :_destroy], jobs_attributes: [:id, :outlet_id, :email_work, :position, :outlet_profile, :key_contact, :_destroy, presstype_tags_attributes: [:id, :presstype_id, :_destroy]])
+    end
+end
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931

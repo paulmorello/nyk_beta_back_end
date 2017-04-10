@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+// this handles infinite scroll
+
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
 $(document).on('turbolinks:load', function () {
   var isLoading = false;
   if ($('#infinite-scrolling').size() > 0) {

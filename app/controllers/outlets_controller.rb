@@ -1,15 +1,21 @@
 
 class OutletsController < ApplicationController
+<<<<<<< HEAD
   include DeviseTokenAuth::Concerns::SetUserByToken
 
   include OutletsHelper
   before_action :set_outlet, only: [:show, :edit, :update, :destroy]
   # before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
   before_action :authenticate_user!
+=======
+  before_action :set_outlet, only: [:show, :edit, :update, :destroy]
+  before_action :is_admin?, only: [:show, :edit, :update, :destroy, :new, :create]
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
 
   # GET /outlets
   # GET /outlets.json
   def index  # Essentially the main page of the application proper. This is the discover page.
+<<<<<<< HEAD
     #@outlets = Outlet.where(inactive: false).order(:name).paginate(page: params[:page], per_page: 20)
     offset = params[:offset].to_i
     if offset == nil
@@ -22,13 +28,23 @@ class OutletsController < ApplicationController
       fetch_outlets(offset)
     end
     render json: @outlets
+=======
+    @outlets = Outlet.where(inactive: false).order(:name).paginate(page: params[:page], per_page: 20)
+    respond_to do |format|
+      format.html
+      format.js { render "layouts/morecontacts" }
+    end
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   # GET /outlets/1
   # GET /outlets/1.json
   def show
+<<<<<<< HEAD
     fetch_outlet
     render json: @outlet
+=======
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   # GET /outlets/new
@@ -47,6 +63,7 @@ class OutletsController < ApplicationController
       redirect_to '/outlets/search/'+params[:q]
     # GET /outlets/search/:q
     elsif request.get?
+<<<<<<< HEAD
       puts "valid get request"
       @outlets = Outlet.where(inactive: false).where("name ILIKE ?", "%#{params[:q]}%").distinct.order(:name).as_json(
         :include => {
@@ -67,6 +84,9 @@ class OutletsController < ApplicationController
           }
         }
       )
+=======
+      @outlets = Outlet.where(inactive: false).where("name ILIKE ?", "%#{params[:q]}%").distinct.order(:name)
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
       writers = Writer.where(inactive: false).where("lower(f_name || ' ' || l_name) ILIKE ?", "%#{params[:q]}%").distinct.order(:f_name)
       # Everything below just for making sure not to double writers or outlets after search
       @jobs = []
@@ -88,6 +108,7 @@ class OutletsController < ApplicationController
           end
         end
       end
+<<<<<<< HEAD
       @outlet_ids = outlet_ids
       @outlets_results = @outlets.as_json
       if @outlet_ids.empty? == false
@@ -117,18 +138,26 @@ class OutletsController < ApplicationController
         end
       end
       render json: @outlets_results
+=======
+      @outlet_ids = outlet_ids.uniq
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     end
   end
 
   def filter
+<<<<<<< HEAD
     offset = params["offset"].to_i
     filters = params["filters"]
+=======
+    filters = params[:filter_params]
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
     if filters["genre_id"]
       filters["genre_id"].delete("")
     end
     if filters["presstype_id"]
       filters["presstype_id"].delete("")
     end
+<<<<<<< HEAD
     # below is a placeholder for trying to implement offsetting filter results
     # @outlets = Outlet.where(inactive: false).order(:name).offset(offset * 25).limit(25)
     @outlets = Outlet.where(inactive: false).order(:name)
@@ -153,6 +182,17 @@ class OutletsController < ApplicationController
     end
     if filters["country_id"].nil? == false
       filters["country_id"] = Country.find_by(name: filters["country_id"]).id
+=======
+    @filters = filters
+    @outlets = Outlet.where(inactive: false).order(:name)
+    if filters["hype_m"] === "1"
+      @outlets = @outlets.where(hype_m: true)
+    end
+    if filters["submithub"] === "1"
+      @outlets = @outlets.where(submithub: true)
+    end
+    if filters["country_id"] != ""
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
       o_arr = []
       @outlets.each do |outlet|
         if outlet.country_id.to_s == filters["country_id"] || outlet.writers.where(country_id: filters["country_id"]).present?
@@ -161,7 +201,11 @@ class OutletsController < ApplicationController
       end
       @outlets = @outlets.where(id: o_arr)
     end
+<<<<<<< HEAD
     if filters["state"].nil? == false
+=======
+    if filters["state"] != ""
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
       o_arr = []
       @outlets.each do |outlet|
         if outlet.state.to_s.downcase.include?(filters["state"].downcase) || outlet.writers.where("state ILIKE ?", "%#{filters["state"]}%").present?
@@ -170,7 +214,11 @@ class OutletsController < ApplicationController
       end
       @outlets = @outlets.where(id: o_arr)
     end
+<<<<<<< HEAD
     if filters["city"].nil? == false
+=======
+    if filters["city"] != ""
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
       o_arr = []
       @outlets.each do |outlet|
         if outlet.city.to_s.downcase.include?(filters["city"].downcase) || outlet.writers.where("city ILIKE ?", "%#{filters["city"]}%").present?
@@ -180,6 +228,7 @@ class OutletsController < ApplicationController
       @outlets = @outlets.where(id: o_arr)
     end
     if filters["presstype_id"].present?
+<<<<<<< HEAD
       filters["presstype_id"] = Presstype.find_by(name: filters["presstype_id"]).id
       @outlets = @outlets.joins(jobs: :presstype_tags).where(presstype_tags: {presstype_id: filters["presstype_id"]}).distinct
     end
@@ -209,6 +258,20 @@ class OutletsController < ApplicationController
       }
     )
     render json: @outlets
+=======
+      @outlets = @outlets.joins(jobs: :presstype_tags).where(presstype_tags: {presstype_id: filters["presstype_id"]}).distinct
+    end
+    if filters["genre_id"].present?
+      g_ids_plus_all = filters["genre_id"]
+      g_ids_plus_all.push("19") unless g_ids_plus_all.include?("19")
+      @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
+    end
+    @outlets = @outlets.paginate(page: params[:page], per_page: 20)
+    respond_to do |format|
+      format.html
+      format.js { render "layouts/morefilteredcontacts" }
+    end
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   # GET /outlets/1/edit
@@ -219,6 +282,7 @@ class OutletsController < ApplicationController
   # POST /outlets.json
   def create
     @outlet = Outlet.new(outlet_params)
+<<<<<<< HEAD
     # respond_to do |format|
       if @outlet.save
         # format.html { redirect_to outlets_path, notice: 'Outlet was successfully created.' }
@@ -229,11 +293,22 @@ class OutletsController < ApplicationController
         render json: {status:"Couldn't add outlet", outlet: @outlet}
       end
     # end
+=======
+    respond_to do |format|
+      if @outlet.save
+        format.html { redirect_to outlets_path, notice: 'Outlet was successfully created.' }
+      else
+        format.html { render :new }
+        format.json { render json: @outlet.errors, status: :unprocessable_entity }
+      end
+    end
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   # PATCH/PUT /outlets/1
   # PATCH/PUT /outlets/1.json
   def update
+<<<<<<< HEAD
     # @outlet = Outlet.find(id: params[:outlet][:id])
 
     # respond_to do |format|
@@ -299,6 +374,18 @@ class OutletsController < ApplicationController
         render json: {status:"Update unsuccessful", outlet: @outlet, error: Rails.logger.info(@outlet.errors.inspect)}
       end
     # end
+=======
+
+    respond_to do |format|
+      
+      if @outlet.update(outlet_params)
+        format.html { redirect_to outlets_path, notice: 'Outlet was successfully updated.' }
+      else
+        format.html { render :edit }
+        format.json { render json: @outlet.errors, status: :unprocessable_entity }
+      end
+    end
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   # DELETE /outlets/1
@@ -306,11 +393,18 @@ class OutletsController < ApplicationController
   def destroy
     # @outlet.destroy
     @outlet.update(inactive: true)
+<<<<<<< HEAD
     # respond_to do |format|
       # format.html { redirect_to outlets_url, notice: 'Outlet was successfully destroyed.' }
       # format.json { head :no_content }
     # end
     render json: { notice: 'Outlet was successfully destroyed.' }
+=======
+    respond_to do |format|
+      format.html { redirect_to outlets_url, notice: 'Outlet was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
   end
 
   private
@@ -321,6 +415,7 @@ class OutletsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def outlet_params
+<<<<<<< HEAD
       params.require(:outlet).permit(
       :id, :name,:website,:email,
       :city,:state,:country_id,
@@ -427,4 +522,8 @@ class OutletsController < ApplicationController
       # end
     end
 
+=======
+      params.require(:outlet).permit(:name,:website,:email,:staff_list, :description, :city,:state,:country_id,:twitter,:facebook,:instagram,:linkedin,:hype_m,:submithub, :notes, :user_id)
+    end
+>>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
 end
