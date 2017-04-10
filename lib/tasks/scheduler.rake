@@ -55,6 +55,7 @@ task :update_social => :environment do
     if outlet.instagram.present?
       url = "https://www.instagram.com/web/search/topsearch/?query=#{outlet.instagram}"
       insta_response = HTTParty.get url
+      puts "this is insta_response: #{insta_response}"
       insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
       if insta_followers.present?
         if insta_followers.length > 6
