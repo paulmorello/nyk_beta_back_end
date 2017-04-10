@@ -6,8 +6,7 @@ Rails.application.configure do
   TWITTER_ID = ENV["TWITTER_ID"]
   TWITTER_SECRET = ENV["TWITTER_SECRET"]
 
-  config.action_mailer.default_url_options = { :host => 'limitless-tor-84431.herokuapp.com' }
-  # config.action_mailer.default_url_options = { :host => 'schmartmann-nyk-beta-backend.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'schmartmann-nyk-beta-backend.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -15,8 +14,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    # domain: "schmartmann-nyk-beta-backend.herokuapp.com",
-    domain: "limitless-tor-84431.herokuapp.com",
+    domain: "schmartmann-nyk-beta-backend.herokuapp.com",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["GMAIL_ACCOUNT"],
