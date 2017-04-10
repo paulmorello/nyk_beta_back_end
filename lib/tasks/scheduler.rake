@@ -55,15 +55,16 @@ task :update_social => :environment do
     if outlet.instagram.present?
       url = "https://www.instagram.com/web/search/topsearch/?query=#{outlet.instagram}"
       insta_response = HTTParty.get url
-      puts "this is insta_response: #{insta_response}"
-      insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
-      if insta_followers.present?
-        if insta_followers.length > 6
-          insta_followers = insta_followers.chop.chop.chop.chop.chop.chop+"m"
-        elsif insta_followers.length > 3
-          insta_followers = insta_followers.chop.chop.chop+"k"
+      if insta_response["users"].any?
+        insta_followers = insta_response["users"].first["user"]["byline"].chomp(" followers")
+        if insta_followers.present?
+          if insta_followers.length > 6
+            insta_followers = insta_followers.chop.chop.chop.chop.chop.chop+"m"
+          elsif insta_followers.length > 3
+            insta_followers = insta_followers.chop.chop.chop+"k"
+          end
+          outlet.update(instagram_followers: insta_followers)
         end
-        outlet.update(instagram_followers: insta_followers)
       end
     end
     # Iterate through each writer within each outlet doing the same
