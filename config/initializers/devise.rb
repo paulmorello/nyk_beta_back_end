@@ -20,12 +20,6 @@ Devise.setup do |config|
 
   # Configure the parent class responsible to send e-mails.
   config.parent_mailer = 'ActionMailer::Base'
-=======
-  # config.mailer = 'Devise::Mailer'
-
-  # Configure the parent class responsible to send e-mails.
-  # config.parent_mailer = 'ActionMailer::Base'
->>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -46,8 +40,7 @@ Devise.setup do |config|
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
   # find_for_authentication method and considered in your model lookup. For instance,
-  # if you set :request_keys to [:subdomain], :subdomain will be used on authentication.
-  # The same considerations mentioned for authentication_keys also apply to request_keys.
+  # if you set :request_keys to [:subdomain], :subdomain will be used on authentication.  # The same considerations mentioned for authentication_keys also apply to request_keys.
   # config.request_keys = []
 
   # Configure which authentication keys should be case-insensitive.
