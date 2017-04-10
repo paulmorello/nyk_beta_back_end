@@ -93,6 +93,8 @@ CSV.foreach(Rails.root.to_s+'/db/imports/presstype_tags.csv',
   PresstypeTag.create(row.to_hash)
 end
 
+Counter.create(name: "api_offset", count: 150)
+
 puts "Created #{Country.count} Countries"
 puts "Created #{Genre.count} Genres"
 puts "Created #{Presstype.count} Presstypes"
