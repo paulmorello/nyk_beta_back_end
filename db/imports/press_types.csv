@@ -1,27 +1,2 @@
-<<<<<<< HEAD
-name,created_at,updated_atArtist Profile,,Competition,,Download,,Feature,,Festival Coverage,,Gig Listing,,Interview,,List,,Live Review,,Mix,,News,,Photo Diary,,Playlist,,Podcast,,Release Premiere,,Release Review,,Sessions,,Track By Track,,Track Premiere,,Track Review,,Video Premiere,,Video Review,,
-=======
-name
-Track Premiere
-Video Premiere
-Release Premiere
-Interview
-Track by Track
-Photo Diary
-Feature
-Track Review
-Release Review
-Video Review
-Sessions
-News
-Live Review
-Gig Listing
-Festival Coverage
-Mix
-Podcast
-Competition
-List
-Download
-Playlist
-Artist Profile
->>>>>>> 8044ab3c9323e32136c8fe20a82e4a0bd60d0931
+name,created_at,updated_at
+Artist Profile,,Competition,,Download,,Feature,,Festival Coverage,,Gig Listing,,Interview,,List,,Live Review,,Mix,,News,,Photo Diary,,Playlist,,Podcast,,Release Premiere,,Release Review,,Sessions,,Track By Track,,Track Premiere,,Track Review,,Video Premiere,,Video Review,,

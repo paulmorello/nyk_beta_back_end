@@ -15,7 +15,6 @@ Devise.setup do |config|
   config.mailer_sender = 'nowyouknowpr@gmail.com'
 
   # Configure the class responsible to send e-mails.
-<<<<<<< HEAD
   config.mailer = 'Devise::Mailer'
 
   # Configure the parent class responsible to send e-mails.
