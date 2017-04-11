@@ -121,7 +121,7 @@ class OutletsController < ApplicationController
   end
 
   def filter
-    offset = params["offset"].to_i
+   # offset = params["offset"].to_i
     filters = params["filters"]
     if filters["genre_id"]
       filters["genre_id"].delete("")
@@ -180,11 +180,11 @@ class OutletsController < ApplicationController
       @outlets = @outlets.where(id: o_arr)
     end
     if filters["presstype_id"].present?
-      filters["presstype_id"] = Presstype.find_by(name: filters["presstype_id"]).id
+      filters["presstype_id"] = Presstype.find(filters["presstype_id"])
       @outlets = @outlets.joins(jobs: :presstype_tags).where(presstype_tags: {presstype_id: filters["presstype_id"]}).distinct
     end
     if filters["genre_id"].present?
-      filters["genre_id"] = Genre.find_by(name: filters["genre_id"]).id
+      filters["genre_id"] = Genre.find(filters["genre_id"])
       g_ids_plus_all = [filters["genre_id"]]
       g_ids_plus_all.push("19") unless g_ids_plus_all.include?("19")
       @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
