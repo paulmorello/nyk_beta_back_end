@@ -113,7 +113,7 @@ class OutletsController < ApplicationController
     end
     # below is a placeholder for trying to implement offsetting filter results
     # @outlets = Outlet.where(inactive: false).order(:name).offset(offset * 25).limit(25)
-    @outlets = Outlet.where(inactive: false).order("lower(name) ASC")
+    @outlets = Outlet.where(inactive: false).order(:name)
     if filters["hype_m"] == "HypeM"
       @outlets = @outlets.where(hype_m: true)
     end
