@@ -152,7 +152,6 @@ class OutletsController < ApplicationController
       @outlets = @outlets.where(id: o_arr)
     end
     if filters["country_id"].nil? == false
-      filters["country_id"] = Country.find_by(name: filters["country_id"]).id
       o_arr = []
       @outlets.each do |outlet|
         if outlet.country_id.to_s == filters["country_id"] || outlet.writers.where(country_id: filters["country_id"]).present?
@@ -180,11 +179,9 @@ class OutletsController < ApplicationController
       @outlets = @outlets.where(id: o_arr)
     end
     if filters["presstype_id"].present?
-      filters["presstype_id"] = Presstype.find(filters["presstype_id"])
       @outlets = @outlets.joins(jobs: :presstype_tags).where(presstype_tags: {presstype_id: filters["presstype_id"]}).distinct
     end
     if filters["genre_id"].present?
-      filters["genre_id"] = Genre.find(filters["genre_id"])
       g_ids_plus_all = [filters["genre_id"]]
       g_ids_plus_all.push("19") unless g_ids_plus_all.include?("19")
       @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
