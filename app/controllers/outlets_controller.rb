@@ -49,25 +49,6 @@ class OutletsController < ApplicationController
     elsif request.get?
       puts "valid get request"
       @outlets = Outlet.where(inactive: false).where("name ILIKE ?", "%#{params[:q]}%").distinct.order(:name)
-      # .as_json(
-      #   :include => {
-      #     :jobs => {
-      #       :include =>
-      #         [:presstypes,
-      #         :writer => {
-      #           only: [:id, :f_name, :l_name],
-      #           :include => {
-      #             :genres => {
-      #               only: [:id, :name]
-      #             }
-      #           }
-      #         }]
-      #     },
-      #     :country => {
-      #       only: [:id, :name]
-      #     }
-      #   }
-      # )
       writers = Writer.where(inactive: false).where("lower(f_name || ' ' || l_name) ILIKE ?", "%#{params[:q]}%").distinct.order(:f_name)
       # Everything below just for making sure not to double writers or outlets after search
       @jobs = []
@@ -132,7 +113,7 @@ class OutletsController < ApplicationController
     end
     # below is a placeholder for trying to implement offsetting filter results
     # @outlets = Outlet.where(inactive: false).order(:name).offset(offset * 25).limit(25)
-    @outlets = Outlet.where(inactive: false).order(:name)
+    @outlets = Outlet.where(inactive: false).order("lower(name) ASC")
     if filters["hype_m"] == "HypeM"
       @outlets = @outlets.where(hype_m: true)
     end
@@ -187,25 +168,6 @@ class OutletsController < ApplicationController
       g_ids_plus_all.push("19") unless g_ids_plus_all.include?("19")
       @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
     end
-    # @outlets = @outlets.as_json(
-    #   :include => {
-    #     :jobs => {
-    #       :include =>
-    #         [:presstypes,
-    #         :writer => {
-    #           only: [:id, :f_name, :l_name],
-    #           :include => {
-    #             :genres => {
-    #               only: [:id, :name]
-    #             }
-    #           }
-    #         }]
-    #     },
-    #     :country => {
-    #       only: [:id, :name]
-    #     }
-    #   }
-    # )
     render json: @outlets
   end
 
@@ -217,13 +179,9 @@ class OutletsController < ApplicationController
   # POST /outlets.json
   def create
     @outlet = Outlet.new(outlet_params)
-    # respond_to do |format|
       if @outlet.save
-        # format.html { redirect_to outlets_path, notice: 'Outlet was successfully created.' }
         render json: {status:"Successfully added!", outlet: @outlet}
       else
-        # format.html { render :new }
-        # format.json { render json: @outlet.errors, status: :unprocessable_entity }
         render json: {status:"Couldn't add outlet", outlet: @outlet}
       end
     # end
@@ -336,25 +294,6 @@ class OutletsController < ApplicationController
       #if outlets.nil?
        # puts 'nil'
         @outlets = Outlet.where(inactive: false).order("lower(name) ASC").offset(offset * 25).limit(25)
-        # .as_json(
-        #   :include => {
-        #     :jobs => {
-        #       :include =>
-        #         [:presstypes,
-        #         :writer => {
-        #           only: [:id, :f_name, :l_name],
-        #           :include => {
-        #             :genres => {
-        #               only: [:id, :name]
-        #             }
-        #           }
-        #         }]
-        #     },
-        #     :country => {
-        #       only: [:id, :name]
-        #     }
-        #   }
-        # )
        # $redis.set('outlets', JSON.generate(@outlets.as_json))
        # $redis.expire('outlets', 5.seconds.to_i)
       #else
@@ -365,25 +304,6 @@ class OutletsController < ApplicationController
 
     def fetch_trial_outlets
       @outlets = Outlet.where(name: '2dopeboyz').or(Outlet.where(name: 'AdHoc')).or(Outlet.where(name: 'Austin Town Hall'))
-      # .as_json(
-      #   :include => {
-      #     :jobs => {
-      #       :include =>
-      #         [:presstypes,
-      #         :writer => {
-      #           only: [:id, :f_name, :l_name],
-      #           :include => {
-      #             :genres => {
-      #               only: [:id, :name]
-      #             }
-      #           }
-      #         }]
-      #     },
-      #     :country => {
-      #       only: [:id, :name]
-      #     }
-      #   }
-      # )
     end
 
 
@@ -415,7 +335,7 @@ class OutletsController < ApplicationController
         )
         outlet = outlet[0]
         outlet["jobs"].each do |j|
-          if j["writer"]["inactive"] == true
+          if j["writer"]["inactive"]==true
             outlet["jobs"].delete(j)
           end
         end
