@@ -116,6 +116,9 @@ class WritersController < ApplicationController
   def destroy
     # @writer.destroy
     @writer.update(inactive: true)
+    @writer.jobs.each do |job|
+      job.destroy
+    end
     render json: {
       notice: 'Writer was successfully destroyed.',
       error: Rails.logger.info(@writer.errors.inspect)}
