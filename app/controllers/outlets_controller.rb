@@ -306,7 +306,6 @@ class OutletsController < ApplicationController
       @outlets = Outlet.where(name: '2dopeboyz').or(Outlet.where(name: 'AdHoc')).or(Outlet.where(name: 'Austin Town Hall'))
     end
 
-
     def fetch_outlet
       puts "params: #{params[:id]}"
       id = params[:id]
@@ -326,7 +325,8 @@ class OutletsController < ApplicationController
                       only: [:id, :name]
                     }
                   }
-                }]
+                }
+              ]
             },
             :country => {
               only: [:id, :name]
@@ -335,7 +335,8 @@ class OutletsController < ApplicationController
         )
         outlet = outlet[0]
         outlet["jobs"].each do |j|
-          if j["writer"]["inactive"]==true
+          if j["writer"]["inactive"] == true
+            puts "#{j["writer"]["f_name"]} #{j["writer"]["l_name"]}"
             outlet["jobs"].delete(j)
           end
         end
