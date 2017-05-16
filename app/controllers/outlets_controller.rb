@@ -176,8 +176,16 @@ class OutletsController < ApplicationController
       puts "valid get request"
       if params[:q] == '#'
         numbers = '1234567890'.split('')
+        @outlets_inactive = Outlet.where(inactive: false)
 
-        @outlets = Outlet.where(inactive: false).where('name like ?', "%#{numbers}%")
+        @filtered_outlets = []
+        @outlets_inactive.each do |outlet|
+          outlet_first = outlet.name[0]
+          if numbers.include? outlet_first
+            @filtered_outlets.push(outlet)
+          end
+        end
+        @outlets = @filtered_outlets
       else
         @outlets = Outlet.where(inactive: false).where('name like ?', "%#{params[:q]}%")
       end
