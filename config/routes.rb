@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get 'search/:q', action: :search, controller: 'outlets'
       post 'filter', action: :filter, controller: 'outlets'
       get 'filter', action: :filter, controller: 'outlets'
+      get 'search_by_letter/:q', action: :search_by_letter, controller: 'outlets'
     end
   end
   resources :saved_jobs, only: [:create, :update] do

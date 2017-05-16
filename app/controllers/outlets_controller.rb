@@ -171,6 +171,19 @@ class OutletsController < ApplicationController
     render json: @outlets
   end
 
+  def search_by_letter
+    if request.get?
+      puts "valid get request"
+      @outlets = Outlet.where(inactive: false).where('name like ?', "%#{params[:q]}%")
+      @jobs = []
+      outlet_ids = []
+      @outlet_ids = outlet_ids
+      @outlets_results = @outlets.as_json
+      
+      render json: @outlets_results
+    end
+  end
+
   # GET /outlets/1/edit
   def edit
   end

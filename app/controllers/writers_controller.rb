@@ -14,6 +14,7 @@ class WritersController < ApplicationController
   # GET /writers/1
   # GET /writers/1.json
   def show
+    # Removed inactive search criteria .where(inactive:false)
     @writer = Writer.where(inactive:false).where(id: params[:id]).as_json(
       :include => {
         :jobs => {
