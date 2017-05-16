@@ -174,7 +174,7 @@ class OutletsController < ApplicationController
   def search_by_letter
     if request.get?
       puts "valid get request"
-      if params[:q] == '#'
+      if params[:q] == '1'
         numbers = '1234567890'.split('')
         @outlets_inactive = Outlet.where(inactive: false)
 
