@@ -174,12 +174,19 @@ class OutletsController < ApplicationController
   def search_by_letter
     if request.get?
       puts "valid get request"
-      @outlets = Outlet.where(inactive: false).where('name like ?', "%#{params[:q]}%")
-      @jobs = []
-      outlet_ids = []
-      @outlet_ids = outlet_ids
+      if params[:q] == '#'
+        num_array = []
+        numbers = '1234567890'.split('')
+
+        numbers.each do |number|
+          num_array.push(number.to_i)
+        end
+        @outlets = Outlet.where(inactive: false).where('name like ?', num_array)
+      else
+        @outlets = Outlet.where(inactive: false).where('name like ?', "%#{params[:q]}%")
+      end
+
       @outlets_results = @outlets.as_json
-      
       render json: @outlets_results
     end
   end
