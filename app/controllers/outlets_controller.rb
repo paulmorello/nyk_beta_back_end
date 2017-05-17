@@ -165,8 +165,8 @@ class OutletsController < ApplicationController
     end
     if filters["genre_id"].present?
       g_ids_plus_all = [filters["genre_id"]]
-      # g_ids_plus_all.push("19") unless g_ids_plus_all.include?("19")
-      @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: g_ids_plus_all}).distinct
+      g_ids_plus_all.push("19") unless g_ids_plus_all.include?("19")
+      @outlets = @outlets.joins(writers: :genre_tags).where(genre_tags: {genre_id: filters["genre_id"]).distinct
     end
     render json: @outlets
   end
