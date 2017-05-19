@@ -58,17 +58,20 @@ class WritersController < ApplicationController
   # POST /writers
   # POST /writers.json
   def create
-    @writer = Writer.create(writer_params)
 
-    # respond_to do |format|
-      if @writer.save
-        # format.html { redirect_to outlets_path, notice: 'Writer was successfully created.' }
-        render json: { notice: 'Writer was successfully created.', writer: @writer.as_json(:include  => {:jobs => {only: [:outlet_id]}})}
-      else
-        # format.html { render :new }
-        render json: { errors: @writer.errors, status: :unprocessable_entity }
-      end
-    # end
+    if request.post?
+      @writer = Writer.create(writer_params)
+
+      # respond_to do |format|
+        if @writer.save
+          # format.html { redirect_to outlets_path, notice: 'Writer was successfully created.' }
+          render json: { notice: 'Writer was successfully created.', writer: @writer.as_json(:include  => {:jobs => {only: [:outlet_id]}})}
+        else
+          # format.html { render :new }
+          render json: { errors: @writer.errors, status: :unprocessable_entity }
+        end
+      # end
+    end
   end
 
   # PATCH/PUT /writers/1
